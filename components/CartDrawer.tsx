@@ -2,7 +2,7 @@
 import { useCartStore } from '@/store/cartStore';
 import { getOrderWhatsAppUrl } from '@/lib/whatsapp';
 import Image from 'next/image';
-import { X, Minus, Plus, ShoppingBag, ArrowRight, MessageCircle } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, ArrowRight, MessageCircle, Shield } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function CartDrawer() {
@@ -97,7 +97,11 @@ export default function CartDrawer() {
               <span className="text-label-sm font-semibold tracking-wider">Order on WhatsApp</span>
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <p className="text-[13px] text-center text-on-surface-variant mt-3 opacity-80">Secure, instant support from our team.</p>
+            <div className="flex items-center justify-center gap-4 mt-4 text-[11px] font-semibold text-on-surface-variant opacity-60 uppercase tracking-widest">
+              <span className="flex items-center gap-1.5"><Shield size={12}/> Secure SSL</span>
+              <span className="flex items-center gap-1.5"><Shield size={12}/> Certified Store</span>
+            </div>
+            <p className="text-[13px] text-center text-on-surface-variant mt-3 opacity-80">Instant human support via WhatsApp.</p>
           </div>
         )}
       </div>
@@ -109,7 +113,10 @@ export default function CartDrawer() {
             <div className="p-6 sm:p-8 pb-4 border-b border-surface-variant/50 flex justify-between items-center bg-surface-bright sticky top-0">
               <div>
                 <h2 className="text-[24px] font-semibold text-primary">Confirm Your Order</h2>
-                <p className="text-label-sm text-on-surface-variant mt-1">Order via WhatsApp for instant support</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="text-label-sm text-on-surface-variant">Order via WhatsApp for instant support</p>
+                  <span className="flex items-center gap-1 text-[10px] bg-secondary/10 text-secondary px-1.5 py-0.5 rounded font-bold">100% SECURE</span>
+                </div>
               </div>
               <button onClick={() => setShowConfirm(false)} className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
                 <X size={18} />

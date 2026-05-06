@@ -123,6 +123,22 @@
   --animate-slide-in-right: slide-in-right 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 
+@media (max-width: 768px) {
+  :root {
+    --text-display-xl: 36px;
+    --text-headline-lg: 28px;
+    --text-headline-md: 20px;
+    --text-body-lg: 17px;
+    --text-body-md: 15px;
+    --spacing-margin-desktop: 24px;
+  }
+}
+
+.trust-badge {
+  @apply flex items-center gap-2 text-label-sm text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-full border border-surface-variant/50;
+}
+
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }

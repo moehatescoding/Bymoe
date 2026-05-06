@@ -19,19 +19,19 @@ export default function HomePage() {
         <div className="absolute inset-0 img-zoom">
           <Image src="https://picsum.photos/seed/hero-bymoe/1400/900" alt="bymoe hero" fill className="object-cover opacity-30" priority />
         </div>
-        <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop py-20">
+        <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop py-12 md:py-20 text-center md:text-left flex flex-col items-center md:items-start">
           <p className="text-[14px] font-semibold text-on-surface-variant uppercase tracking-widest mb-4">New Collection 2026</p>
-          <h1 className="text-[48px] md:text-[72px] font-semibold tracking-tight text-primary leading-[1.05] max-w-2xl">
+          <h1 className="text-[36px] md:text-[72px] font-semibold tracking-tight text-primary leading-[1.1] max-w-2xl">
             Curated for the&nbsp;way you&nbsp;live.
           </h1>
-          <p className="text-body-lg text-on-surface-variant mt-6 max-w-lg">
+          <p className="text-[17px] md:text-body-lg text-on-surface-variant mt-6 max-w-lg">
             Premium fashion, home essentials, IKEA deals — all in one place. Order instantly via WhatsApp.
           </p>
-          <div className="flex flex-wrap gap-4 mt-10">
-            <Link href="/category/home" className="bg-primary text-on-primary px-8 py-4 rounded-xl text-[16px] font-semibold tracking-wide hover:opacity-90 transition-opacity flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row gap-4 mt-10 w-full sm:w-auto">
+            <Link href="/category/home" className="bg-primary text-on-primary px-8 py-4 rounded-xl text-[16px] font-semibold tracking-wide hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
               Shop Now <ArrowRight size={16} />
             </Link>
-            <Link href="/bulk" className="bg-surface border border-outline-variant text-primary px-8 py-4 rounded-xl text-[16px] font-semibold tracking-wide hover:bg-surface-variant transition-colors flex items-center gap-2">
+            <Link href="/bulk" className="bg-surface border border-outline-variant text-primary px-8 py-4 rounded-xl text-[16px] font-semibold tracking-wide hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
               <Package size={16} /> Bulk Orders
             </Link>
           </div>
@@ -40,27 +40,29 @@ export default function HomePage() {
 
       {/* Trust bar */}
       <section className="bg-surface border-y border-surface-variant py-6">
-        <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop flex flex-wrap justify-center gap-8 md:gap-16">
+        <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop flex flex-col md:flex-row justify-center items-center gap-6 md:gap-16">
           {[
             { icon: <Truck size={18}/>, text: 'Free Delivery on orders ₹999+' },
             { icon: <MessageCircle size={18}/>, text: 'Instant WhatsApp Support' },
             { icon: <Shield size={18}/>, text: 'Cash on Delivery Available' },
           ].map(({ icon, text }) => (
-            <div key={text} className="flex items-center gap-2 text-on-surface-variant text-label-sm">
-              {icon}<span>{text}</span>
+            <div key={text} className="flex items-center gap-3 text-on-surface-variant text-[13px] md:text-label-sm font-medium">
+              <span className="text-primary">{icon}</span>
+              <span>{text}</span>
             </div>
           ))}
         </div>
       </section>
 
       {/* Categories */}
-      <section className="max-w-container-max mx-auto px-6 md:px-margin-desktop py-20">
-        <div className="flex items-end justify-between mb-10">
-          <div>
+      <section className="max-w-container-max mx-auto px-6 md:px-margin-desktop py-12 md:py-20">
+        <div className="flex items-end justify-between mb-8 md:mb-10">
+          <div className="text-center md:text-left w-full md:w-auto">
             <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Explore</p>
-            <h2 className="text-[32px] font-semibold tracking-tight text-primary">Shop by Category</h2>
+            <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight text-primary">Shop by Category</h2>
           </div>
         </div>
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((cat) => <CategoryCard key={cat.id} category={cat} />)}
         </div>

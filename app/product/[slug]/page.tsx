@@ -3,6 +3,7 @@ import { getProductBySlug, products } from '@/lib/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductActions from './ProductActions';
+import { Shield } from 'lucide-react';
 
 export async function generateStaticParams() {
   return products.map(p => ({ slug: p.slug }));
@@ -53,8 +54,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {discount > 0 && <span className="bg-sale-orange text-white px-3 py-1 rounded-full text-label-sm font-semibold uppercase">{discount}% OFF</span>}
               <span className="bg-surface-variant text-on-surface px-3 py-1 rounded-full text-label-sm font-semibold uppercase capitalize">{category.replace('-', ' ')}</span>
             </div>
-            <h1 className="text-[32px] font-semibold tracking-tight text-primary">{name}</h1>
-            {product.subtitle && <p className="text-body-lg text-on-surface-variant">{product.subtitle}</p>}
+            <h1 className="text-[28px] md:text-[40px] font-semibold tracking-tight text-primary leading-tight">{name}</h1>
+            {product.subtitle && <p className="text-[17px] md:text-body-lg text-on-surface-variant">{product.subtitle}</p>}
             {product.sku && (
               <p className="text-label-sm text-on-surface-variant">
                 Article No: <span className="font-medium">{product.sku}</span>
@@ -64,11 +65,19 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
 
           {/* Price */}
-          <div className="flex items-end gap-4 border-b border-surface-variant pb-6">
-            <span className="text-[48px] font-semibold text-primary leading-none">₹{price.toLocaleString('en-IN')}</span>
-            {originalPrice > price && (
-              <span className="text-[24px] text-outline-variant line-through mb-1">₹{originalPrice.toLocaleString('en-IN')}</span>
-            )}
+          <div className="flex flex-col gap-1 border-b border-surface-variant pb-6">
+            <div className="flex items-end gap-4">
+              <span className="text-[36px] md:text-[48px] font-semibold text-primary leading-none">₹{price.toLocaleString('en-IN')}</span>
+              {originalPrice > price && (
+                <span className="text-[20px] md:text-[24px] text-outline-variant line-through mb-1">₹{originalPrice.toLocaleString('en-IN')}</span>
+              )}
+            </div>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="flex items-center gap-1.5 text-[11px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                <Shield size={12}/> 100% Secure Checkout
+              </span>
+              <span className="text-[11px] text-on-surface-variant opacity-60 font-medium italic">Verified secure store</span>
+            </div>
           </div>
 
           {/* Trust */}
