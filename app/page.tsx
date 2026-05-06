@@ -17,7 +17,27 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center bg-surface-container-low overflow-hidden">
         <div className="absolute inset-0 img-zoom">
-          <Image src="https://picsum.photos/seed/hero-bymoe/1400/900" alt="bymoe hero" fill className="object-cover opacity-30" priority />
+          {/* Desktop Video Background */}
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="hidden md:block w-full h-full object-cover opacity-40 scale-105"
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Mobile Image Background */}
+          <div className="md:hidden relative w-full h-full">
+            <Image 
+              src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1470&auto=format&fit=crop" 
+              alt="bymoe hero mobile" 
+              fill 
+              className="object-cover opacity-30" 
+              priority 
+            />
+          </div>
         </div>
         <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop pt-52 pb-12 md:pb-20 text-center md:text-left flex flex-col items-center md:items-start">
           <p className="text-[14px] font-semibold text-on-surface-variant uppercase tracking-widest mb-4">New Collection 2026</p>
