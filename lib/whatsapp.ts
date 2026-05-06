@@ -38,12 +38,17 @@ Payment: COD / UPI`;
 }
 
 export function generateBulkMessage(): string {
-  return `Hi, I'm interested in bulk orders from bymoe.
+  return `Hi bymoe, I would like to enquire about a Bulk Order. 
 
-Business Type:
-Quantity:
-Products:
-Location:`;
+I am interested in sourcing products for my business/project. Here are my preliminary details:
+
+- Business/Client Name:
+- Project Type (Office/Cafe/Retail/etc.):
+- Estimated Quantity:
+- Target Product List:
+- Delivery Location:
+
+Looking forward to your best quote. Thank you!`;
 }
 
 export function getWhatsAppUrl(message: string): string {
