@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Brand */}
               <div className="flex flex-col gap-6">
                 <Link href="/">
-                  <Image src="/logo.svg" alt="bymoe" width={160} height={48} style={{ width: 'auto', height: '48px' }} />
+                  <Image src="/logo.svg" alt="bymoe" width={240} height={80} style={{ width: 'auto', height: '80px' }} className="mb-6" />
                 </Link>
                 <p className="text-[0.875rem] text-[#666] max-w-xs leading-relaxed">
                   Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.
