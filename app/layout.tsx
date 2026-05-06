@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-surface-variant">
               {/* Brand */}
               <div className="flex flex-col gap-4">
-                <Image src="/logo.svg" alt="bymoe" width={100} height={28} style={{ width: 'auto', height: '28px' }} className="mb-3" />
+                <Image src="/logo.svg" alt="bymoe" width={160} height={48} style={{ width: 'auto', height: '48px' }} className="mb-4" />
                 <p className="text-body-md text-on-surface-variant max-w-xs leading-relaxed">
                   Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.
                 </p>
