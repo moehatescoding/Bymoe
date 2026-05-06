@@ -90,33 +90,34 @@ export default function Navbar() {
   const itemCount = mounted ? totalItems() : 0;
 
   return (
-    <nav 
+    <header 
       className={cn(
-        "fixed top-0 w-full z-[100] transition-all duration-500 ease-out",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500",
         isScrolled 
-          ? "bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] py-4" 
-          : "bg-[#F8F8F8]/80 backdrop-blur-xl py-6"
+          ? "h-20 md:h-24 bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm py-4" 
+          : "h-28 md:h-36 bg-transparent py-8"
       )}
     >
       <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop flex justify-between items-center">
         
         {/* Left: Logo */}
-        <Link 
-          href="/" 
-          className="flex-shrink-0 transition-transform duration-300 hover:scale-[1.02]"
-        >
-          <Image 
-            src="/logo.svg" 
-            alt="bymoe" 
-            width={180} 
-            height={80} 
-            className="h-16 w-auto md:h-20" 
-            priority 
-          />
-        </Link>
+        <div className="flex items-center">
+          <Link href="/" className="relative z-50">
+            <div className="flex flex-col">
+              <Image 
+                src="/logo.svg" 
+                alt="bymoe" 
+                width={200} 
+                height={80} 
+                className="h-20 md:h-28 w-auto transition-transform duration-500 hover:scale-105"
+                priority
+              />
+            </div>
+          </Link>
+        </div>
 
         {/* Center: Primary Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-12">
           {navConfig.map((item) => (
             <div 
               key={item.label}
@@ -127,7 +128,7 @@ export default function Navbar() {
               <Link 
                 href={item.href}
                 className={cn(
-                  "text-[15px] font-medium tracking-wide transition-all duration-300 relative group",
+                  "text-[17px] font-medium tracking-wide transition-all duration-300 relative group",
                   item.prominent ? "text-primary font-semibold" : "text-[#111] opacity-80 hover:opacity-100"
                 )}
               >
@@ -181,11 +182,11 @@ export default function Navbar() {
           
           <button 
             onClick={() => openCart()}
-            className="p-2 text-[#111] hover:text-primary transition-all relative group"
+            className="p-3 hover:bg-black/5 rounded-full transition-colors text-[#111] hover:text-primary transition-all relative group"
             aria-label="Cart"
           >
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <ShoppingCart size={22} strokeWidth={1.5} />
+              <ShoppingBag size={24} strokeWidth={1.5} />
             </motion.div>
             <AnimatePresence>
               {itemCount > 0 && (

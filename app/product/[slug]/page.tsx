@@ -3,6 +3,7 @@ import { getProductBySlug, products } from '@/lib/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductActions from './ProductActions';
+import ProductGallery from './ProductGallery';
 import { Shield } from 'lucide-react';
 
 export async function generateStaticParams() {
@@ -17,7 +18,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { name, category, price, originalPrice, discount, images, description, inStock } = product;
 
   return (
-    <main className="pt-32 pb-20 max-w-container-max mx-auto px-6 md:px-margin-desktop">
+    <main className="pt-44 pb-20 max-w-container-max mx-auto px-6 md:px-margin-desktop">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 mb-8 text-label-sm text-on-surface-variant">
         <Link href="/" className="hover:text-primary transition-colors">Home</Link>
@@ -29,26 +30,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-card-gap">
         {/* Gallery */}
-        <div className="lg:col-span-7 flex flex-col gap-base">
-          <div className="bg-surface-variant rounded-xl overflow-hidden aspect-[4/3] relative img-zoom">
-            <Image src={images[0]} alt={name} fill className="object-cover" priority sizes="(max-width:1024px) 100vw, 58vw" />
-            {!inStock && (
-              <div className="absolute inset-0 bg-primary/40 flex items-center justify-center">
-                <span className="bg-primary text-on-primary px-6 py-3 rounded-full text-[16px] font-semibold">Sold Out</span>
-              </div>
-            )}
-          </div>
-          <div className="grid grid-cols-4 gap-base">
-            {images.map((img, i) => (
-              <div key={i} className={`bg-surface-variant rounded-lg overflow-hidden aspect-square cursor-pointer ${i === 0 ? 'ring-2 ring-primary' : 'opacity-70 hover:opacity-100 transition-opacity'}`}>
-                <Image src={img} alt={`${name} view ${i+1}`} width={150} height={150} className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
+        <div className="lg:col-span-7">
+          <ProductGallery images={images} name={name} inStock={inStock} />
         </div>
 
         {/* Info */}
         <div className="lg:col-span-5 flex flex-col gap-6">
+
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 flex-wrap">
               {discount > 0 && <span className="bg-sale-orange text-white px-3 py-1 rounded-full text-label-sm font-semibold uppercase">{discount}% OFF</span>}
