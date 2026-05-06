@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   description: 'Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.',
   keywords: 'bymoe, fashion, home, IKEA deals, WhatsApp shopping',
   icons: {
-    icon: '/logo.svg',
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
   }
 };
 
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Brand */}
               <div className="flex flex-col gap-6">
                 <Link href="/">
-                  <Image src="/logo.svg" alt="bymoe" width={240} height={80} style={{ width: 'auto', height: '80px' }} className="mb-6" />
+                  <Image src="/logo.svg" alt="bymoe" width={320} height={120} style={{ width: 'auto', height: '120px' }} className="mb-8" />
                 </Link>
                 <p className="text-[0.875rem] text-[#666] max-w-xs leading-relaxed">
                   Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.

@@ -94,8 +94,8 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500",
         isScrolled 
-          ? "h-20 md:h-24 bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm py-4" 
-          : "h-28 md:h-40 bg-transparent py-6"
+          ? "h-24 md:h-32 bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm py-4" 
+          : "h-32 md:h-52 bg-transparent py-8"
       )}
     >
       <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop flex justify-between items-center h-full">
@@ -107,9 +107,9 @@ export default function Navbar() {
               <Image 
                 src="/logo.svg" 
                 alt="bymoe" 
-                width={240} 
-                height={80} 
-                className="h-20 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
+                width={320} 
+                height={120} 
+                className="h-24 md:h-44 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </div>
