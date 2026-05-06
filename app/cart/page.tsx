@@ -3,13 +3,13 @@ import { useCartStore } from '@/store/cartStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Minus, Plus, X, ShoppingBag, MessageCircle, ArrowRight } from 'lucide-react';
-import { getOrderWhatsAppUrl } from '@/lib/whatsapp';
+import { Minus, Plus, X, ShoppingBag, ArrowRight, CreditCard } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, totalAmount, totalItems } = useCartStore();
   const [mounted, setMounted] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const router = useRouter();
 
   useEffect(() => { setMounted(true); useCartStore.persist.rehydrate(); }, []);
   if (!mounted) return null;
@@ -17,9 +17,8 @@ export default function CartPage() {
   const total = totalAmount();
   const count = totalItems();
 
-  const handleWhatsApp = () => {
-    window.open(getOrderWhatsAppUrl(items.map(i => ({ name: i.name, quantity: i.quantity, price: i.price }))), '_blank');
-    setShowConfirm(false);
+  const handleCheckout = () => {
+    router.push('/checkout');
   };
 
   return (
@@ -97,8 +96,9 @@ export default function CartPage() {
                     <span className="text-[32px] font-semibold text-primary tracking-tight">₹{total.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
-                <button onClick={() => setShowConfirm(true)} className="w-full bg-wa-green text-white rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:bg-wa-green-dark transition-colors shadow-sm group">
-                  <span className="text-[16px] font-semibold">Order on WhatsApp</span>
+                <button onClick={handleCheckout} className="w-full bg-primary text-white rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:opacity-90 transition-opacity shadow-sm group">
+                  <CreditCard size={20} />
+                  <span className="text-[16px] font-semibold">Proceed to Details</span>
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </button>
                 <p className="text-[13px] text-center text-on-surface-variant mt-4 opacity-80">Secure, instant support from our team.</p>
@@ -108,48 +108,7 @@ export default function CartPage() {
         )}
       </div>
 
-      {/* Confirm Modal */}
-      {showConfirm && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/20 backdrop-blur-sm p-4">
-          <div className="bg-surface-container-lowest rounded-2xl w-full max-w-lg shadow-modal overflow-hidden flex flex-col max-h-[90vh] animate-slide-up">
-            <div className="p-6 sm:p-8 pb-4 border-b border-surface-variant/50 flex justify-between items-center bg-surface-bright sticky top-0">
-              <div>
-                <h2 className="text-[24px] font-semibold text-primary">Confirm Your Order</h2>
-                <p className="text-label-sm text-on-surface-variant mt-1">Order via WhatsApp for instant support</p>
-              </div>
-              <button onClick={() => setShowConfirm(false)} className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
-                <X size={18} />
-              </button>
-            </div>
-            <div className="p-6 sm:p-8 overflow-y-auto space-y-2">
-              {items.map(item => (
-                <div key={item.id} className="flex justify-between items-center py-3 border-b border-surface-variant/30">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-surface-container-low rounded-lg overflow-hidden shrink-0">
-                      <Image src={item.image} alt={item.name} width={48} height={48} className="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                      <p className="text-label-sm text-primary font-semibold">{item.name}</p>
-                      <p className="text-[13px] text-on-surface-variant">Qty: {item.quantity}</p>
-                    </div>
-                  </div>
-                  <span className="text-label-sm text-primary font-semibold">₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
-                </div>
-              ))}
-            </div>
-            <div className="p-6 sm:p-8 bg-surface-bright border-t border-surface-variant/50 sticky bottom-0">
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-body-lg text-primary font-medium">Total to pay</span>
-                <span className="text-[24px] font-semibold text-primary">₹{total.toLocaleString('en-IN')}</span>
-              </div>
-              <button onClick={handleWhatsApp} className="w-full bg-wa-green text-white rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:bg-wa-green-dark transition-colors shadow-sm">
-                <MessageCircle size={20} />
-                <span className="text-[16px] font-semibold">Continue to WhatsApp</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
     </main>
   );
 }
