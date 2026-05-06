@@ -11,8 +11,8 @@ export default function ProductCard({ product }: Props) {
   return (
     <div className="product-card group rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/50">
       <Link href={`/product/${slug}`} className="block">
-        <div className="relative overflow-hidden aspect-[3/4] bg-surface-container-low img-zoom">
-          <Image src={image} alt={name} fill className="object-cover" sizes="(max-width:768px) 50vw, 25vw" loading="lazy" />
+        <div className="relative overflow-hidden aspect-square bg-[#F9F9F9] img-zoom">
+          <Image src={image} alt={name} fill className="object-contain p-4" sizes="(max-width:768px) 50vw, 25vw" loading="lazy" />
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {!inStock && (

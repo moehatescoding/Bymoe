@@ -15,12 +15,12 @@ export default function ProductGallery({ images, name, inStock }: Props) {
   return (
     <div className="flex flex-col gap-base">
       {/* Main Image */}
-      <div className="bg-surface-variant rounded-xl overflow-hidden aspect-[4/3] relative group cursor-crosshair">
+      <div className="bg-[#F9F9F9] rounded-xl overflow-hidden aspect-square relative group cursor-zoom-in border border-surface-variant">
         <Image 
           src={images[activeIndex]} 
           alt={`${name} view ${activeIndex + 1}`} 
           fill 
-          className="object-cover transition-transform duration-700 group-hover:scale-110" 
+          className="object-contain p-4 transition-transform duration-700 group-hover:scale-105" 
           priority 
           sizes="(max-width:1024px) 100vw, 58vw" 
         />
@@ -48,7 +48,7 @@ export default function ProductGallery({ images, name, inStock }: Props) {
               src={img} 
               alt={`${name} thumbnail ${i+1}`} 
               fill 
-              className="object-cover" 
+              className="object-contain p-1" 
               sizes="100px"
             />
           </button>
