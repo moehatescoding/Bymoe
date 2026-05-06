@@ -13,13 +13,13 @@ export default function HomePage() {
   const ours = getOurProducts().slice(0, 4);
 
   return (
-    <main className="pt-32 min-h-screen">
+    <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center bg-surface-container-low overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center bg-surface-container-low overflow-hidden">
         <div className="absolute inset-0 img-zoom">
           <Image src="https://picsum.photos/seed/hero-bymoe/1400/900" alt="bymoe hero" fill className="object-cover opacity-30" priority />
         </div>
-        <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop py-12 md:py-20 text-center md:text-left flex flex-col items-center md:items-start">
+        <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop pt-40 pb-12 md:pb-20 text-center md:text-left flex flex-col items-center md:items-start">
           <p className="text-[14px] font-semibold text-on-surface-variant uppercase tracking-widest mb-4">New Collection 2026</p>
           <h1 className="text-[36px] md:text-[72px] font-semibold tracking-tight text-primary leading-[1.1] max-w-2xl">
             Curated for the&nbsp;way you&nbsp;live.
