@@ -94,8 +94,8 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500",
         isScrolled 
-          ? "h-24 md:h-32 bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm py-4" 
-          : "h-32 md:h-52 bg-transparent py-8"
+          ? "h-16 md:h-20 bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm py-2" 
+          : "h-20 md:h-28 bg-transparent py-4"
       )}
     >
       <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop flex justify-between items-center h-full">
@@ -109,7 +109,7 @@ export default function Navbar() {
                 alt="bymoe" 
                 width={320} 
                 height={120} 
-                className="h-24 md:h-44 w-auto transition-transform duration-500 hover:scale-105"
+                className="h-12 md:h-16 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </div>

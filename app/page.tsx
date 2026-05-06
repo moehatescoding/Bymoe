@@ -13,7 +13,7 @@ export default function HomePage() {
   const ours = getOurProducts().slice(0, 4);
 
   return (
-    <main className="pt-60 min-h-screen">
+    <main className="pt-32 min-h-screen">
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center bg-surface-container-low overflow-hidden">
         <div className="absolute inset-0 img-zoom">
