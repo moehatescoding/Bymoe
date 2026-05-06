@@ -128,8 +128,8 @@ export default function Navbar() {
               <Link 
                 href={item.href}
                 className={cn(
-                  "text-[18px] font-semibold tracking-wide transition-all duration-300 relative group",
-                  item.prominent ? "text-primary font-semibold" : "text-[#111] opacity-80 hover:opacity-100"
+                  "text-[18px] font-medium tracking-[0.05em] transition-all duration-300 relative group",
+                  item.prominent ? "text-primary font-medium" : "text-[#111] opacity-70 hover:opacity-100"
                 )}
               >
                 {item.label}
