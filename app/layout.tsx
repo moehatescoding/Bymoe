@@ -11,8 +11,11 @@ const inter = Inter({ subsets: ['latin'], weight: ['300','400','500','600','700'
 
 export const metadata: Metadata = {
   title: 'bymoe — Premium Multi-Category Store',
-  description: 'Shop premium fashion, home decor, IKEA deals and more. Order instantly via WhatsApp.',
+  description: 'Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.',
   keywords: 'bymoe, fashion, home, IKEA deals, WhatsApp shopping',
+  icons: {
+    icon: '/logo.svg',
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
