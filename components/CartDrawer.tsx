@@ -30,11 +30,18 @@ export default function CartDrawer() {
     <>
       {/* Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-primary/20 backdrop-blur-sm drawer-overlay" onClick={closeCart} />
+        <div 
+          className="fixed inset-0 z-40 bg-primary/20 md:backdrop-blur-sm transition-opacity duration-300" 
+          onClick={closeCart} 
+        />
       )}
 
       {/* Drawer */}
-      <div className={`fixed right-0 top-0 h-full w-full max-w-md bg-surface z-50 flex flex-col shadow-modal transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div 
+        className={`fixed right-0 top-0 h-full w-full max-w-md bg-surface z-50 flex flex-col shadow-modal transition-all duration-300 ease-[cubic-bezier(0.32,0,0.67,0)] will-change-transform ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-surface-variant">
           <div>

@@ -254,8 +254,8 @@ export default function Navbar() {
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[200] bg-white md:hidden overflow-y-auto"
+            transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
+            className="fixed inset-0 z-[200] bg-white md:hidden overflow-y-auto will-change-transform"
           >
             <div className="p-6 flex justify-between items-center border-b border-surface-variant">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
