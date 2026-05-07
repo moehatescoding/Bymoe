@@ -212,7 +212,19 @@ export function getProductBySlug(slug: string): Product | undefined {
 }
 
 export function getProductsByCategory(category: string): Product[] {
+  if (category === "all") return products;
   return products.filter((p) => p.category === category);
+}
+
+export function searchProducts(query: string): Product[] {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  return products.filter((p) => 
+    p.name.toLowerCase().includes(q) || 
+    p.category.toLowerCase().includes(q) ||
+    p.subcategory.toLowerCase().includes(q) ||
+    p.description.toLowerCase().includes(q)
+  );
 }
 
 export function getFeaturedProducts(): Product[] {

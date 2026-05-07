@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getCategoryBySlug } from '@/lib/categories';
-import { getProductsByCategory } from '@/lib/products';
+import { getProductsByCategory, searchProducts } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
 import Link from 'next/link';
 
@@ -8,11 +8,30 @@ export async function generateStaticParams() {
   return ['men','women','kids','home','ikea','our-products','all'].map(slug => ({ slug }));
 }
 
-export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+interface PageProps {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ q?: string }>;
+}
+
+export default async function CategoryPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
-  if (!category) notFound();
-  const products = getProductsByCategory(slug);
+  const { q } = await searchParams;
+  
+  let products = [];
+  let title = '';
+  let description = '';
+
+  if (q) {
+    products = searchProducts(q);
+    title = `Search results for "${q}"`;
+    description = `Found ${products.length} products matching your search.`;
+  } else {
+    const category = getCategoryBySlug(slug);
+    if (!category) notFound();
+    products = getProductsByCategory(slug);
+    title = category.name;
+    description = category.description;
+  }
 
   return (
     <main className="pt-20 md:pt-40 pb-20 max-w-container-max mx-auto px-4 md:px-margin-desktop">
@@ -20,13 +39,17 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <div className="flex items-center gap-2 mb-6 md:mb-8 text-label-sm text-on-surface-variant">
         <Link href="/" className="hover:text-primary transition-colors">Home</Link>
         <span>›</span>
-        <span className="text-primary">{category.name}</span>
+        {q ? (
+          <span className="text-primary">Search</span>
+        ) : (
+          <span className="text-primary">{title}</span>
+        )}
       </div>
 
       {/* Header */}
       <div className="mb-8 md:mb-12">
-        <h1 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-primary">{category.name}</h1>
-        <p className="text-body-md md:text-body-lg text-on-surface-variant mt-2">{category.description}</p>
+        <h1 className="text-[32px] md:text-[40px] font-semibold tracking-tight text-primary leading-tight">{title}</h1>
+        <p className="text-body-md md:text-body-lg text-on-surface-variant mt-2">{description}</p>
         <p className="text-label-sm text-on-surface-variant mt-1">{products.length} products</p>
       </div>
 
@@ -36,8 +59,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           {products.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
       ) : (
-        <div className="text-center py-20 text-on-surface-variant">
-          <p className="text-body-lg">No products found.</p>
+        <div className="text-center py-20 text-on-surface-variant border-2 border-dashed border-surface-variant rounded-3xl">
+          <p className="text-body-lg">No products found matching your criteria.</p>
+          <Link href="/category/all" className="inline-block mt-4 text-primary font-semibold hover:underline">
+            Browse all products
+          </Link>
         </div>
       )}
     </main>

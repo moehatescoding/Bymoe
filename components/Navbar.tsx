@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Search, X, ShoppingCart, ChevronDown } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { cn } from '@/lib/utils';
-import { getFeaturedProducts } from '@/lib/products';
+import { searchProducts } from '@/lib/products';
 import ProductCard from './ProductCard';
 
 const navConfig = [
@@ -80,17 +80,18 @@ export default function Navbar() {
   };
 
   const itemCount = mounted ? totalItems() : 0;
-  const searchResults = query.trim() ? getFeaturedProducts().filter(p => 
-    p.name.toLowerCase().includes(query.toLowerCase()) || 
-    p.category.toLowerCase().includes(query.toLowerCase())
-  ).slice(0, 4) : [];
+  
+  // Real-time search results
+  const searchResults = query.trim().length >= 2 
+    ? searchProducts(query).slice(0, 4) 
+    : [];
 
   return (
     <>
       <header 
         className={cn(
           "fixed top-0 left-0 w-full z-[100] transition-all duration-300 will-change-transform",
-          "h-16 md:h-40", // Increased mobile height to 64px for bigger logo
+          "h-16 md:h-40", 
           isScrolled 
             ? "bg-white border-b border-[#ddd] shadow-sm md:h-24 md:bg-white/90 md:backdrop-blur-xl" 
             : "bg-[#f0ede8] md:bg-transparent border-b border-[#ddd] md:border-none"
@@ -211,6 +212,7 @@ export default function Navbar() {
                   className="w-full pl-8 pr-4 py-2 text-[20px] font-medium outline-none placeholder:text-[#ccc]"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && query.trim()) {
+                      setSearchOpen(false);
                       window.location.href = `/category/all?q=${encodeURIComponent(query.trim())}`;
                     }
                   }}
@@ -230,7 +232,7 @@ export default function Navbar() {
                       <button 
                         key={tag}
                         onClick={() => {
-                          setQuery(tag);
+                          setSearchOpen(false);
                           window.location.href = `/category/all?q=${encodeURIComponent(tag)}`;
                         }}
                         className="category-chip"
