@@ -34,7 +34,7 @@ export default function BottomNav() {
                 size={22} 
                 className={isActive ? 'text-black' : 'text-[#aaa]'} 
               />
-              {item.badge > 0 && (
+              {item.badge !== undefined && item.badge > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 bg-error text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
                   {item.badge}
                 </span>
