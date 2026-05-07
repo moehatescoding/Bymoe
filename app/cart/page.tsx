@@ -3,7 +3,7 @@ import { useCartStore } from '@/store/cartStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Minus, Plus, X, ShoppingBag, ArrowRight, MessageCircle, Package } from 'lucide-react';
+import { Minus, Plus, X, ShoppingBag, ArrowRight, MessageCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { getCartOrderNoDetailsUrl } from '@/lib/whatsapp';
 
@@ -23,10 +23,6 @@ export default function CartPage() {
       items.map(i => ({ name: i.name, quantity: i.quantity, price: i.price }))
     );
     window.open(url, '_blank');
-  };
-
-  const handleBulkEnquiry = () => {
-    router.push('/checkout');
   };
 
   return (
@@ -100,18 +96,11 @@ export default function CartPage() {
                     <span className="text-[32px] font-semibold text-primary tracking-tight">₹{total.toLocaleString('en-IN')}</span>
                   </div>
                   
-                  <div className="grid grid-cols-1 gap-4">
-                    <button onClick={handleCheckout} className="w-full bg-wa-green text-white rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:bg-wa-green-dark transition-colors shadow-sm group">
-                      <MessageCircle size={22} />
-                      <span className="text-[16px] font-bold tracking-wide">Order on WhatsApp</span>
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                    
-                    <button onClick={handleBulkEnquiry} className="w-full bg-white border border-outline-variant text-primary rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:bg-surface-variant transition-colors font-semibold">
-                      <Package size={20} />
-                      Bulk Order Enquiry
-                    </button>
-                  </div>
+                  <button onClick={handleCheckout} className="w-full bg-wa-green text-white rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:bg-wa-green-dark transition-colors shadow-sm group">
+                    <MessageCircle size={22} />
+                    <span className="text-[16px] font-bold tracking-wide">Order on WhatsApp</span>
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
                 <p className="text-[13px] text-center text-on-surface-variant opacity-80">Secure, instant support from our team.</p>
               </div>
