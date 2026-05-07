@@ -9,10 +9,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, totalAmount, totalItems } = useCartStore();
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     useCartStore.persist.rehydrate();
+    
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   if (!mounted) return null;
@@ -28,6 +34,12 @@ export default function CartDrawer() {
     window.open(url, '_blank');
   };
 
+  const variants = {
+    initial: isMobile ? { y: '100%', x: 0 } : { x: '100%', y: 0 },
+    animate: { x: 0, y: 0 },
+    exit: isMobile ? { y: '100%', x: 0 } : { x: '100%', y: 0 }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -37,37 +49,32 @@ export default function CartDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[150] bg-black/40 backdrop-blur-[2px]" 
+            className="fixed inset-0 z-[150] bg-black/40 md:backdrop-blur-[2px]" 
             onClick={closeCart} 
           />
 
           {/* Drawer / Bottom Sheet */}
           <motion.div 
-            initial={{ x: '100%', y: 0 }}
-            animate={{ 
-              x: window.innerWidth < 768 ? 0 : 0, 
-              y: window.innerWidth < 768 ? 0 : 0 
-            }}
-            exit={{ 
-              x: window.innerWidth < 768 ? 0 : '100%', 
-              y: window.innerWidth < 768 ? '100%' : 0 
-            }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            drag={window.innerWidth < 768 ? "y" : false}
+            variants={variants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            drag={isMobile ? "y" : false}
             dragConstraints={{ top: 0 }}
-            dragElastic={0.2}
+            dragElastic={0.1}
             onDragEnd={(_, info) => {
-              if (info.offset.y > 100) closeCart();
+              if (info.offset.y > 80) closeCart();
             }}
             className={
-              "fixed z-[200] bg-white flex flex-col shadow-modal overflow-hidden " +
-              "bottom-0 left-0 right-0 h-[80vh] rounded-t-3xl md:h-full md:left-auto md:w-full md:max-w-md md:rounded-none"
+              "fixed z-[200] bg-white flex flex-col shadow-modal overflow-hidden will-change-transform " +
+              "bottom-0 left-0 right-0 h-[85vh] rounded-t-[32px] md:h-full md:left-auto md:w-full md:max-w-md md:rounded-none"
             }
           >
             {/* Header */}
             <div className="relative flex items-center justify-between p-6 border-b border-[#eee]">
               {/* Drag Handle for Mobile */}
-              <div className="md:hidden absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-[#eee] rounded-full" />
+              <div className="md:hidden absolute top-3 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#ddd] rounded-full" />
               
               <div>
                 <h2 className="text-[20px] font-semibold tracking-tight text-primary">Shopping Cart</h2>
@@ -79,7 +86,7 @@ export default function CartDrawer() {
             </div>
 
             {/* Items */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 overscroll-contain">
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full gap-4 text-on-surface-variant">
                   <ShoppingBag size={48} strokeWidth={1} />

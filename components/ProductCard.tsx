@@ -13,7 +13,7 @@ export default function ProductCard({ product }: Props) {
   return (
     <div className="product-card group rounded-xl md:rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] md:shadow-card transition-all duration-300">
       <Link href={`/product/${slug}`} className="block">
-        <div className="relative overflow-hidden aspect-square bg-[#F9F9F9] img-zoom">
+        <div className="relative overflow-hidden aspect-square bg-[#F9F9F9] md:img-zoom">
           <Image 
             src={image} 
             alt={name} 

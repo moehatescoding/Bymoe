@@ -58,11 +58,15 @@ export default function Navbar() {
     useCartStore.persist.rehydrate();
     
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (window.scrollY > 10) {
+        if (!isScrolled) setIsScrolled(true);
+      } else {
+        if (isScrolled) setIsScrolled(false);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isScrolled]);
 
   const handleMouseEnter = (label: string) => {
     if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
@@ -85,10 +89,10 @@ export default function Navbar() {
     <>
       <header 
         className={cn(
-          "fixed top-0 left-0 w-full z-[100] transition-all duration-300",
-          "h-14 md:h-32", 
+          "fixed top-0 left-0 w-full z-[100] transition-all duration-300 will-change-transform",
+          "h-16 md:h-40", // Increased mobile height to 64px for bigger logo
           isScrolled 
-            ? "bg-white/90 backdrop-blur-xl border-b border-[#ddd] shadow-sm md:h-24" 
+            ? "bg-white border-b border-[#ddd] shadow-sm md:h-24 md:bg-white/90 md:backdrop-blur-xl" 
             : "bg-[#f0ede8] md:bg-transparent border-b border-[#ddd] md:border-none"
         )}
       >
@@ -97,13 +101,13 @@ export default function Navbar() {
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link href="/" className="relative z-50">
-              <span className="md:hidden text-[20px] font-light lowercase tracking-tight text-primary">bymoe</span>
+              <span className="md:hidden text-[26px] font-medium lowercase tracking-tighter text-primary">bymoe</span>
               <Image 
                 src="/logo.svg" 
                 alt="bymoe" 
-                width={200} 
-                height={80} 
-                className="hidden md:block h-16 md:h-24 w-auto transition-transform duration-500 hover:scale-105"
+                width={240} 
+                height={100} 
+                className="hidden md:block h-20 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </Link>
@@ -160,7 +164,7 @@ export default function Navbar() {
               className="p-2 text-[#111] hover:text-primary transition-all tap-target"
               aria-label="Search"
             >
-              <Search size={22} strokeWidth={1.5} />
+              <Search size={24} strokeWidth={1.5} />
             </button>
             
             <button 
@@ -168,14 +172,14 @@ export default function Navbar() {
               className="p-2 md:p-3 hover:bg-black/5 rounded-full transition-colors text-[#111] hover:text-primary relative tap-target"
               aria-label="Cart"
             >
-              <ShoppingCart size={22} strokeWidth={1.5} />
+              <ShoppingCart size={24} strokeWidth={1.5} />
               <AnimatePresence>
                 {itemCount > 0 && (
                   <motion.span 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
-                    className="absolute top-1 right-1 bg-error text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white md:h-4.5 md:w-4.5"
+                    className="absolute top-1 right-1 bg-error text-white text-[10px] font-bold h-4.5 w-4.5 rounded-full flex items-center justify-center border-2 border-white"
                   >
                     {itemCount}
                   </motion.span>
@@ -193,8 +197,8 @@ export default function Navbar() {
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             exit={{ y: '-100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[200] bg-white flex flex-col overflow-y-auto"
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[200] bg-white flex flex-col overflow-y-auto will-change-transform"
           >
             <div className="sticky top-0 bg-white z-10 p-4 md:p-6 flex items-center gap-4 border-b border-[#eee]">
               <div className="flex-1 relative">

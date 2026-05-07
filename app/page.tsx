@@ -23,10 +23,16 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center bg-[#f0ede8] md:bg-surface-container-low overflow-hidden">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center bg-[#f0ede8] md:bg-surface-container-low overflow-hidden">
         {/* Desktop Video/Image */}
         <div className="hidden md:block absolute inset-0 img-zoom">
-          <Image src="https://picsum.photos/seed/hero-bymoe/1400/900" alt="bymoe hero" fill className="object-cover opacity-30" priority />
+          <Image 
+            src="https://picsum.photos/seed/hero-bymoe/1400/900" 
+            alt="bymoe hero" 
+            fill 
+            className="object-cover opacity-30" 
+            priority 
+          />
         </div>
         
         {/* Mobile Static Image */}
@@ -38,10 +44,10 @@ export default function HomePage() {
             className="object-cover" 
             priority 
           />
-          <div className="absolute inset-0 bg-black/25" />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
-        <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop pt-32 md:pt-60 pb-12 md:pb-20 text-center md:text-left flex flex-col items-center md:items-start">
+        <div className="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop pt-24 md:pt-60 pb-12 md:pb-20 text-center md:text-left flex flex-col items-center md:items-start">
           <p className="text-[14px] font-semibold text-white md:text-on-surface-variant uppercase tracking-widest mb-4">New Collection 2026</p>
           <h1 className="text-[32px] md:text-[72px] font-bold md:font-semibold tracking-tight text-white md:text-primary leading-tight md:leading-[1.1] max-w-2xl">
             Curated for the<br className="md:hidden" />way you live.
@@ -61,7 +67,7 @@ export default function HomePage() {
       </section>
 
       {/* Category Chips - Mobile Only */}
-      <section className="md:hidden bg-white py-3 overflow-hidden border-b border-[#eee]">
+      <section className="md:hidden bg-white py-3 overflow-hidden border-b border-[#eee] sticky top-16 z-40">
         <div className="flex gap-2 px-4 overflow-x-auto hide-scrollbar snap-x">
           {CHIPS.map(chip => (
             <Link key={chip.label} href={chip.href} className="category-chip">
@@ -87,20 +93,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories - Desktop Only */}
-      <section className="hidden md:block max-w-container-max mx-auto px-6 md:px-margin-desktop py-12 md:py-20">
-        <div className="flex items-end justify-between mb-8 md:mb-10">
-          <div className="text-center md:text-left w-full md:w-auto">
-            <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Explore</p>
-            <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight text-primary">Shop by Category</h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((cat) => <CategoryCard key={cat.id} category={cat} />)}
-        </div>
-      </section>
-
       {/* Featured */}
       <section className="bg-surface-container-low py-12 md:py-20">
         <div className="max-w-container-max mx-auto px-4 md:px-margin-desktop">
@@ -123,8 +115,8 @@ export default function HomePage() {
       <section className="max-w-container-max mx-auto px-4 md:px-margin-desktop py-12 md:py-20">
         <div className="bg-surface-container-low rounded-2xl overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="relative min-h-[240px] md:min-h-[300px] img-zoom">
-              <Image src="https://picsum.photos/seed/ikea-spot/800/600" alt="IKEA Deals" fill className="object-cover" />
+            <div className="relative min-h-[240px] md:min-h-[300px]">
+              <Image src="https://picsum.photos/seed/ikea-spot/800/600" alt="IKEA Deals" fill className="object-cover" loading="lazy" />
             </div>
             <div className="p-8 md:p-16 flex flex-col justify-center">
               <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mb-3">Exclusive Deals</p>
