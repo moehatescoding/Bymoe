@@ -1,4 +1,10 @@
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: 'Copyright & Disclaimer | bymoe',
+  description: 'bymoe is an independent reseller. All product trademarks belong to their respective owners. We are not affiliated with IKEA or any brand.',
+};
 
 export default function DisclaimerPage() {
   return (

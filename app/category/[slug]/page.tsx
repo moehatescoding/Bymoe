@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getCategoryBySlug } from '@/lib/categories';
 import { getProductsByCategory, searchProducts } from '@/lib/products';
@@ -11,6 +12,32 @@ export async function generateStaticParams() {
 interface PageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ q?: string }>;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  
+  if (slug === 'ikea') {
+    return {
+      title: 'IKEA Deals in India — Best Prices | bymoe',
+      description: 'Get the best IKEA products at unbeatable prices. Delivered across India. Order instantly via WhatsApp — no app, no hassle.',
+    };
+  }
+  
+  if (slug === 'our-products' || slug === 'all') {
+    return {
+      title: 'Shop Fashion, Home & IKEA Products | bymoe',
+      description: 'Browse our curated collection of fashion, home essentials and IKEA deals. All orders placed instantly via WhatsApp.',
+    };
+  }
+
+  const category = getCategoryBySlug(slug);
+  if (!category) return { title: 'Category Not Found | bymoe' };
+
+  return {
+    title: `${category.name} | bymoe`,
+    description: category.description,
+  };
 }
 
 export default async function CategoryPage({ params, searchParams }: PageProps) {

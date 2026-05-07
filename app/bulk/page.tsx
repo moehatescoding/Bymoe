@@ -1,5 +1,11 @@
+import { Metadata } from 'next';
 import { MessageCircle, Package, Users, Building2, Coffee } from 'lucide-react';
 import { getBulkWhatsAppUrl } from '@/lib/whatsapp';
+
+export const metadata: Metadata = {
+  title: 'Bulk Orders — IKEA & Home Essentials | bymoe',
+  description: 'Looking to order in bulk? bymoe offers wholesale pricing on IKEA products and home essentials. Contact us via WhatsApp for bulk deals.',
+};
 
 export default function BulkPage() {
   const segments = [

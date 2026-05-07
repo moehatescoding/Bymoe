@@ -1,5 +1,11 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'bymoe — IKEA Deals, Fashion & Home Essentials | Order via WhatsApp',
+  description: 'Shop curated IKEA deals, fashion and home essentials in Hyderabad. Order instantly via WhatsApp. Fast delivery, best prices, no login needed.',
+};
 import { categories } from '@/lib/categories';
 import { getFeaturedProducts, getIKEAProducts, getOurProducts } from '@/lib/products';
 import CategoryCard from '@/components/CategoryCard';
