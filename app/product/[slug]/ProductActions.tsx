@@ -41,7 +41,7 @@ export default function ProductActions({ product }: { product: Product }) {
         <button
           onClick={handleAddToCart}
           disabled={!product.inStock}
-          className="flex-1 bg-white border border-outline-variant text-primary rounded-xl py-4 text-[16px] font-semibold hover:bg-surface-variant transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 bg-white border border-outline-variant text-primary rounded-xl py-3 md:py-4 text-[14px] md:text-[16px] font-semibold hover:bg-surface-variant transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <ShoppingCart size={18} />
           {product.inStock ? 'Add to Cart' : 'Sold Out'}
@@ -49,7 +49,7 @@ export default function ProductActions({ product }: { product: Product }) {
         <button
           onClick={handleWhatsApp}
           disabled={!product.inStock}
-          className="flex-1 bg-wa-green text-white rounded-xl py-4 text-[16px] font-semibold hover:bg-wa-green-dark transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 bg-wa-green text-white rounded-xl py-3 md:py-4 text-[14px] md:text-[16px] font-semibold hover:bg-wa-green-dark transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <MessageCircle size={18} />
           Buy on WhatsApp

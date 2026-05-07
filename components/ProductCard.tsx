@@ -62,9 +62,9 @@ export default function ProductCard({ product }: Props) {
             href={getSingleOrderUrl(name, price, 1)}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-full h-10 bg-wa-green text-white rounded-lg flex items-center justify-center gap-2 text-[14px] font-semibold transition-colors ${!inStock ? 'opacity-50 pointer-events-none' : 'hover:bg-wa-green-dark'}`}
+            className={`w-full h-9 bg-wa-green text-white rounded-lg flex items-center justify-center gap-2 text-[13px] md:text-[14px] font-semibold transition-colors ${!inStock ? 'opacity-50 pointer-events-none' : 'hover:bg-wa-green-dark'}`}
           >
-            <MessageCircle size={16} />
+            <MessageCircle size={14} />
             {inStock ? 'Order on WhatsApp' : 'Sold Out'}
           </a>
         </div>
