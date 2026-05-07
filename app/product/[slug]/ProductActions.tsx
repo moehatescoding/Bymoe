@@ -1,14 +1,13 @@
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/store/cartStore';
 import { Product } from '@/lib/products';
-import { ShoppingCart, Minus, Plus } from 'lucide-react';
+import { getSingleOrderUrl } from '@/lib/whatsapp';
+import { ShoppingCart, MessageCircle, Minus, Plus } from 'lucide-react';
 
 export default function ProductActions({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const { addItem } = useCartStore();
-  const router = useRouter();
 
   const handleAddToCart = () => {
     for (let i = 0; i < qty; i++) {
@@ -17,9 +16,7 @@ export default function ProductActions({ product }: { product: Product }) {
   };
 
   const handleWhatsApp = () => {
-    // Add to cart and redirect to checkout for a structured flow
-    handleAddToCart();
-    router.push('/checkout');
+    window.open(getSingleOrderUrl(product.name, product.price, qty), '_blank');
   };
 
   return (
@@ -48,18 +45,18 @@ export default function ProductActions({ product }: { product: Product }) {
         <button
           onClick={handleWhatsApp}
           disabled={!product.inStock}
-          className="flex-1 bg-primary text-white rounded-xl py-4 text-[16px] font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 bg-wa-green text-white rounded-xl py-4 text-[16px] font-semibold hover:bg-wa-green-dark transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <ShoppingCart size={18} />
-          Buy Now
+          <MessageCircle size={18} />
+          Buy on WhatsApp
         </button>
       </div>
 
       {/* Mobile sticky bar */}
       {product.inStock && (
         <div className="fixed bottom-0 left-0 right-0 md:hidden z-40 p-4 bg-surface/80 backdrop-blur-[12px] border-t border-surface-variant">
-          <button onClick={handleWhatsApp} className="w-full bg-primary text-white rounded-xl py-4 text-[16px] font-semibold flex items-center justify-center gap-2">
-            <ShoppingCart size={18} /> Buy Now — ₹{product.price.toLocaleString('en-IN')}
+          <button onClick={handleWhatsApp} className="w-full bg-wa-green text-white rounded-xl py-4 text-[16px] font-semibold flex items-center justify-center gap-2">
+            <MessageCircle size={18} /> Order on WhatsApp
           </button>
         </div>
       )}

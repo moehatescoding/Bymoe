@@ -63,12 +63,37 @@ I am interested in sourcing products for my business/project. Here are my prelim
 Looking forward to your best quote. Thank you!`;
 }
 
+export function generateCartOrderNoDetailsMessage(items: CartItemForMessage[]): string {
+  const lines = items
+    .map((item) => `- ${item.name} x${item.quantity} – ₹${(item.price * item.quantity).toLocaleString("en-IN")}`)
+    .join("\n");
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  return `Hi, I want to place an order from bymoe:
+
+🛒 Products:
+${lines}
+
+💰 Total: ₹${total.toLocaleString("en-IN")}
+
+Please provide your details for delivery:
+👤 Name:
+📍 Address:
+📍 Pincode:
+
+Payment: COD / UPI`;
+}
+
 export function getWhatsAppUrl(message: string): string {
   return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message)}`;
 }
 
 export function getOrderWhatsAppUrl(items: CartItemForMessage[], details: UserDetails): string {
   return getWhatsAppUrl(generateOrderMessage(items, details));
+}
+
+export function getCartOrderNoDetailsUrl(items: CartItemForMessage[]): string {
+  return getWhatsAppUrl(generateCartOrderNoDetailsMessage(items));
 }
 
 export function getSingleOrderUrl(name: string, price: number, qty: number): string {
