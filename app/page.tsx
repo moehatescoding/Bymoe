@@ -8,11 +8,11 @@ import { MessageCircle, ArrowRight, Package, Truck, Shield } from 'lucide-react'
 import { getBulkWhatsAppUrl } from '@/lib/whatsapp';
 
 const CHIPS = [
+  { label: 'Best Sellers', href: '/category/best-sellers' },
   { label: 'IKEA Deals', href: '/category/ikea' },
   { label: 'Fashion', href: '/category/men' },
   { label: 'Home', href: '/category/home' },
   { label: 'Bulk Orders', href: '/bulk' },
-  { label: 'New Arrivals', href: '/category/our-products' },
 ];
 
 export default function HomePage() {
@@ -98,8 +98,8 @@ export default function HomePage() {
         <div className="max-w-container-max mx-auto px-4 md:px-margin-desktop">
           <div className="flex items-end justify-between mb-8 md:mb-10">
             <div>
-              <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Handpicked</p>
-              <h2 className="text-[24px] md:text-[32px] font-semibold tracking-tight text-primary">Featured Products</h2>
+              <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Our Top Picks</p>
+              <h2 className="text-[24px] md:text-[32px] font-semibold tracking-tight text-primary">Best Sellers</h2>
             </div>
             <Link href="/category/all" className="text-[13px] font-medium text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
               View All <ArrowRight size={14} />

@@ -10,6 +10,15 @@ export interface Category {
 
 export const categories: Category[] = [
   {
+    id: "best-sellers",
+    name: "Best Sellers",
+    slug: "best-sellers",
+    description: "Our most popular items",
+    image: "https://picsum.photos/seed/bestsellers-cat/600/400",
+    productCount: 1,
+    subcategories: ["Top Picks"],
+  },
+  {
     id: "men",
     name: "Men",
     slug: "men",

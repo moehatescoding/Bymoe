@@ -1,0 +1,512 @@
+[
+  {
+    "id": "m1",
+    "slug": "classic-white-oxford-shirt",
+    "localPath": "/products/men/classic-white-oxford-shirt.jpg"
+  },
+  {
+    "id": "m2",
+    "slug": "slim-fit-chinos",
+    "localPath": "/products/men/slim-fit-chinos.jpg"
+  },
+  {
+    "id": "m3",
+    "slug": "merino-wool-crewneck",
+    "localPath": "/products/men/merino-wool-crewneck.jpg"
+  },
+  {
+    "id": "m4",
+    "slug": "linen-resort-shirt",
+    "localPath": "/products/men/linen-resort-shirt.jpg"
+  },
+  {
+    "id": "m5",
+    "slug": "leather-derby-shoes",
+    "localPath": "/products/men/leather-derby-shoes.webp"
+  },
+  {
+    "id": "m6",
+    "slug": "slim-tapered-jeans",
+    "localPath": "/products/men/slim-tapered-jeans.jpg"
+  },
+  {
+    "id": "m7",
+    "slug": "polo-tshirt-pique",
+    "localPath": "/products/men/polo-tshirt-pique.jpeg"
+  },
+  {
+    "id": "m8",
+    "slug": "structured-blazer",
+    "localPath": "/products/men/structured-blazer.jpg"
+  },
+  {
+    "id": "m9",
+    "slug": "cotton-crew-tee",
+    "localPath": "/products/men/cotton-crew-tee.jpg"
+  },
+  {
+    "id": "m10",
+    "slug": "canvas-sneakers",
+    "localPath": "/products/men/canvas-sneakers.jpg"
+  },
+  {
+    "id": "m11",
+    "slug": "wool-flat-cap",
+    "localPath": "/products/men/wool-flat-cap.jpg"
+  },
+  {
+    "id": "m12",
+    "slug": "slim-fit-trousers",
+    "localPath": "/products/men/slim-fit-trousers.jpg"
+  },
+  {
+    "id": "m13",
+    "slug": "leather-belt",
+    "localPath": "/products/men/leather-belt.jpg"
+  },
+  {
+    "id": "m14",
+    "slug": "bomber-jacket",
+    "localPath": "/products/men/bomber-jacket.jpg"
+  },
+  {
+    "id": "m15",
+    "slug": "linen-trousers",
+    "localPath": "/products/men/linen-trousers.jpg"
+  },
+  {
+    "id": "m16",
+    "slug": "graphic-print-tee",
+    "localPath": "/products/men/graphic-print-tee.jpg"
+  },
+  {
+    "id": "m17",
+    "slug": "suede-loafers",
+    "localPath": "/products/men/suede-loafers.jpg"
+  },
+  {
+    "id": "m18",
+    "slug": "quilted-vest",
+    "localPath": "/products/men/quilted-vest.jpg"
+  },
+  {
+    "id": "m19",
+    "slug": "striped-socks-set",
+    "localPath": "/products/men/striped-socks-set.jpg"
+  },
+  {
+    "id": "m20",
+    "slug": "denim-jacket",
+    "localPath": "/products/men/denim-jacket.png"
+  },
+  {
+    "id": "w1",
+    "slug": "wrap-midi-dress",
+    "localPath": "/products/women/wrap-midi-dress.jpg"
+  },
+  {
+    "id": "w2",
+    "slug": "highwaist-wide-leg",
+    "localPath": "/products/women/highwaist-wide-leg.jpg"
+  },
+  {
+    "id": "w3",
+    "slug": "linen-crop-top",
+    "localPath": "/products/women/linen-crop-top.jpg"
+  },
+  {
+    "id": "w4",
+    "slug": "knit-cardigan",
+    "localPath": "/products/women/knit-cardigan.jpg"
+  },
+  {
+    "id": "w5",
+    "slug": "slip-dress",
+    "localPath": "/products/women/slip-dress.jpg"
+  },
+  {
+    "id": "w6",
+    "slug": "straight-leg-jeans",
+    "localPath": "/products/women/straight-leg-jeans.jpg"
+  },
+  {
+    "id": "w7",
+    "slug": "blazer-dress",
+    "localPath": "/products/women/blazer-dress.jpg"
+  },
+  {
+    "id": "w8",
+    "slug": "ribbed-tank-top",
+    "localPath": "/products/women/ribbed-tank-top.jpg"
+  },
+  {
+    "id": "w10",
+    "slug": "pleated-midi-skirt",
+    "localPath": "/products/women/pleated-midi-skirt.jpg"
+  },
+  {
+    "id": "w11",
+    "slug": "oversized-blazer",
+    "localPath": "/products/women/oversized-blazer.jpg"
+  },
+  {
+    "id": "w12",
+    "slug": "lace-trim-cami",
+    "localPath": "/products/women/lace-trim-cami.jpeg"
+  },
+  {
+    "id": "w13",
+    "slug": "leather-tote-bag",
+    "localPath": "/products/women/leather-tote-bag.jpg"
+  },
+  {
+    "id": "w14",
+    "slug": "floral-midi-dress",
+    "localPath": "/products/women/floral-midi-dress.jpg"
+  },
+  {
+    "id": "w15",
+    "slug": "block-heel-sandals",
+    "localPath": "/products/women/block-heel-sandals.jpg"
+  },
+  {
+    "id": "w16",
+    "slug": "cashmere-sweater",
+    "localPath": "/products/women/cashmere-sweater.jpg"
+  },
+  {
+    "id": "w17",
+    "slug": "paperbag-shorts",
+    "localPath": "/products/women/paperbag-shorts.jpg"
+  },
+  {
+    "id": "w18",
+    "slug": "pearl-hoop-earrings",
+    "localPath": "/products/women/pearl-hoop-earrings.jpg"
+  },
+  {
+    "id": "w19",
+    "slug": "puffer-jacket",
+    "localPath": "/products/women/puffer-jacket.jpg"
+  },
+  {
+    "id": "w20",
+    "slug": "maxi-wrap-skirt",
+    "localPath": "/products/women/maxi-wrap-skirt.jpg"
+  },
+  {
+    "id": "k1",
+    "slug": "dino-print-tee",
+    "localPath": "/products/kids/dino-print-tee.jpg"
+  },
+  {
+    "id": "k2",
+    "slug": "kids-floral-dress",
+    "localPath": "/products/kids/kids-floral-dress.png"
+  },
+  {
+    "id": "k3",
+    "slug": "kids-jogger-set",
+    "localPath": "/products/kids/kids-jogger-set.jpg"
+  },
+  {
+    "id": "k4",
+    "slug": "kids-school-shirt",
+    "localPath": "/products/kids/kids-school-shirt.jpg"
+  },
+  {
+    "id": "k5",
+    "slug": "denim-dungarees",
+    "localPath": "/products/kids/denim-dungarees.jpg"
+  },
+  {
+    "id": "k6",
+    "slug": "rainbow-sneakers",
+    "localPath": "/products/kids/rainbow-sneakers.jpg"
+  },
+  {
+    "id": "k7",
+    "slug": "kids-striped-polo",
+    "localPath": "/products/kids/kids-striped-polo.jpeg"
+  },
+  {
+    "id": "k8",
+    "slug": "tutu-skirt",
+    "localPath": "/products/kids/tutu-skirt.jpg"
+  },
+  {
+    "id": "k9",
+    "slug": "kids-sherpa-hoodie",
+    "localPath": "/products/kids/kids-sherpa-hoodie.jpg"
+  },
+  {
+    "id": "k10",
+    "slug": "kids-school-trousers",
+    "localPath": "/products/kids/kids-school-trousers.jpg"
+  },
+  {
+    "id": "k11",
+    "slug": "animal-print-dress",
+    "localPath": "/products/kids/animal-print-dress.jpg"
+  },
+  {
+    "id": "k12",
+    "slug": "kids-cargo-shorts",
+    "localPath": "/products/kids/kids-cargo-shorts.jpg"
+  },
+  {
+    "id": "k13",
+    "slug": "glitter-ballet-pumps",
+    "localPath": "/products/kids/glitter-ballet-pumps.jpg"
+  },
+  {
+    "id": "k14",
+    "slug": "kids-track-suit",
+    "localPath": "/products/kids/kids-track-suit.jpg"
+  },
+  {
+    "id": "k15",
+    "slug": "sunflower-tee",
+    "localPath": "/products/kids/sunflower-tee.jpg"
+  },
+  {
+    "id": "k16",
+    "slug": "kids-school-shoes",
+    "localPath": "/products/kids/kids-school-shoes.jpg"
+  },
+  {
+    "id": "k17",
+    "slug": "kids-puffer-gilet",
+    "localPath": "/products/kids/kids-puffer-gilet.jpg"
+  },
+  {
+    "id": "k18",
+    "slug": "kids-swim-shorts",
+    "localPath": "/products/kids/kids-swim-shorts.jpg"
+  },
+  {
+    "id": "h1",
+    "slug": "linen-throw-cushion",
+    "localPath": "/products/home/linen-throw-cushion.jpg"
+  },
+  {
+    "id": "h2",
+    "slug": "marble-effect-tray",
+    "localPath": "/products/home/marble-effect-tray.jpg"
+  },
+  {
+    "id": "h3",
+    "slug": "woven-storage-basket",
+    "localPath": "/products/home/woven-storage-basket.jpg"
+  },
+  {
+    "id": "h4",
+    "slug": "ceramic-vase-set",
+    "localPath": "/products/home/ceramic-vase-set.png"
+  },
+  {
+    "id": "h5",
+    "slug": "cotton-waffle-throw",
+    "localPath": "/products/home/cotton-waffle-throw.webp"
+  },
+  {
+    "id": "h6",
+    "slug": "pendant-light",
+    "localPath": "/products/home/pendant-light.jpg"
+  },
+  {
+    "id": "h7",
+    "slug": "bamboo-shelf",
+    "localPath": "/products/home/bamboo-shelf.webp"
+  },
+  {
+    "id": "h8",
+    "slug": "scented-candle-set",
+    "localPath": "/products/home/scented-candle-set.jpg"
+  },
+  {
+    "id": "h9",
+    "slug": "monstera-plant-pot",
+    "localPath": "/products/home/monstera-plant-pot.jpg"
+  },
+  {
+    "id": "h10",
+    "slug": "linen-duvet-cover",
+    "localPath": "/products/home/linen-duvet-cover.jpg"
+  },
+  {
+    "id": "h11",
+    "slug": "acacia-chopping-board",
+    "localPath": "/products/home/acacia-chopping-board.jpg"
+  },
+  {
+    "id": "h12",
+    "slug": "glass-storage-jars",
+    "localPath": "/products/home/glass-storage-jars.jpeg"
+  },
+  {
+    "id": "h13",
+    "slug": "abstract-art-print",
+    "localPath": "/products/home/abstract-art-print.jpg"
+  },
+  {
+    "id": "h14",
+    "slug": "velvet-ottoman",
+    "localPath": "/products/home/velvet-ottoman.jpg"
+  },
+  {
+    "id": "h15",
+    "slug": "rattan-side-table",
+    "localPath": "/products/home/rattan-side-table.jpg"
+  },
+  {
+    "id": "h16",
+    "slug": "bathroom-organiser",
+    "localPath": "/products/home/bathroom-organiser.jpg"
+  },
+  {
+    "id": "h17",
+    "slug": "herringbone-rug",
+    "localPath": "/products/home/herringbone-rug.jpg"
+  },
+  {
+    "id": "h18",
+    "slug": "table-lamp",
+    "localPath": "/products/home/table-lamp.jpg"
+  },
+  {
+    "id": "h19",
+    "slug": "modular-bookshelf",
+    "localPath": "/products/home/modular-bookshelf.jpeg"
+  },
+  {
+    "id": "h20",
+    "slug": "kitchen-knife-set",
+    "localPath": "/products/home/kitchen-knife-set.jpeg"
+  },
+  {
+    "id": "h21",
+    "slug": "macrame-wall-hanging",
+    "localPath": "/products/home/macrame-wall-hanging.jpg"
+  },
+  {
+    "id": "h22",
+    "slug": "stoneware-dinner-set",
+    "localPath": "/products/home/stoneware-dinner-set.jpg"
+  },
+  {
+    "id": "i2",
+    "slug": "soderhamn-sofa",
+    "localPath": "/products/ikea/soderhamn-sofa.jpg"
+  },
+  {
+    "id": "i3",
+    "slug": "kallax-shelf-unit",
+    "localPath": "/products/ikea/kallax-shelf-unit.jpg"
+  },
+  {
+    "id": "i4",
+    "slug": "malm-bed-frame",
+    "localPath": "/products/ikea/malm-bed-frame.jpg"
+  },
+  {
+    "id": "i5",
+    "slug": "billy-bookcase",
+    "localPath": "/products/ikea/billy-bookcase.jpg"
+  },
+  {
+    "id": "i7",
+    "slug": "lack-side-table",
+    "localPath": "/products/ikea/lack-side-table.jpg"
+  },
+  {
+    "id": "i8",
+    "slug": "fado-table-lamp",
+    "localPath": "/products/ikea/fado-table-lamp.jpeg"
+  },
+  {
+    "id": "i9",
+    "slug": "kungsbacka-door",
+    "localPath": "/products/ikea/kungsbacka-door.webp"
+  },
+  {
+    "id": "i10",
+    "slug": "havsta-cabinet",
+    "localPath": "/products/ikea/havsta-cabinet.jpg"
+  },
+  {
+    "id": "i11",
+    "slug": "listerby-coffee-table",
+    "localPath": "/products/ikea/listerby-coffee-table.jpg"
+  },
+  {
+    "id": "i13",
+    "slug": "nymane-floor-lamp",
+    "localPath": "/products/ikea/nymane-floor-lamp.jpg"
+  },
+  {
+    "id": "i14",
+    "slug": "samla-box",
+    "localPath": "/products/ikea/samla-box.webp"
+  },
+  {
+    "id": "i15",
+    "slug": "ribba-frame",
+    "localPath": "/products/ikea/ribba-frame.jpg"
+  },
+  {
+    "id": "op2",
+    "slug": "ceramic-pour-over",
+    "localPath": "/products/our-products/ceramic-pour-over.jpg"
+  },
+  {
+    "id": "op3",
+    "slug": "linen-notebook",
+    "localPath": "/products/our-products/linen-notebook.jpg"
+  },
+  {
+    "id": "op4",
+    "slug": "brass-card-holder",
+    "localPath": "/products/our-products/brass-card-holder.jpg"
+  },
+  {
+    "id": "op5",
+    "slug": "organic-cotton-pouch",
+    "localPath": "/products/our-products/organic-cotton-pouch.jpg"
+  },
+  {
+    "id": "op6",
+    "slug": "bymoe-soy-candle",
+    "localPath": "/products/our-products/bymoe-soy-candle.jpg"
+  },
+  {
+    "id": "op7",
+    "slug": "terrazzo-coasters",
+    "localPath": "/products/our-products/terrazzo-coasters.jpg"
+  },
+  {
+    "id": "op8",
+    "slug": "leather-keychain",
+    "localPath": "/products/our-products/leather-keychain.webp"
+  },
+  {
+    "id": "op9",
+    "slug": "eucalyptus-diffuser",
+    "localPath": "/products/our-products/eucalyptus-diffuser.png"
+  },
+  {
+    "id": "op10",
+    "slug": "woven-placemats",
+    "localPath": "/products/our-products/woven-placemats.jpg"
+  },
+  {
+    "id": "op11",
+    "slug": "pottery-mug",
+    "localPath": "/products/our-products/pottery-mug.jpg"
+  },
+  {
+    "id": "op12",
+    "slug": "scented-room-spray",
+    "localPath": "/products/our-products/scented-room-spray.jpg"
+  }
+]
