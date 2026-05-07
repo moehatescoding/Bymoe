@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import Image from 'next/image';
+import { siteConfig } from '@/lib/config';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import CartDrawer from '@/components/CartDrawer';
@@ -11,9 +12,16 @@ import WhatsAppFAB from '@/components/WhatsAppFAB';
 const inter = Inter({ subsets: ['latin'], weight: ['300','400','500','600','700'], display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'bymoe — Premium Multi-Category Store',
+  metadataBase: new URL(siteConfig.domain),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`
+  },
   description: 'Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.',
-  keywords: 'bymoe, fashion, home, IKEA deals, WhatsApp shopping',
+  keywords: 'bymoe, fashion, home, IKEA deals, WhatsApp shopping, Hyderabad',
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/favicon.svg',
     apple: '/favicon.svg',
@@ -48,13 +56,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Brand */}
               <div className="flex flex-col gap-6">
                 <Link href="/">
-                  <Image src="/logo.svg" alt="bymoe" width={320} height={120} style={{ width: 'auto', height: '120px' }} className="mb-8" />
+                  <Image src="/logo.svg" alt={siteConfig.name} width={320} height={120} style={{ width: 'auto', height: '120px' }} className="mb-8" />
                 </Link>
                 <p className="text-[0.875rem] text-[#666] max-w-xs leading-relaxed">
                   Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.
                 </p>
                 <div className="flex gap-4">
-                  <a href="https://www.instagram.com/bymoe.in/" target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a] hover:opacity-70 transition-opacity">
+                  <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-[#1a1a1a] hover:opacity-70 transition-opacity">
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                   </a>
                 </div>
@@ -114,7 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Bottom bar */}
             <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-10">
               <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-                <p className="text-[0.75rem] text-[#888]">© 2026 bymoe. All rights reserved.</p>
+                <p className="text-[0.75rem] text-[#888]">© 2026 {siteConfig.name}. All rights reserved.</p>
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] text-[#aaa] border border-[#ddd] px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">SSL</span>
                   <span className="text-[#ddd]">•</span>
@@ -134,3 +142,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

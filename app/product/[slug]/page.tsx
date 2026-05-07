@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${product.name} | Rs. ${product.price.toLocaleString('en-IN')} | bymoe`,
     description: product.description.slice(0, 160),
+    alternates: {
+      canonical: `/product/${slug}`,
+    }
   };
 }
 

@@ -4,6 +4,9 @@ import React from 'react';
 export const metadata: Metadata = {
   title: 'Privacy Policy | bymoe',
   description: 'bymoe collects only the information needed to process your order. Your data is never sold or shared with third parties.',
+  alternates: {
+    canonical: '/privacy',
+  }
 };
 
 export default function PrivacyPage() {

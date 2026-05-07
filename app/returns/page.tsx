@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Returns & Refunds Policy | bymoe',
   description: "Read bymoe's returns and refund policy. Easy returns initiated via WhatsApp. Customer satisfaction is our priority.",
+  alternates: {
+    canonical: '/returns',
+  }
 };
 
 export default function ReturnsPage() {

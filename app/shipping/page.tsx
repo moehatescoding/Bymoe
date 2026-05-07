@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Shipping Information | bymoe',
   description: "Learn about bymoe's delivery timelines, shipping charges and areas covered across India.",
+  alternates: {
+    canonical: '/shipping',
+  }
 };
 
 export default function ShippingPage() {

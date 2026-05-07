@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_next/
-Sitemap: https://bymoe.in/sitemap.xml
+Sitemap: https://www.bymoe.in/sitemap.xml

@@ -5,6 +5,9 @@ import ProductCard from '@/components/ProductCard';
 export const metadata: Metadata = {
   title: 'Explore Curated Picks — Fashion & Home | bymoe',
   description: 'Discover hand-picked fashion, home decor and lifestyle products curated by bymoe. Order anything instantly via WhatsApp.',
+  alternates: {
+    canonical: '/explore',
+  }
 };
 
 export default function ExplorePage() {

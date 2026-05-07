@@ -5,6 +5,9 @@ import { getBulkWhatsAppUrl } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Bulk Orders — IKEA & Home Essentials | bymoe',
   description: 'Looking to order in bulk? bymoe offers wholesale pricing on IKEA products and home essentials. Contact us via WhatsApp for bulk deals.',
+  alternates: {
+    canonical: '/bulk',
+  }
 };
 
 export default function BulkPage() {
