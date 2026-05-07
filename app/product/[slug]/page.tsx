@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getProductBySlug, products } from '@/lib/products';
 import Image from 'next/image';
@@ -8,6 +9,30 @@ import { Shield } from 'lucide-react';
 
 export async function generateStaticParams() {
   return products.map(p => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    return {
+      title: 'Product Not Found | bymoe',
+    };
+  }
+
+  // Specific override for IKEA LUNGÖN Privacy Screen as requested
+  if (slug === 'lungoen-privacy-screen') {
+    return {
+      title: 'IKEA LUNGÖN Privacy Screen — Off White | Rs. 1,999 | bymoe',
+      description: 'Buy IKEA LUNGÖN Privacy Screen in off-white at the best price in India. Perfect for indoor & outdoor use. Made in Bulgaria. Order instantly via WhatsApp.',
+    };
+  }
+
+  return {
+    title: `${product.name} | Rs. ${product.price.toLocaleString('en-IN')} | bymoe`,
+    description: product.description.slice(0, 160),
+  };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
