@@ -1,8 +1,13 @@
 'use client';
 import { MessageCircle } from 'lucide-react';
 import { getBulkWhatsAppUrl } from '@/lib/whatsapp';
+import { usePathname } from 'next/navigation';
 
 export default function WhatsAppFAB() {
+  const pathname = usePathname();
+  
+  if (pathname === '/checkout') return null;
+
   return (
     <a
       href={getBulkWhatsAppUrl()}

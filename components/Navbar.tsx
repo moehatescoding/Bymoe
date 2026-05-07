@@ -172,13 +172,15 @@ export default function Navbar() {
 
         {/* Right: Actions */}
         <div className="flex items-center gap-4">
-          <button 
-            onClick={() => setSearchOpen(!searchOpen)}
-            className="p-2 text-[#111] hover:text-primary transition-all hover:scale-110"
-            aria-label="Search"
-          >
-            <Search size={22} strokeWidth={1.5} />
-          </button>
+          {!pathname.includes('/checkout') && (
+            <button 
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="p-2 text-[#111] hover:text-primary transition-all hover:scale-110"
+              aria-label="Search"
+            >
+              <Search size={22} strokeWidth={1.5} />
+            </button>
+          )}
           
           <button 
             onClick={() => openCart()}
