@@ -42,8 +42,39 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const { name, category, price, originalPrice, discount, images, description, inStock } = product;
 
+  const jsonLd = {
+    '@context': 'https://schema.org/',
+    '@type': 'Product',
+    name: product.name,
+    image: `https://www.bymoe.in${product.image}`,
+    description: slug === 'lungoen-privacy-screen' 
+      ? 'Off-white indoor/outdoor freestanding privacy screen. Perfect for balcony, garden, terrace or as a room divider. Made in Bulgaria.'
+      : product.description.slice(0, 160),
+    sku: product.sku || product.id,
+    brand: {
+      '@type': 'Brand',
+      name: product.category === 'ikea' ? 'IKEA' : 'bymoe'
+    },
+    offers: {
+      '@type': 'Offer',
+      url: `https://www.bymoe.in/product/${product.slug}`,
+      priceCurrency: 'INR',
+      price: product.price.toString(),
+      priceValidUntil: '2026-12-31',
+      availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      seller: {
+        '@type': 'Organization',
+        name: 'bymoe'
+      }
+    }
+  };
+
   return (
     <main className="pt-20 md:pt-60 pb-20 max-w-container-max mx-auto px-4 md:px-margin-desktop">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 mb-8 text-label-sm text-on-surface-variant">
         <Link href="/" className="hover:text-primary transition-colors">Home</Link>
