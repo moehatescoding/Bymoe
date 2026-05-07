@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useCartStore } from '@/store/cartStore';
 import { Product } from '@/lib/products';
-import { getSingleOrderUrl } from '@/lib/whatsapp';
+import { getProductDetailUrl, getSingleOrderUrl } from '@/lib/whatsapp';
 import { ShoppingCart, MessageCircle, Minus, Plus } from 'lucide-react';
 
 export default function ProductActions({ product }: { product: Product }) {
@@ -17,6 +17,10 @@ export default function ProductActions({ product }: { product: Product }) {
 
   const handleWhatsApp = () => {
     window.open(getSingleOrderUrl(product.name, product.price, qty), '_blank');
+  };
+
+  const handleProductDetailWA = () => {
+    window.open(getProductDetailUrl(product.name, product.price), '_blank');
   };
 
   return (
@@ -52,11 +56,14 @@ export default function ProductActions({ product }: { product: Product }) {
         </button>
       </div>
 
-      {/* Mobile sticky bar */}
+      {/* Mobile sticky bar - Above Bottom Nav */}
       {product.inStock && (
-        <div className="fixed bottom-0 left-0 right-0 md:hidden z-40 p-4 bg-surface/80 backdrop-blur-[12px] border-t border-surface-variant">
-          <button onClick={handleWhatsApp} className="w-full bg-wa-green text-white rounded-xl py-4 text-[16px] font-semibold flex items-center justify-center gap-2">
-            <MessageCircle size={18} /> Order on WhatsApp
+        <div className="fixed bottom-[calc(64px+env(safe-area-inset-bottom))] left-0 right-0 md:hidden z-40 bg-wa-green h-14">
+          <button 
+            onClick={handleProductDetailWA} 
+            className="w-full h-full text-white text-[15px] font-medium flex items-center justify-center gap-2"
+          >
+            <MessageCircle size={20} /> Order on WhatsApp
           </button>
         </div>
       )}

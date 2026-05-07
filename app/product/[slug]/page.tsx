@@ -18,7 +18,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { name, category, price, originalPrice, discount, images, description, inStock } = product;
 
   return (
-    <main className="pt-48 md:pt-60 pb-20 max-w-container-max mx-auto px-6 md:px-margin-desktop">
+    <main className="pt-20 md:pt-60 pb-20 max-w-container-max mx-auto px-4 md:px-margin-desktop">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 mb-8 text-label-sm text-on-surface-variant">
         <Link href="/" className="hover:text-primary transition-colors">Home</Link>

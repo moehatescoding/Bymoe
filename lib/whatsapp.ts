@@ -96,6 +96,14 @@ export function getCartOrderNoDetailsUrl(items: CartItemForMessage[]): string {
   return getWhatsAppUrl(generateCartOrderNoDetailsMessage(items));
 }
 
+export function generateProductDetailMessage(name: string, price: number): string {
+  return `Hi! I want to order: ${name} - Rs. ${price.toLocaleString('en-IN')}. Please share payment and delivery details.`;
+}
+
+export function getProductDetailUrl(name: string, price: number): string {
+  return getWhatsAppUrl(generateProductDetailMessage(name, price));
+}
+
 export function getSingleOrderUrl(name: string, price: number, qty: number): string {
   return getWhatsAppUrl(generateSingleOrderMessage(name, price, qty));
 }

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import CartDrawer from '@/components/CartDrawer';
+import BottomNav from '@/components/BottomNav';
 import WhatsAppFAB from '@/components/WhatsAppFAB';
 
 const inter = Inter({ subsets: ['latin'], weight: ['300','400','500','600','700'], display: 'swap' });
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <CartDrawer />
         {children}
+        <BottomNav />
         <WhatsAppFAB />
         <footer className="w-full pt-20 pb-10 bg-[#f0ede8] border-t border-[#ddd] mt-20">
           <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop text-[#1a1a1a]">

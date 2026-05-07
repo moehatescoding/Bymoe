@@ -1,15 +1,14 @@
 'use client';
 import { useCartStore } from '@/store/cartStore';
-import { getOrderWhatsAppUrl, getCartOrderNoDetailsUrl } from '@/lib/whatsapp';
+import { getCartOrderNoDetailsUrl } from '@/lib/whatsapp';
 import Image from 'next/image';
-import { X, Minus, Plus, ShoppingBag, ArrowRight, Shield, MessageCircle } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, ArrowRight, MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, totalAmount, totalItems } = useCartStore();
   const [mounted, setMounted] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -30,94 +29,111 @@ export default function CartDrawer() {
   };
 
   return (
-    <>
-      {/* Overlay */}
+    <AnimatePresence>
       {isOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-primary/20 md:backdrop-blur-sm transition-opacity duration-300" 
-          onClick={closeCart} 
-        />
-      )}
+        <>
+          {/* Overlay */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[150] bg-black/40 backdrop-blur-[2px]" 
+            onClick={closeCart} 
+          />
 
-      {/* Drawer */}
-      <div 
-        className={`fixed right-0 top-0 h-full w-full max-w-md bg-surface z-50 flex flex-col shadow-modal transition-all duration-300 ease-[cubic-bezier(0.32,0,0.67,0)] will-change-transform ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-surface-variant">
-          <div>
-            <h2 className="text-[24px] font-semibold tracking-tight text-primary">Shopping Cart</h2>
-            <p className="text-label-sm text-on-surface-variant mt-0.5">{count} item{count !== 1 ? 's' : ''}</p>
-          </div>
-          <button onClick={closeCart} className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
-            <X size={18} />
-          </button>
-        </div>
-
-        {/* Items */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full gap-4 text-on-surface-variant">
-              <ShoppingBag size={48} strokeWidth={1} />
-              <p className="text-body-md">Your cart is empty</p>
-            </div>
-          ) : (
-            items.map((item) => (
-              <div key={item.id} className="flex gap-4 bg-surface-container-lowest rounded-xl p-4 shadow-card border border-surface-variant/50 group">
-                <div className="w-20 h-20 bg-surface-container-low rounded-lg overflow-hidden shrink-0">
-                  <Image src={item.image} alt={item.name} width={80} height={80} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex justify-between items-start">
-                    <p className="text-body-md font-semibold text-primary leading-tight truncate pr-2">{item.name}</p>
-                    <button onClick={() => removeItem(item.id)} className="text-outline hover:text-error transition-colors shrink-0">
-                      <X size={16} />
-                    </button>
-                  </div>
-                  <p className="text-label-sm text-on-surface-variant mt-1">₹{item.price.toLocaleString('en-IN')}</p>
-                  <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center border border-outline-variant rounded-full p-1 bg-surface-bright">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
-                        <Minus size={14} />
-                      </button>
-                      <span className="text-label-sm w-7 text-center text-primary font-semibold">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
-                        <Plus size={14} />
-                      </button>
-                    </div>
-                    <span className="text-body-md font-semibold text-primary">₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
-                  </div>
-                </div>
+          {/* Drawer / Bottom Sheet */}
+          <motion.div 
+            initial={{ x: '100%', y: 0 }}
+            animate={{ 
+              x: window.innerWidth < 768 ? 0 : 0, 
+              y: window.innerWidth < 768 ? 0 : 0 
+            }}
+            exit={{ 
+              x: window.innerWidth < 768 ? 0 : '100%', 
+              y: window.innerWidth < 768 ? '100%' : 0 
+            }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            drag={window.innerWidth < 768 ? "y" : false}
+            dragConstraints={{ top: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(_, info) => {
+              if (info.offset.y > 100) closeCart();
+            }}
+            className={
+              "fixed z-[200] bg-white flex flex-col shadow-modal overflow-hidden " +
+              "bottom-0 left-0 right-0 h-[80vh] rounded-t-3xl md:h-full md:left-auto md:w-full md:max-w-md md:rounded-none"
+            }
+          >
+            {/* Header */}
+            <div className="relative flex items-center justify-between p-6 border-b border-[#eee]">
+              {/* Drag Handle for Mobile */}
+              <div className="md:hidden absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-[#eee] rounded-full" />
+              
+              <div>
+                <h2 className="text-[20px] font-semibold tracking-tight text-primary">Shopping Cart</h2>
+                <p className="text-[13px] text-on-surface-variant mt-0.5">{count} item{count !== 1 ? 's' : ''}</p>
               </div>
-            ))
-          )}
-        </div>
-
-        {/* Footer */}
-        {items.length > 0 && (
-          <div className="p-6 border-t border-surface-variant bg-surface-bright space-y-4">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-body-lg text-primary font-medium">Total</span>
-              <span className="text-[24px] font-semibold text-primary tracking-tight">₹{total.toLocaleString('en-IN')}</span>
+              <button onClick={closeCart} className="p-2 hover:bg-[#F8F8F8] rounded-full transition-colors">
+                <X size={20} />
+              </button>
             </div>
-            
-            <button onClick={handleCheckout} className="w-full bg-wa-green text-white rounded-xl py-4 px-6 flex items-center justify-center gap-3 hover:bg-wa-green-dark transition-colors shadow-sm group">
-              <MessageCircle size={20} />
-              <span className="text-label-sm font-semibold tracking-wider">Order on WhatsApp</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
 
-            <div className="flex items-center justify-center gap-4 mt-4 text-[11px] font-semibold text-on-surface-variant opacity-60 uppercase tracking-widest">
-              <span className="flex items-center gap-1.5"><Shield size={12}/> Secure SSL</span>
-              <span className="flex items-center gap-1.5"><Shield size={12}/> Certified Store</span>
+            {/* Items */}
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4">
+              {items.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full gap-4 text-on-surface-variant">
+                  <ShoppingBag size={48} strokeWidth={1} />
+                  <p className="text-body-md">Your cart is empty</p>
+                </div>
+              ) : (
+                items.map((item) => (
+                  <div key={item.id} className="flex gap-4 bg-white rounded-xl p-3 border border-[#eee] shadow-[0_2px_8px_rgba(0,0,0,0.04)] group">
+                    <div className="w-20 h-20 bg-[#F9F9F9] rounded-lg overflow-hidden shrink-0">
+                      <Image src={item.image} alt={item.name} width={80} height={80} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start">
+                        <p className="text-[14px] font-semibold text-primary leading-tight truncate pr-2">{item.name}</p>
+                        <button onClick={() => removeItem(item.id)} className="text-[#ccc] hover:text-error transition-colors shrink-0">
+                          <X size={16} />
+                        </button>
+                      </div>
+                      <p className="text-[13px] text-on-surface-variant mt-1">₹{item.price.toLocaleString('en-IN')}</p>
+                      <div className="flex items-center justify-between mt-3">
+                        <div className="flex items-center border border-[#eee] rounded-full p-0.5">
+                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 flex items-center justify-center hover:bg-[#F8F8F8] rounded-full">
+                            <Minus size={14} />
+                          </button>
+                          <span className="text-[13px] w-8 text-center font-semibold">{item.quantity}</span>
+                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 flex items-center justify-center hover:bg-[#F8F8F8] rounded-full">
+                            <Plus size={14} />
+                          </button>
+                        </div>
+                        <span className="text-[14px] font-bold text-primary">₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
-          </div>
-        )}
-      </div>
 
-
-    </>
+            {/* Footer */}
+            {items.length > 0 && (
+              <div className="p-6 border-t border-[#eee] bg-white space-y-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-[16px] text-primary font-medium">Subtotal</span>
+                  <span className="text-[24px] font-bold text-primary tracking-tight">₹{total.toLocaleString('en-IN')}</span>
+                </div>
+                
+                <button onClick={handleCheckout} className="w-full bg-wa-green text-white rounded-xl py-4 flex items-center justify-center gap-2 hover:bg-wa-green-dark transition-colors shadow-sm font-semibold">
+                  <MessageCircle size={20} />
+                  Order on WhatsApp
+                </button>
+              </div>
+            )}
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }

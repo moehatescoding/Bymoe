@@ -186,3 +186,31 @@ body {
 }
 
 .drawer-overlay { animation: fade-in 0.2s ease; }
+
+/* Mobile Utilities */
+@media (max-width: 768px) {
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  body {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+
+  .tap-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+.category-chip {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-full border border-[#ddd] bg-white px-4 py-2 text-[13px] font-normal text-[#1a1a1a] transition-all duration-200 snap-center;
+}
+
+.category-chip.active {
+  @apply border-[#1a1a1a] bg-[#1a1a1a] text-white;
+}
