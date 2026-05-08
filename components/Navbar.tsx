@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Search, X, ShoppingCart, ChevronDown, Menu } from 'lucide-react';
+import { ShoppingBag, Search, X, ShoppingCart, ChevronDown } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { cn } from '@/lib/utils';
 import { searchProducts } from '@/lib/products';
@@ -47,7 +47,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [query, setQuery] = useState('');
   
@@ -161,7 +160,8 @@ export default function Navbar() {
           {/* Right: Actions */}
           <div className="flex items-center gap-2 md:gap-4">
             <button 
-              onClick={() => setSearchOpen(!searchOpen)}
+              id="mobile-search-trigger"
+              onClick={() => setSearchOpen(true)}
               className="p-2 text-[#111] hover:text-primary transition-all tap-target"
               aria-label="Search"
             >
@@ -187,35 +187,29 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
             </button>
-
-            <button 
-              onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 text-[#111] hover:text-primary transition-colors tap-target"
-              aria-label="Menu"
-            >
-              <Menu size={24} />
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Search Overlay */}
+      {/* Search Overlay - Mobile & Desktop */}
       <AnimatePresence>
         {searchOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed top-16 left-0 w-full z-[150] bg-white border-b border-[#eee] overflow-hidden shadow-modal"
+            initial={{ y: '-100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[200] bg-white flex flex-col overflow-y-auto will-change-transform"
           >
-            <div className="max-w-container-max mx-auto px-6 py-6 flex flex-col gap-4">
-              <div className="relative">
+            <div className="sticky top-0 bg-white z-10 p-4 md:p-6 flex items-center gap-4 border-b border-[#eee]">
+              <div className="flex-1 relative">
+                <Search className="absolute left-0 top-1/2 -translate-y-1/2 text-[#ccc]" size={20} />
                 <input
                   autoFocus
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search products..."
-                  className="w-full text-[20px] font-medium outline-none placeholder:text-[#ccc]"
+                  className="w-full pl-8 pr-4 py-2 text-[20px] font-medium outline-none placeholder:text-[#ccc]"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && query.trim()) {
                       setSearchOpen(false);
@@ -223,77 +217,41 @@ export default function Navbar() {
                     }
                   }}
                 />
-                <button onClick={() => setSearchOpen(false)} className="absolute right-0 top-1/2 -translate-y-1/2 p-2">
-                  <X size={20} />
-                </button>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[200] bg-white md:hidden overflow-y-auto"
-          >
-            <div className="p-6 flex justify-between items-center border-b border-[#eee]">
-              <span className="text-[26px] font-medium lowercase tracking-tighter text-primary">bymoe</span>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-2">
-                <X size={28} />
+              <button onClick={() => setSearchOpen(false)} className="p-2 text-primary">
+                <X size={24} />
               </button>
             </div>
-
-            <div className="p-6 flex flex-col gap-8">
-              {navConfig.map((item) => (
-                <div key={item.label} className="flex flex-col">
-                  {item.dropdown ? (
-                    <details className="group">
-                      <summary className="list-none flex items-center justify-between text-[20px] font-semibold text-primary py-2 cursor-pointer">
-                        {item.label}
-                        <ChevronDown size={20} className="group-open:rotate-180 transition-transform" />
-                      </summary>
-                      <div className="flex flex-col gap-4 pl-4 mt-4 border-l-2 border-[#eee]">
-                        {item.dropdown.map((sub) => (
-                          <Link 
-                            key={sub.label} 
-                            href={sub.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="text-[16px] text-[#444] hover:text-primary"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </details>
-                  ) : (
-                    <Link 
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-[20px] font-semibold text-primary py-2"
-                    >
-                      {item.label}
-                    </Link>
+            
+            <div className="p-6">
+              {!query.trim() ? (
+                <>
+                  <p className="text-[12px] font-semibold uppercase tracking-wider text-[#888] mb-4">Popular Searches</p>
+                  <div className="flex flex-wrap gap-2">
+                    {POPULAR_SEARCHES.map(tag => (
+                      <button 
+                        key={tag}
+                        onClick={() => {
+                          setSearchOpen(false);
+                          window.location.href = `/category/all?q=${encodeURIComponent(tag)}`;
+                        }}
+                        className="category-chip"
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {searchResults.map(p => (
+                    <ProductCard key={p.id} product={p} />
+                  ))}
+                  {searchResults.length === 0 && (
+                    <p className="col-span-full text-center py-10 text-on-surface-variant">No results found for "{query}"</p>
                   )}
                 </div>
-              ))}
-              
-              <div className="mt-12 border-t border-[#eee] pt-8">
-                <p className="text-label-sm text-on-surface-variant uppercase tracking-widest mb-6">Connect</p>
-                <a 
-                  href="https://www.instagram.com/bymoe.in/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-[18px] text-[#111] font-medium"
-                >
-                  Instagram
-                </a>
-              </div>
+              )}
             </div>
           </motion.div>
         )}
@@ -301,4 +259,3 @@ export default function Navbar() {
     </>
   );
 }
-

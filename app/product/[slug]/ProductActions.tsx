@@ -56,6 +56,17 @@ export default function ProductActions({ product }: { product: Product }) {
         </button>
       </div>
 
+      {/* Mobile sticky bar - Above Bottom Nav */}
+      {product.inStock && (
+        <div className="fixed bottom-[calc(64px+env(safe-area-inset-bottom))] left-0 right-0 md:hidden z-40 bg-wa-green h-14">
+          <button 
+            onClick={handleProductDetailWA} 
+            className="w-full h-full text-white text-[15px] font-medium flex items-center justify-center gap-2"
+          >
+            <MessageCircle size={20} /> Order on WhatsApp
+          </button>
+        </div>
+      )}
     </div>
   );
 }

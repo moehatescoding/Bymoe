@@ -16,6 +16,14 @@ import ProductCard from '@/components/ProductCard';
 import { MessageCircle, ArrowRight, Package, Truck, Shield } from 'lucide-react';
 import { getBulkWhatsAppUrl } from '@/lib/whatsapp';
 
+const CHIPS = [
+  { label: 'Best Sellers', href: '/category/best-sellers' },
+  { label: 'IKEA Deals', href: '/category/ikea' },
+  { label: 'Fashion', href: '/category/men' },
+  { label: 'Home', href: '/category/home' },
+  { label: 'Bulk Orders', href: '/bulk' },
+];
+
 export default function HomePage() {
   const featured = getFeaturedProducts();
   const ikea = getIKEAProducts().slice(0, 4);
@@ -67,6 +75,14 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Category Chips - Mobile Only */}
+      <section className="md:hidden bg-white py-3 overflow-hidden border-b border-[#eee] sticky top-16 z-40">
+        <div className="flex gap-2 px-4 overflow-x-auto hide-scrollbar snap-x">
+          {CHIPS.map(chip => (
+            <Link key={chip.label} href={chip.href} className="category-chip">
+              {chip.label}
+            </Link>
+          ))}
         </div>
       </section>
 
