@@ -34,7 +34,7 @@ const navConfig = [
     ]
   },
   { 
-    label: 'Living', 
+    label: 'Home & Living', 
     href: '/category/home',
     dropdown: [
       { label: 'Furniture', href: '/category/home?sub=furniture' },
