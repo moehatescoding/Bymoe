@@ -13,14 +13,11 @@ const navConfig = [
   { 
     label: 'Home', 
     href: '/', 
-  },
-  { 
-    label: 'Fashion', 
-    href: '/category/men',
     dropdown: [
-      { label: 'Men', href: '/category/men' },
-      { label: 'Women', href: '/category/women' },
-      { label: 'Kids', href: '/category/kids' },
+      { label: 'Furniture', href: '/category/home?sub=furniture' },
+      { label: 'Lighting', href: '/category/home?sub=lighting' },
+      { label: 'Decor', href: '/category/home?sub=decor' },
+      { label: 'Storage', href: '/category/home?sub=storage' },
     ]
   },
   { 
@@ -34,13 +31,11 @@ const navConfig = [
     ]
   },
   { 
-    label: 'Home & Living', 
-    href: '/category/home',
+    label: 'Our Products', 
+    href: '/category/our-products',
     dropdown: [
-      { label: 'Furniture', href: '/category/home?sub=furniture' },
-      { label: 'Lighting', href: '/category/home?sub=lighting' },
-      { label: 'Decor', href: '/category/home?sub=decor' },
-      { label: 'Storage', href: '/category/home?sub=storage' },
+      { label: 'Featured', href: '/category/our-products?filter=featured' },
+      { label: 'New Arrivals', href: '/category/our-products?filter=new' },
     ]
   },
   { label: 'Bulk', href: '/bulk' },
@@ -97,7 +92,7 @@ export default function Navbar() {
       <header 
         className={cn(
           "fixed top-0 left-0 w-full z-[100] transition-all duration-300 will-change-transform",
-          "h-20 md:h-40", 
+          "h-16 md:h-40", 
           isScrolled 
             ? "bg-white border-b border-[#ddd] shadow-sm md:h-24 md:bg-white/90 md:backdrop-blur-xl" 
             : "bg-[#f0ede8] md:bg-transparent border-b border-[#ddd] md:border-none"
@@ -108,12 +103,13 @@ export default function Navbar() {
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link href="/" className="relative z-50">
+              <span className="md:hidden text-[26px] font-medium lowercase tracking-tighter text-primary">bymoe</span>
               <Image 
                 src="/logo.svg" 
                 alt="bymoe" 
-                width={200} 
-                height={60} 
-                className="h-12 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
+                width={240} 
+                height={100} 
+                className="hidden md:block h-20 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </Link>
@@ -210,7 +206,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed top-20 left-0 w-full z-[150] bg-white border-b border-[#eee] overflow-hidden shadow-modal"
+            className="fixed top-16 left-0 w-full z-[150] bg-white border-b border-[#eee] overflow-hidden shadow-modal"
           >
             <div className="max-w-container-max mx-auto px-6 py-6 flex flex-col gap-4">
               <div className="relative">
@@ -247,7 +243,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[200] bg-white md:hidden overflow-y-auto"
           >
             <div className="p-6 flex justify-between items-center border-b border-[#eee]">
-              <Image src="/logo.svg" alt="bymoe" width={120} height={40} className="h-10 w-auto" />
+              <span className="text-[26px] font-medium lowercase tracking-tighter text-primary">bymoe</span>
               <button onClick={() => setMobileMenuOpen(false)} className="p-2">
                 <X size={28} />
               </button>

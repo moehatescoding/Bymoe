@@ -17,7 +17,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
   return (
     <button
       onClick={() => addItem({ id: product.id, name: product.name, slug: product.slug, price: product.price, image: product.image })}
-      className="w-full py-2 md:py-2.5 rounded-xl border border-outline-variant text-primary text-label-sm font-semibold hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2"
+      className="w-full py-2.5 rounded-xl border border-outline-variant text-primary text-label-sm font-semibold hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2"
     >
       <ShoppingCart size={14} />
       Add to Cart
