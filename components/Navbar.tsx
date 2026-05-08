@@ -91,7 +91,7 @@ export default function Navbar() {
       <header 
         className={cn(
           "fixed top-0 left-0 w-full z-[100] transition-all duration-300 will-change-transform",
-          "h-16 md:h-40", 
+          "h-20 md:h-40", 
           isScrolled 
             ? "bg-white border-b border-[#ddd] shadow-sm md:h-24 md:bg-white/90 md:backdrop-blur-xl" 
             : "bg-[#f0ede8] md:bg-transparent border-b border-[#ddd] md:border-none"
@@ -107,7 +107,7 @@ export default function Navbar() {
                 alt="bymoe" 
                 width={200} 
                 height={60} 
-                className="h-10 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
+                className="h-14 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </Link>
@@ -198,7 +198,7 @@ export default function Navbar() {
             animate={{ y: 0 }}
             exit={{ y: '-100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed inset-0 z-[200] bg-white flex flex-col overflow-y-auto will-change-transform"
+            className="fixed top-20 left-0 w-full z-[150] bg-white border-b border-[#eee] overflow-hidden shadow-modal"
           >
             <div className="sticky top-0 bg-white z-10 p-4 md:p-6 flex items-center gap-4 border-b border-[#eee]">
               <div className="flex-1 relative">

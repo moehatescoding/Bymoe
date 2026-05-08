@@ -11,7 +11,7 @@ export default function BottomNav() {
 
   const navItems = [
     { label: 'Home', icon: Home, href: '/' },
-    { label: 'Shop', icon: ShoppingBag, href: '/category/all' },
+    { label: 'Shop', icon: ShoppingBag, href: '/categories' },
     { label: 'Search', icon: Search, onClick: () => {
       // Find and click the search button in the main navbar
       const searchBtn = document.querySelector('[aria-label="Search"]') as HTMLButtonElement;

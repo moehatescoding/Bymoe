@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Shop */}
               <div className="flex flex-col gap-4">
-                <p className="text-[0.7rem] uppercase tracking-[0.12em] text-[#888] font-medium">Shop</p>
+                <Link href="/categories" className="text-[0.7rem] uppercase tracking-[0.12em] text-[#888] font-medium hover:text-primary transition-colors">Shop</Link>
                 <div className="flex flex-col gap-3">
                   {[
                     { label: 'Men', href: '/category/men' },
