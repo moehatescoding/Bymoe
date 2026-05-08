@@ -102,13 +102,12 @@ export default function Navbar() {
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link href="/" className="relative z-50">
-              <span className="md:hidden text-[26px] font-medium lowercase tracking-tighter text-primary">bymoe</span>
               <Image 
                 src="/logo.svg" 
                 alt="bymoe" 
-                width={240} 
-                height={100} 
-                className="hidden md:block h-20 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
+                width={200} 
+                height={60} 
+                className="h-10 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </Link>
