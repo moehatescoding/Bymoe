@@ -1,14 +1,32 @@
+'use client';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '@/lib/products';
 import AddToCartButton from './AddToCartButton';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Share2, Check } from 'lucide-react';
 import { getSingleOrderUrl } from '@/lib/whatsapp';
 
 interface Props { product: Product; }
 
 export default function ProductCard({ product }: Props) {
   const { name, slug, price, originalPrice, discount, image, inStock, category } = product;
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = `${typeof window !== 'undefined' ? window.location.origin : 'https://bymoe.in'}/product/${slug}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: name, url });
+      } catch {/* user cancelled */}
+    } else {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <div className="product-card group rounded-xl md:rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/50 shadow-[0_2px_8px_rgba(0,0,0,0.06)] md:shadow-card transition-all duration-300">
@@ -49,6 +67,21 @@ export default function ProductCard({ product }: Props) {
               <span className="text-[12px] md:text-label-sm text-on-surface-variant/50 line-through">₹{originalPrice.toLocaleString('en-IN')}</span>
             )}
           </div>
+          {/* Share Button */}
+          <button
+            onClick={handleShare}
+            aria-label="Share product"
+            className="p-1.5 rounded-full text-on-surface-variant/60 hover:text-primary hover:bg-black/5 transition-all duration-200 relative"
+          >
+            {copied ? (
+              <>
+                <Check size={15} className="text-green-600" />
+                <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded whitespace-nowrap">Copied!</span>
+              </>
+            ) : (
+              <Share2 size={15} />
+            )}
+          </button>
         </div>
 
         {/* Desktop Button */}

@@ -107,7 +107,7 @@ export default function Navbar() {
                 alt="bymoe" 
                 width={200} 
                 height={60} 
-                className="h-14 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
+                className="h-20 md:h-32 w-auto transition-transform duration-500 hover:scale-105"
                 priority
               />
             </Link>
