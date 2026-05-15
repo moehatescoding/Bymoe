@@ -76,7 +76,7 @@ export default function HomePage() {
       </section>
 
       {/* Category Chips - Mobile Only */}
-      <section className="md:hidden bg-white py-3 overflow-hidden border-b border-[#eee] sticky top-16 z-40">
+      <section className="md:hidden bg-white py-3 overflow-hidden border-b border-[#eee] sticky top-20 z-40">
         <div className="flex gap-2 px-4 overflow-x-auto hide-scrollbar snap-x">
           {CHIPS.map(chip => (
             <Link key={chip.label} href={chip.href} className="category-chip">
