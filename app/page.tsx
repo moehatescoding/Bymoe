@@ -90,7 +90,7 @@ export default function HomePage() {
       <section className="bg-surface border-b border-surface-variant py-6">
         <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop flex flex-col md:flex-row justify-center items-center gap-6 md:gap-16">
           {[
-            { icon: <Truck size={18}/>, text: 'Free Delivery on orders ₹999+' },
+            { icon: <Truck size={18}/>, text: 'Free Delivery in Hyderabad on ₹999+' },
             { icon: <MessageCircle size={18}/>, text: 'Instant WhatsApp Support' },
             { icon: <Shield size={18}/>, text: 'Cash on Delivery Available' },
           ].map(({ icon, text }) => (

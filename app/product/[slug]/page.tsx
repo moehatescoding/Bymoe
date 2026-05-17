@@ -238,7 +238,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <span className="text-on-surface-variant group-open:rotate-180 transition-transform">▾</span>
               </summary>
               <div className="px-4 pb-4 text-body-md text-on-surface-variant space-y-2">
-                <p>Standard delivery in 3-7 business days. Free delivery on orders above ₹999.</p>
+                <p>Delivery across Hyderabad in 1–3 business days. Free delivery on orders above ₹999 — flat ₹99 fee below that.</p>
                 <p>Cash on Delivery available. Easy 7-day returns via WhatsApp.</p>
               </div>
             </details>
