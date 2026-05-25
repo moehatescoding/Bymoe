@@ -131,9 +131,9 @@ export const products: Product[] = [
     madeIn: "Bulgaria",
     category: "ikea",
     subcategory: "Outdoor",
-    price: 2499,
+    price: 2999,
     originalPrice: 7490,
-    discount: Math.round(((7490 - 2499) / 7490) * 100),
+    discount: Math.round(((7490 - 2999) / 7490) * 100),
     image: "/products/privacy-screen/privacy-screen-1.avif",
     images: [
       "/products/privacy-screen/privacy-screen-1.avif",

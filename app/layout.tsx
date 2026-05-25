@@ -25,7 +25,28 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
     apple: '/favicon.svg',
-  }
+  },
+  openGraph: {
+    title: 'bymoe — IKEA Deals, Fashion & Home Essentials',
+    description: 'Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.',
+    url: siteConfig.domain,
+    siteName: 'bymoe',
+    images: [
+      {
+        url: '/logo.svg',
+        width: 1500,
+        height: 1500,
+        alt: 'bymoe logo',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'bymoe — IKEA Deals, Fashion & Home Essentials',
+    description: 'Curated fashion, home essentials & IKEA deals — ordered instantly via WhatsApp.',
+    images: ['/logo.svg'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
