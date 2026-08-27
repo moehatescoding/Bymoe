@@ -18,7 +18,7 @@ export const BIKES: Bike[] = [
     id: 'z900',
     make: 'Kawasaki',
     model: 'Z900',
-    year: 2022,
+    year: 2018,
     nickname: 'The Sugomi',
     status: 'Current',
     heroImage: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2000&auto=format&fit=crop',
@@ -27,13 +27,13 @@ export const BIKES: Bike[] = [
       'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=1200&auto=format&fit=crop'
     ],
-    story: "[QUESTION FOR MOE: Story of why you bought the Z900 and what it means to you?]",
-    setup: "[QUESTION FOR MOE: Detail your riding setup, tyre pressures, suspension stiffness?]",
-    notes: "[QUESTION FOR MOE: Personal quirks, maintenance notes, or advice for this bike?]",
+    story: "I'd always dreamed of owning an inline-four. There weren't many bikes that really made sense to me—things like the Street Triple were great, but the Z900 just fit perfectly into my budget and what I wanted from a motorcycle. I also specifically wanted something with minimal electronics. Bikes are becoming more like computers and toys these days, with electronics doing half the work for you. I wanted to actually feel the motorcycle—the throttle, the power, the mistakes, everything. The Z900 gave me that raw, mechanical connection I was looking for.",
+    setup: "I prefer a stiffer suspension setup to keep the bike planted and responsive. I run around 30 PSI in the front and 39 PSI in the rear. The slightly lower front pressure gives me better front-end feel and confidence, while the rear handles stability and acceleration load.",
+    notes: "It's a 2018 model that I bought in 2026. Fairly old by today's standards—but honestly, that was part of the appeal. It still feels raw, simple, and properly mechanical. I'm a big fan of DIY and prefer working on the bike myself. The best part? It doesn't need a crazy list of modifications to feel perfect.",
     modifications: [
-      '[QUESTION FOR MOE: Modification 1?]',
-      '[QUESTION FOR MOE: Modification 2?]',
-      '[QUESTION FOR MOE: Modification 3?]'
+      'Yoshimura Alpha exhaust (Stock headers)',
+      'Kawasaki OEM frame sliders',
+      'BMC performance air filter'
     ]
   },
   {

@@ -47,22 +47,48 @@ export default function GaragePage() {
             MACHINES I'VE <br /> LOVED & BROKEN.
           </h1>
           <p className="text-sm md:text-lg text-brand-white/70 font-light max-w-xl leading-relaxed">
-            [QUESTION FOR MOE: Short personal story about why you bought the Z900]
+            {z900.story}
           </p>
           <div className="flex flex-col md:flex-row gap-8 mt-12 border-t border-brand-white/10 pt-8">
             <div>
               <span className="block text-[9px] text-brand-muted tracking-widest uppercase mb-1">Model Year</span>
-              <span className="text-lg font-mono text-brand-white">[QUESTION FOR MOE: Z900 YEAR?]</span>
+              <span className="text-lg font-mono text-brand-white">{z900.year}</span>
             </div>
             <div>
               <span className="block text-[9px] text-brand-muted tracking-widest uppercase mb-1">Acquired</span>
-              <span className="text-lg font-mono text-brand-white">[QUESTION FOR MOE: WHEN DID MOE BUY IT?]</span>
+              <span className="text-lg font-mono text-brand-white">2026</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 2. THE BUILD & ACCESSORIES */}
+      {/* 2. THE SETUP & MODS */}
+      <section className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full mt-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <h2 className="text-[10px] tracking-[0.3em] text-brand-white/40 uppercase mb-4">The Setup</h2>
+            <p className="text-sm text-brand-white/70 font-light leading-relaxed">
+              {z900.setup}
+            </p>
+            <p className="text-sm text-brand-white/70 font-light leading-relaxed mt-4">
+              {z900.notes}
+            </p>
+          </div>
+          <div>
+            <h2 className="text-[10px] tracking-[0.3em] text-brand-white/40 uppercase mb-4">Top Mods</h2>
+            <ul className="flex flex-col gap-4">
+              {z900.modifications.map((mod, i) => (
+                <li key={i} className="flex items-center gap-4 text-sm font-light text-brand-white">
+                  <div className="w-1 h-1 bg-brand-white rounded-full opacity-50" />
+                  {mod}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. THE BUILD & ACCESSORIES */}
       <section className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full mt-24">
         <div className="mb-16">
           <h2 className="text-[10px] tracking-[0.3em] text-brand-white/40 uppercase mb-4">What's on my Z900</h2>

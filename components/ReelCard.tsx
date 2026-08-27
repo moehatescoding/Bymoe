@@ -1,10 +1,7 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Reel } from '@/data/reels';
-import { useAudioStore } from '@/store/audioStore';
 
 interface ReelCardProps {
   reel: Reel;
@@ -12,81 +9,36 @@ interface ReelCardProps {
 }
 
 export default function ReelCard({ reel, index }: ReelCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLAnchorElement>(null);
-  const isInView = useInView(containerRef, { margin: "-20% 0px" });
-  const { playHover, playClick } = useAudioStore();
-
-  useEffect(() => {
-    if (!videoRef.current) return;
-    
-    // Play video only when it's in the viewport to save battery/CPU
-    if (isInView) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          // Autoplay was prevented (e.g., low battery mode on iOS)
-          console.log('Video autoplay prevented:', error);
-        });
-      }
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isInView]);
+  // Ensure URL ends with a slash before appending embed
+  const baseUrl = reel.instagramUrl.endsWith('/') ? reel.instagramUrl : `${reel.instagramUrl}/`;
+  const embedUrl = `${baseUrl}embed/?dark=1`;
 
   return (
-    <motion.a
-      ref={containerRef}
-      href={reel.instagramUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      onMouseEnter={playHover}
-      onClick={playClick}
-      className="group block relative w-full aspect-[9/16] bg-brand-surface rounded-sm overflow-hidden"
-      data-cursor="WATCH"
+    <motion.div
+      className="group block relative w-full aspect-[9/16] md:aspect-[4/5] lg:aspect-[9/16] bg-brand-surface rounded-sm overflow-hidden border border-brand-white/10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      {/* Fallback Thumbnail / Poster */}
-      <Image 
-        src={reel.thumbnailUrl}
-        alt={reel.instagramHandle}
-        fill
-        sizes="(max-width: 768px) 100vw, 33vw"
-        className="object-cover transition-opacity duration-700"
-      />
-
-      {/* Video layer - hidden if users prefer reduced motion, allowing the static thumbnail to show */}
-      <video
-        ref={videoRef}
-        src={reel.videoUrl}
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-0 md:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none motion-reduce:hidden"
-      />
-
-      {/* Overlay & Text */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-brand-black/40 p-6 flex flex-col justify-between opacity-80 group-hover:opacity-100 transition-opacity">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-brand-white/10 flex items-center justify-center overflow-hidden border border-brand-white/20">
-            <span className="text-[10px] font-bold">M</span>
-          </div>
-          <span className="text-xs font-medium text-brand-white drop-shadow-md">
-            {reel.instagramHandle}
-          </span>
-        </div>
-        
-        <div>
-          <span className="inline-block px-2 py-1 bg-brand-white/10 backdrop-blur-sm text-[9px] tracking-widest uppercase text-brand-white rounded mb-2">
-            {reel.category}
-          </span>
-          <p className="text-sm font-medium text-brand-white line-clamp-2 drop-shadow-md">
-            {reel.caption}
-          </p>
-        </div>
+      {/* Decorative dark cinematic background while iframe loads */}
+      <div className="absolute inset-0 bg-brand-black flex items-center justify-center -z-10">
+        <div className="w-8 h-8 border-2 border-brand-white/20 border-t-brand-white rounded-full animate-spin" />
       </div>
-    </motion.a>
+
+      <iframe
+        src={embedUrl}
+        className="w-full h-full border-0"
+        scrolling="no"
+        allowTransparency={true}
+        allow="encrypted-media"
+      />
+      
+      {/* Fallback Overlay for category if we want to retain the BYMOE aesthetic */}
+      <div className="absolute top-4 right-4 pointer-events-none">
+        <span className="inline-block px-2 py-1 bg-brand-black/80 backdrop-blur-md text-[9px] tracking-widest uppercase text-brand-white rounded border border-brand-white/10">
+          {reel.category}
+        </span>
+      </div>
+    </motion.div>
   );
 }
