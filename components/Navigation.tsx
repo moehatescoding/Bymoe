@@ -77,28 +77,15 @@ export default function Navigation() {
           );
         })}
 
-        {/* ── Instagram link — icon + arrow ── */}
+        {/* ── Instagram link — Icon only ── */}
         <a
           href="https://instagram.com/moegical"
           target="_blank"
           rel="noopener noreferrer"
-          className="group ml-2 flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold tracking-widest uppercase text-white/40 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
-          aria-label="Visit @moegical on Instagram"
+          className="ml-2 flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+          aria-label="Instagram @moegical"
         >
-          <IgIcon size={14} />
-          <span>@moegical</span>
-          {/* Arrow that slides right on hover */}
-          <svg
-            className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M7 17L17 7M17 7H7M17 7v10" />
-          </svg>
+          <IgIcon size={18} />
         </a>
       </nav>
     </header>
