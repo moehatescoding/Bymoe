@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { REELS_CONTENT } from '@/data/reels';
 import { PRODUCTS } from '@/data/products';
+import { BLOG_POSTS } from '@/data/blog';
 import { accessoriesByBike } from '@/data/accessories';
 
 // ─────────────────────────────────────────
@@ -234,6 +235,69 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
+          THE LOGBOOK — FEATURED FIELD NOTES
+      ═══════════════════════════════════════════ */}
+      <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
+        <div className="mb-6 flex items-end justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
+              <p className="text-[10px] tracking-[0.3em] text-[#39FF14] uppercase font-semibold">Field Notes</p>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white">The Logbook</h2>
+          </div>
+          <Link
+            href="/blog"
+            className="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
+          >
+            View All Articles →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {BLOG_POSTS.slice(0, 3).map((post, i) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-brand-surface hover:border-white/20 transition-all duration-300 shadow-xl cursor-pointer"
+            >
+              <div className="relative w-full aspect-[16/10] bg-black/40 overflow-hidden">
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  fill
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent" />
+                <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-[#39FF14] px-2.5 py-0.5 rounded-full border border-[#39FF14]/30">
+                  {post.category}
+                </div>
+              </div>
+
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="text-[10px] font-mono text-white/40 mb-2">
+                    {post.date} • {post.readTime}
+                  </div>
+                  <h3 className="text-base font-bold text-white leading-snug group-hover:text-[#39FF14] transition-colors line-clamp-2 mb-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-xs text-white/50 font-light line-clamp-2">
+                    {post.excerpt}
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-bold tracking-widest uppercase text-white/60 group-hover:text-white">
+                  <span>Read Note</span>
+                  <span className="text-[#39FF14] transform group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
           FOOTER CTA
       ═══════════════════════════════════════════ */}
       <section className="px-5 sm:px-8 md:px-12 pb-32 sm:pb-24 max-w-4xl mx-auto w-full">
@@ -241,21 +305,29 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-white mb-3">
             Want to build something together?
           </h2>
-          <p className="text-sm text-white/40 mb-8 font-light">Get in touch or follow the chaos.</p>
-          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm">
+          <p className="text-sm text-white/40 mb-8 font-light">Get in touch or follow along on the platforms.</p>
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
             <a
               href="https://instagram.com/moegical"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center py-4 px-6 rounded-xl bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-white hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center py-4 px-5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-white hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer"
             >
               Instagram →
             </a>
             <a
-              href="mailto:hello@bymoe.in"
-              className="flex-1 flex items-center justify-center py-4 px-6 rounded-xl bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-white/90 active:scale-[0.97] transition-all cursor-pointer"
+              href="https://www.youtube.com/@Moegical"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center py-4 px-5 rounded-xl bg-[#FF0000]/10 border border-[#FF0000]/30 text-xs font-bold tracking-widest uppercase text-white hover:bg-[#FF0000]/20 active:scale-[0.97] transition-all cursor-pointer"
             >
-              Email Me →
+              YouTube →
+            </a>
+            <a
+              href="mailto:hello@bymoe.in"
+              className="flex-1 flex items-center justify-center py-4 px-5 rounded-xl bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-white/90 active:scale-[0.97] transition-all cursor-pointer"
+            >
+              Email →
             </a>
           </div>
         </div>

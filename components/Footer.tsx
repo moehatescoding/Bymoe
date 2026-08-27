@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <span className="text-brand-muted text-[10px] uppercase tracking-widest mb-2">Social</span>
             <Link href="https://instagram.com/moegical" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block" data-cursor="FOLLOW">Instagram</Link>
-            <Link href="https://youtube.com/@moegical" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block" data-cursor="WATCH">YouTube</Link>
+            <Link href="https://www.youtube.com/@Moegical" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block" data-cursor="WATCH">YouTube</Link>
           </div>
           
           <div className="flex flex-col gap-4">
