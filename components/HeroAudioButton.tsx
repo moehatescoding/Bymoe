@@ -81,7 +81,7 @@ export default function HeroAudioButton({
       <button
         type="button"
         onClick={toggleAudio}
-        aria-label={isPlaying ? 'Pause audio story' : 'Listen to audio story'}
+        aria-label={isPlaying ? 'Pause exhaust sound' : 'Listen to Kawasaki Yoshimura exhaust sound'}
         className={`group relative flex items-center gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer select-none border backdrop-blur-xl ${
           isPlaying
             ? 'bg-[#39FF14]/15 border-[#39FF14]/60 text-white shadow-[0_0_25px_rgba(57,255,20,0.2)]'
@@ -115,7 +115,7 @@ export default function HeroAudioButton({
               />
             </div>
           ) : (
-            /* Headphones Icon */
+            /* Sound / Volume Wave Icon */
             <svg
               className="w-4 h-4 text-[#39FF14] group-hover:scale-110 transition-transform"
               viewBox="0 0 24 24"
@@ -125,15 +125,16 @@ export default function HeroAudioButton({
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
             </svg>
           )}
         </div>
 
         {/* Button Label */}
         <span className="font-semibold tracking-widest text-[11px] sm:text-xs">
-          {isPlaying ? 'Pause Story' : 'Listen to the Story'}
+          {isPlaying ? 'Pause Exhaust' : 'Listen to Exhaust'}
         </span>
 
         {/* Subtle status dot / playing pulse */}
