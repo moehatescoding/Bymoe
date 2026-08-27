@@ -225,7 +225,7 @@ export default function Home() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white leading-tight truncate group-hover:text-[#39FF14] transition-colors">{prod.name}</p>
-                <p className="text-[10px] text-white/40 mt-0.5 uppercase tracking-wider">{prod.category} {prod.price ? `· ${prod.price}` : ''}</p>
+                <p className="text-[10px] text-white/40 mt-0.5 uppercase tracking-wider">{prod.category} · {prod.sourceLabel || 'Recommended'}</p>
               </div>
               <div className="flex-shrink-0 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all text-xs mt-1">→</div>
             </Link>

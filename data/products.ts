@@ -3,83 +3,111 @@ export interface Product {
   name: string;
   tagline: string;
   category: string;
-  price?: string;
-  originalPrice?: string;
   badge?: string;
   image: string;
   description: string;
   features: string[];
-  externalUrl?: string;
-  whatsappMessage?: string;
+  externalUrl: string;
+  sourceLabel?: string;
 }
 
 export const PRODUCTS: Product[] = [
   {
     id: "diy-hydro-dip",
-    name: "DIY Hydro Dip",
-    tagline: "Professional water transfer printing for motorcycle parts & gear",
+    name: "DIY Hydro Dip Supplies & Kit",
+    tagline: "Water transfer printing materials for motorcycle panels & helmets",
     category: "DIY & Custom",
-    price: "₹1,499",
-    originalPrice: "₹2,299",
-    badge: "Featured / DIY",
+    badge: "Recommended / DIY",
     image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop",
-    description: "Custom hydrographic water transfer printing kit designed for DIY builders. Give your motorcycle panels, tank pads, mirror caps, and helmets an ultra-premium carbon fiber or custom pattern finish with high durability.",
+    description: "The exact hydrographic film and aerosol activator supplies used in my DIY carbon transfer tutorials. Recommended for treating ABS fairings, mirror cowls, and custom accents at home.",
     features: [
-      "Premium Carbon Fiber / Marble Hydro Dip Film",
-      "Specialized Activator Aerosol included",
-      "Heat & UV resistant high-gloss clear coat finish",
-      "Full step-by-step video tutorial by Moe",
-      "Perfect for ABS plastics, metals & fiberglass"
+      "High-definition Twill / Forged Carbon film pattern",
+      "Specialized aerosol activator solvent",
+      "Compatible with plastic adhesion promoters & 2K clear",
+      "Best for ABS plastics, fiberglass & metals"
     ],
-    externalUrl: "https://chat.whatsapp.com/ENrb0phc8sT32tMnwnoqiw?s=cl&p=i&mlu=0",
-    whatsappMessage: "Hey Moe, I want to order the DIY Hydro Dip kit!"
+    externalUrl: "https://www.amazon.in/s?k=hydrographic+film+carbon+fiber+activator",
+    sourceLabel: "Find on Amazon / Supplies"
+  },
+  {
+    id: "iftex-clean-system-23",
+    name: "IFTEX Clean System 23",
+    tagline: "Concentrated PEA fuel injector & valve detergent",
+    category: "Maintenance",
+    badge: "Essential Maintenance",
+    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=800&auto=format&fit=crop",
+    description: "The fuel system detergent I use on my bikes every 3,000 km to dissolve ethanol gum and keep injector spray patterns clean without tearing down the throttle bodies.",
+    features: [
+      "Concentrated Polyetheramine (PEA) formula",
+      "Cleans intake valves & combustion chamber carbon",
+      "Counteracts ethanol moisture corrosion",
+      "Safe for catalytic converters & O2 sensors"
+    ],
+    externalUrl: "https://www.iftex.com/fuel-additives/ftex-clean-system-23/",
+    sourceLabel: "IFTEX Official"
   },
   {
     id: "yoshimura-exhaust",
     name: "Yoshimura Alpha T Slip-On Exhaust",
-    tagline: "Unleash the raw inline-4 roar with street legal compliance",
+    tagline: "Street legal deep tone with stock header compatibility",
     category: "Performance",
-    price: "₹68,500",
-    badge: "Sound Mod",
+    badge: "Exhaust Mod",
     image: "https://images.unsplash.com/photo-1558981001-5864b3250a69?q=80&w=800&auto=format&fit=crop",
-    description: "Gives the motorcycle a deep, throaty exhaust note while keeping stock headers intact with noticeable weight reduction.",
+    description: "Delivers a deeper, throatier inline-four acoustic character while shaving unsprung weight and retaining the factory catalytic converter and sensors.",
     features: [
       "Works finish stainless steel canister",
       "Carbon fiber end cap",
-      "Direct slip-on bolt-on installation"
+      "Direct bolt-on slip-on fitment"
     ],
-    externalUrl: "https://superbikestore.in/products/yoshimura-alpha-t-works-street-slip-on-exhaust-for-kawasaki-z900-2020"
+    externalUrl: "https://superbikestore.in/products/yoshimura-alpha-t-works-street-slip-on-exhaust-for-kawasaki-z900-2020",
+    sourceLabel: "Superbike Store"
   },
   {
     id: "frame-slider-protection",
-    name: "Heavy-Duty Frame Slider Set",
-    tagline: "Maximum chassis and engine protection against drops & slides",
+    name: "Heavy-Duty Frame Sliders",
+    tagline: "Chassis & engine protection pucks for drop defense",
     category: "Protection",
-    price: "₹12,499",
-    badge: "Essential",
+    badge: "Must-Have",
     image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=800&auto=format&fit=crop",
-    description: "High-impact Delrin pucks with CNC machined aircraft-grade aluminum brackets.",
+    description: "High-density Delrin slider pucks with CNC machined brackets to keep engine covers and frame rails off the asphalt in the event of a low-speed tip over.",
     features: [
-      "No-cut fairing direct mounting",
-      "Replaceable Delrin slider pucks",
-      "Anodized black finish"
+      "No-cut fairing mounting",
+      "Impact absorbing Delrin pucks",
+      "Corrosion-resistant anodized brackets"
     ],
-    externalUrl: "https://www.kawasaki.com"
+    externalUrl: "https://www.kawasaki.com/en-us/shop/vehicle-accessories/motorcycle",
+    sourceLabel: "OEM / Store"
   },
   {
-    id: "quick-turn-fuel-cap",
-    name: "Quick-Turn CNC Fuel Cap",
-    tagline: "Keyless quick-release aircraft style fuel filler cap",
-    category: "Styling",
-    price: "₹7,999",
-    badge: "Cosmetic",
+    id: "bmc-air-filter",
+    name: "BMC High-Flow Performance Air Filter",
+    tagline: "Washable high-flow multi-layer cotton gauze intake filter",
+    category: "Performance",
+    badge: "Airflow Mod",
     image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=800&auto=format&fit=crop",
-    description: "CNC machined keyless fuel cap for fast track-side and street refuels with a stealth aesthetic.",
+    description: "Reusable multi-layer oiled cotton filter element that improves airflow over restrictive paper filters and lasts the lifetime of the motorcycle.",
     features: [
-      "1/4 turn twist-lock mechanism",
-      "Leak-proof viton O-ring seal",
-      "Laser etched branding"
+      "Precision polyurethane frame",
+      "Washable & re-oilable design",
+      "Direct drop-in replacement for OEM airbox"
     ],
-    externalUrl: "https://www.motodracing.com"
+    externalUrl: "https://superbikestore.in/products/bmc-air-filter-for-kawasaki-z900",
+    sourceLabel: "Superbike Store"
+  },
+  {
+    id: "motul-chain-care-kit",
+    name: "Motul Chain Clean & Lube Road Kit",
+    tagline: "Essential O-ring safe cleaning & synthetic lubrication kit",
+    category: "Maintenance",
+    badge: "Routine Care",
+    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=800&auto=format&fit=crop",
+    description: "The standard aerosol cleaning solvent and high-adhesion synthetic chain lube I recommend for all sealed 520/525/530 motorcycle drive chains.",
+    features: [
+      "Chlorine-free solvent safe on rubber O/X rings",
+      "Anti-fling water-resistant road lubricant",
+      "Prevents roller corrosion & reduces drag"
+    ],
+    externalUrl: "https://www.amazon.in/s?k=motul+chain+cleaner+and+lube+kit",
+    sourceLabel: "Amazon"
   }
 ];
