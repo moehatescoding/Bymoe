@@ -7,6 +7,8 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EasterEggs from '@/components/EasterEggs';
 import LoadingScreen from '@/components/LoadingScreen';
+import FilmGrain from '@/components/FilmGrain';
+import BottomNav from '@/components/BottomNav';
 
 const inter = Inter({ subsets: ['latin'], weight: ['300','400','500','600','700'], display: 'swap', variable: '--font-sans' });
 
@@ -69,10 +71,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }} />
       </head>
       <body className="bg-brand-black text-brand-white antialiased min-h-screen flex flex-col selection:bg-brand-white selection:text-brand-black">
+        <FilmGrain />
         <LoadingScreen />
         <EasterEggs />
         <Cursor />
         <Navigation />
+        <BottomNav />
         <div className="flex-1">
           {children}
         </div>

@@ -17,17 +17,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'bymoe-v2',
-    title: 'BYMOE 2.0',
-    description: 'A complete architectural rewrite of my digital identity. Transitioned from a standard e-commerce storefront to a high-performance, immersive 3D personal brand experience built on Next.js, React Three Fiber, and Framer Motion.',
+    id: 'project-1',
+    title: '[QUESTION FOR MOE: First Project Title?]',
+    description: '[QUESTION FOR MOE: Short description of the project?]',
     category: 'Technology',
     year: 2026,
     status: 'Live',
     isPublic: true,
     images: [
-      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop' // [QUESTION FOR MOE: Project Image?]
     ],
-    role: 'Design & Engineering'
+    role: '[QUESTION FOR MOE: Your Role?]'
   },
   {
     id: 'stealth-ai',

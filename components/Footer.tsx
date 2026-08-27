@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -7,11 +8,17 @@ export default function Footer() {
         
         {/* Left side: Brand */}
         <div className="flex flex-col">
-          <h2 className="text-[clamp(4rem,10vw,12rem)] leading-none font-bold tracking-tighter mix-blend-difference mb-2">
-            BYMOE
-          </h2>
-          <p className="text-brand-muted text-sm tracking-[0.2em] uppercase pl-2">
-            by Moe
+          <div className="relative w-48 h-16 md:w-72 md:h-24 mix-blend-screen overflow-hidden mb-4">
+            <Image 
+              src="/logo.png" 
+              alt="BYMOE Logo" 
+              fill 
+              sizes="(max-width: 768px) 192px, 288px"
+              className="object-contain object-left-bottom" 
+            />
+          </div>
+          <p className="text-brand-muted text-[10px] tracking-[0.2em] uppercase">
+            Designed & Built by Moe
           </p>
         </div>
 

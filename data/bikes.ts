@@ -27,14 +27,13 @@ export const BIKES: Bike[] = [
       'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=1200&auto=format&fit=crop'
     ],
-    story: "[Placeholder: Story of why you bought the Z900 and what it means to you.]",
-    setup: "[Placeholder: Detail your riding setup, tyre pressures, suspension stiffness, etc.]",
-    notes: "[Placeholder: Personal quirks, maintenance notes, or advice for this bike.]",
+    story: "[QUESTION FOR MOE: Story of why you bought the Z900 and what it means to you?]",
+    setup: "[QUESTION FOR MOE: Detail your riding setup, tyre pressures, suspension stiffness?]",
+    notes: "[QUESTION FOR MOE: Personal quirks, maintenance notes, or advice for this bike?]",
     modifications: [
-      '[Placeholder Modification 1]',
-      '[Placeholder Modification 2]',
-      '[Placeholder Modification 3]',
-      '[Placeholder Modification 4]'
+      '[QUESTION FOR MOE: Modification 1?]',
+      '[QUESTION FOR MOE: Modification 2?]',
+      '[QUESTION FOR MOE: Modification 3?]'
     ]
   },
   {
