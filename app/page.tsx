@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { REELS_CONTENT } from '@/data/reels';
+import { PRODUCTS } from '@/data/products';
 import { accessoriesByBike } from '@/data/accessories';
 
 // ─────────────────────────────────────────
@@ -34,9 +35,20 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileTap={{ scale: 0.97 }}
     >
-      {/* Dark cinematic bg */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black" />
-      
+      {/* Cover image */}
+      {reel.coverUrl ? (
+        <img
+          src={reel.coverUrl}
+          alt={`${reel.category} reel`}
+          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black" />
+      )}
+
+      {/* Dark cinematic overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+
       {/* Reel icon */}
       <div className="absolute top-3 right-3 z-10">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white" className="opacity-80">
@@ -59,6 +71,9 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
   );
 }
 
+
+import Hero from '@/components/Hero';
+
 export default function Home() {
   const z900Accessories = accessoriesByBike['z900'] || [];
 
@@ -66,132 +81,72 @@ export default function Home() {
     <main className="min-h-screen bg-brand-black overflow-x-hidden">
 
       {/* ═══════════════════════════════════════════
-          HERO — MOTORCYCLE ATMOSPHERE
+          CINEMATIC KAWASAKI HERO
       ═══════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col overflow-hidden">
+      <Hero />
 
-        {/* Background: cinematic motorcycle image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/z900.png"
-            alt="Kawasaki Z900 — bymoe"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Heavy dark vignette so text is readable */}
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-black/80 via-brand-black/50 to-brand-black" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-black/70 via-transparent to-brand-black/70" />
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col min-h-screen px-5 sm:px-8 md:px-12 pt-28 pb-10">
-
-          {/* Identity */}
-          <motion.div
-            className="flex flex-col items-start"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Logo */}
-            <div className="relative w-44 h-14 sm:w-56 sm:h-16 mb-4 overflow-hidden mix-blend-screen">
-              <Image
-                src="/logo.png"
-                alt="bymoe"
-                fill
-                sizes="(max-width: 640px) 176px, 224px"
-                className="object-contain object-left"
-                priority
-              />
-            </div>
-
-            <p className="text-xs sm:text-sm tracking-[0.25em] text-white/50 uppercase font-light mb-1">
-              Life, built my way.
-            </p>
-            <p className="text-[10px] tracking-[0.2em] text-white/30 uppercase">
-              Kawasaki Z900 · Creator · Rider · Builder
-            </p>
-          </motion.div>
-
-          {/* Push to bottom on mobile */}
-          <div className="flex-1" />
-
-          {/* ─── WHATSAPP COMMUNITY CTA ─── FIRST PROMINENT BOX */}
-          <motion.div
-            className="w-full max-w-lg"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <a
-              href="https://chat.whatsapp.com/ENrb0phc8sT32tMnwnoqiw?s=cl&p=i&mlu=0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-4 w-full p-5 sm:p-6 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md hover:bg-[#25D366]/10 hover:border-[#25D366]/40 active:scale-[0.98] transition-all duration-300 cursor-pointer"
-            >
-              {/* WA Icon circle */}
-              <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 flex items-center justify-center group-hover:bg-[#25D366]/25 transition-colors">
-                <span className="text-[#25D366]">
-                  <WhatsAppIcon size={24} />
-                </span>
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <p className="text-white font-bold text-base sm:text-lg leading-tight tracking-tight">
-                  Join WhatsApp Community
-                </p>
-                <p className="text-white/50 text-xs sm:text-sm mt-0.5 font-light">
-                  Ride. Share. Connect.
-                </p>
-              </div>
-
-              {/* Arrow */}
-              <div className="flex-shrink-0 text-white/30 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all duration-300">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </div>
-            </a>
-
-            {/* Quick actions row */}
-            <div className="flex gap-3 mt-3">
-              <Link
-                href="/garage"
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
-              >
-                The Garage
-              </Link>
-              <Link
-                href="/content"
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
-              >
-                Reels
-              </Link>
-              <a
-                href="https://instagram.com/moegical"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
-              >
-                Instagram
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
+      {/* ═══════════════════════════════════════════
+          WHATSAPP COMMUNITY CTA & QUICK LINKS
+      ═══════════════════════════════════════════ */}
+      <section className="px-5 sm:px-8 md:px-12 py-10 max-w-4xl mx-auto w-full">
         <motion.div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
+          className="w-full"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.div
-            className="w-px h-10 bg-gradient-to-b from-white/0 to-white/30"
-            animate={{ scaleY: [0, 1, 0], transformOrigin: 'top' }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          <a
+            href="https://chat.whatsapp.com/ENrb0phc8sT32tMnwnoqiw?s=cl&p=i&mlu=0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 w-full p-5 sm:p-6 rounded-2xl border border-white/15 bg-gradient-to-r from-brand-surface to-[#0a0a10] hover:bg-[#25D366]/10 hover:border-[#25D366]/40 active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-2xl"
+          >
+            {/* WA Icon circle */}
+            <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 flex items-center justify-center group-hover:bg-[#25D366]/25 transition-colors">
+              <span className="text-[#25D366]">
+                <WhatsAppIcon size={26} />
+              </span>
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-bold text-base sm:text-lg leading-tight tracking-tight">
+                Join WhatsApp Community
+              </p>
+              <p className="text-white/50 text-xs sm:text-sm mt-0.5 font-light">
+                Ride. Share. Connect.
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex-shrink-0 text-white/30 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+          {/* Quick actions row */}
+          <div className="flex gap-3 mt-3">
+            <Link
+              href="/products"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
+            >
+              Products
+            </Link>
+            <Link
+              href="/content"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
+            >
+              Reels
+            </Link>
+            <Link
+              href="/gallery"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
+            >
+              Gallery
+            </Link>
+          </div>
         </motion.div>
       </section>
 
@@ -243,24 +198,41 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          Z900 SNAPSHOT
+          FEATURED PRODUCT — DIY HYDRO DIP
       ═══════════════════════════════════════════ */}
       <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
-        <Link href="/garage" className="group block relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-white/10 cursor-pointer">
+        <Link
+          href="/products"
+          className="group block relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-white/15 cursor-pointer shadow-2xl"
+        >
           <Image
-            src="/z900.png"
-            alt="Kawasaki Z900 — The Build"
+            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop"
+            alt="DIY Hydro Dip Kit"
             fill
             className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-5 sm:p-8">
-            <p className="text-[9px] tracking-[0.3em] text-white/40 uppercase mb-1">Kawasaki · 2018</p>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-white">Z900 — The Build</h3>
-            <p className="text-xs sm:text-sm text-white/50 mt-1 font-light">11 mods · Full DIY build</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+          
+          <div className="absolute top-4 left-4">
+            <span className="inline-block px-3 py-1 bg-[#39FF14]/20 border border-[#39FF14]/40 text-[#39FF14] text-[9px] font-bold tracking-widest uppercase rounded-full backdrop-blur-md">
+              Featured Product
+            </span>
           </div>
-          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-white/60 px-3 py-1.5 rounded-full border border-white/10 group-hover:text-white transition-colors">
-            Open Garage →
+
+          <div className="absolute bottom-0 left-0 p-5 sm:p-8">
+            <p className="text-[9px] tracking-[0.3em] text-[#39FF14] uppercase mb-1 font-semibold">
+              DIY & Custom Finish
+            </p>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-white">
+              DIY Hydro Dip
+            </h3>
+            <p className="text-xs sm:text-sm text-white/60 mt-1 font-light max-w-md">
+              Carbon & pattern water transfer kit for bike parts, helmets & accessories.
+            </p>
+          </div>
+          
+          <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-white px-3.5 py-1.5 rounded-full border border-white/20 group-hover:bg-[#39FF14] group-hover:text-black group-hover:border-[#39FF14] transition-all">
+            View Kit →
           </div>
         </Link>
       </section>
@@ -291,45 +263,37 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          ACCESSORIES PEEK
+          CURATED PRODUCTS PEEK
       ═══════════════════════════════════════════ */}
       <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
         <div className="mb-6 flex items-end justify-between">
           <div>
-            <p className="text-[10px] tracking-[0.3em] text-white/30 uppercase mb-1">Z900 Build</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white">What's on the bike</h2>
+            <p className="text-[10px] tracking-[0.3em] text-white/30 uppercase mb-1">Gear & Builds</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white">Featured Products</h2>
           </div>
           <Link
-            href="/garage"
+            href="/products"
             className="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
           >
-            Full List →
+            All Products →
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {z900Accessories.slice(0, 4).map((acc, i) => (
-            <motion.a
-              key={acc.id}
-              href={acc.externalUrl || '#'}
-              target={acc.externalUrl ? '_blank' : undefined}
-              rel="noopener noreferrer"
+          {PRODUCTS.slice(0, 4).map((prod, i) => (
+            <Link
+              key={prod.id}
+              href="/products"
               className="group flex items-start gap-4 p-4 rounded-xl bg-brand-surface border border-white/[0.06] hover:border-white/20 active:scale-[0.98] transition-all duration-200 cursor-pointer"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
-                <span className="text-[10px] font-bold tracking-wider uppercase text-white/30">{acc.category.slice(0, 3)}</span>
+              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-white/5 relative overflow-hidden border border-white/10">
+                <Image src={prod.image} alt={prod.name} fill className="object-cover" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white leading-tight truncate">{acc.name}</p>
-                <p className="text-[10px] text-white/40 mt-0.5 uppercase tracking-wider">{acc.brand} · {acc.category}</p>
+                <p className="text-sm font-semibold text-white leading-tight truncate group-hover:text-[#39FF14] transition-colors">{prod.name}</p>
+                <p className="text-[10px] text-white/40 mt-0.5 uppercase tracking-wider">{prod.category} {prod.price ? `· ${prod.price}` : ''}</p>
               </div>
-              {acc.externalUrl && (
-                <div className="flex-shrink-0 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all text-xs">→</div>
-              )}
-            </motion.a>
+              <div className="flex-shrink-0 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all text-xs mt-1">→</div>
+            </Link>
           ))}
         </div>
       </section>

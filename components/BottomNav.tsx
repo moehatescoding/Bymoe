@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const LINKS = [
   { label: 'Home', href: '/', icon: '⌂' },
-  { label: 'Garage', href: '/garage', icon: '🏍' },
+  { label: 'Products', href: '/products', icon: '✦' },
   { label: 'Reels', href: '/content', icon: '▶' },
   { label: 'Work', href: '/work', icon: '◈' },
 ];
@@ -24,8 +24,8 @@ export default function BottomNav() {
             return (
               <div key="mid" className="flex items-center gap-1">
                 {/* Logo Home Button */}
-                <Link href="/" className="flex-shrink-0 relative w-10 h-6 mx-1 cursor-pointer overflow-hidden mix-blend-screen">
-                  <Image src="/logo.png" alt="bymoe" fill className="object-contain" />
+                <Link href="/" className="flex-shrink-0 relative w-10 h-6 mx-1 cursor-pointer overflow-hidden">
+                  <Image src="/logo.svg" alt="bymoe" fill className="object-contain" />
                 </Link>
                 {/* Reels link */}
                 <Link

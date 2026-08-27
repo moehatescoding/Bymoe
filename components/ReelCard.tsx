@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { Reel } from '@/data/reels';
 
 interface ReelCardProps {
@@ -8,15 +9,30 @@ interface ReelCardProps {
   index: number;
 }
 
-// Extracts the shortcode from an Instagram URL
-// e.g. https://www.instagram.com/reel/DcGzCH_v7kP/ → DcGzCH_v7kP
-function getShortcode(url: string): string {
-  const match = url.match(/reel\/([^/]+)/);
-  return match?.[1] ?? '';
+function useReelThumbnail(reel: Reel) {
+  // Start with static cover if provided
+  const [thumb, setThumb] = useState<string | null>(reel.coverUrl ?? null);
+
+  useEffect(() => {
+    // If we already have a static cover, skip the API call
+    if (reel.coverUrl) return;
+
+    let cancelled = false;
+    fetch(`/api/ig-thumb?url=${encodeURIComponent(reel.instagramUrl)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled && data.thumbnail_url) setThumb(data.thumbnail_url);
+      })
+      .catch(() => {}); // fail silently — we show the gradient bg
+
+    return () => { cancelled = true; };
+  }, [reel.instagramUrl, reel.coverUrl]);
+
+  return thumb;
 }
 
 export default function ReelCard({ reel, index }: ReelCardProps) {
-  const shortcode = getShortcode(reel.instagramUrl);
+  const thumb = useReelThumbnail(reel);
 
   return (
     <motion.a
@@ -30,28 +46,26 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
       transition={{ duration: 0.5, delay: index * 0.08 }}
       whileTap={{ scale: 0.98 }}
     >
-      {/* ── Background: Instagram oEmbed thumbnail ── */}
-      {/* Instagram provides a CDN thumbnail via their embed. We use it as a
-          background image so there's no empty black box. */}
-      <img
-        src={`https://www.instagram.com/p/${shortcode}/media/?size=l`}
-        alt={`Instagram ${reel.category} reel`}
-        className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
-        loading="lazy"
-        onError={(e) => {
-          // If the thumbnail fails (CORS on localhost), hide it gracefully
-          (e.target as HTMLImageElement).style.display = 'none';
-        }}
-      />
+      {/* ── Cover image ── */}
+      {thumb ? (
+        <img
+          src={thumb}
+          alt={`${reel.category} reel`}
+          className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+        />
+      ) : (
+        /* Fallback gradient while loading / if no cover */
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black" />
+      )}
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40" />
 
       {/* ── Top bar ── */}
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-4">
-        {/* Instagram logo */}
+        {/* Instagram logo + handle */}
         <div className="flex items-center gap-2">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" className="opacity-70">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" className="opacity-70">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
           </svg>
           <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">@moegical</span>
@@ -66,7 +80,6 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
       {/* ── Center play button ── */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
-          {/* Play triangle */}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white" className="ml-1">
             <path d="M8 5v14l11-7z"/>
           </svg>

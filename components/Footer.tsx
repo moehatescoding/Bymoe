@@ -8,9 +8,9 @@ export default function Footer() {
         
         {/* Left side: Brand */}
         <div className="flex flex-col">
-          <div className="relative w-48 h-16 md:w-72 md:h-24 mix-blend-screen overflow-hidden mb-4">
+          <div className="relative w-48 h-16 md:w-72 md:h-24 overflow-hidden mb-4">
             <Image 
-              src="/logo.png" 
+              src="/logo.svg" 
               alt="BYMOE Logo" 
               fill 
               sizes="(max-width: 768px) 192px, 288px"
@@ -32,8 +32,10 @@ export default function Footer() {
           
           <div className="flex flex-col gap-4">
             <span className="text-brand-muted text-[10px] uppercase tracking-widest mb-2">Explore</span>
-            <Link href="/garage" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Garage</Link>
+            <Link href="/products" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Products</Link>
+            <Link href="/blog" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Blog</Link>
             <Link href="/projects" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Projects</Link>
+            <Link href="/gallery" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Gallery</Link>
             <Link href="/work" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Work</Link>
           </div>
           
