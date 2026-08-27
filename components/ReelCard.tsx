@@ -9,36 +9,49 @@ interface ReelCardProps {
 }
 
 export default function ReelCard({ reel, index }: ReelCardProps) {
-  // Ensure URL ends with a slash before appending embed
   const baseUrl = reel.instagramUrl.endsWith('/') ? reel.instagramUrl : `${reel.instagramUrl}/`;
   const embedUrl = `${baseUrl}embed/?dark=1`;
 
   return (
     <motion.div
-      className="group block relative w-full aspect-[9/16] md:aspect-[4/5] lg:aspect-[9/16] bg-brand-surface rounded-sm overflow-hidden border border-brand-white/10"
+      className="group relative w-full aspect-[9/16] bg-brand-surface rounded-xl overflow-hidden border border-white/10"
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      {/* Decorative dark cinematic background while iframe loads */}
-      <div className="absolute inset-0 bg-brand-black flex items-center justify-center -z-10">
-        <div className="w-8 h-8 border-2 border-brand-white/20 border-t-brand-white rounded-full animate-spin" />
+      {/* Loading spinner bg */}
+      <div className="absolute inset-0 bg-brand-black flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-white/10 border-t-white/40 rounded-full animate-spin" />
       </div>
 
+      {/* Instagram embed */}
       <iframe
         src={embedUrl}
-        className="w-full h-full border-0"
+        className="absolute inset-0 w-full h-full border-0"
         scrolling="no"
         allowTransparency={true}
         allow="encrypted-media"
+        loading="lazy"
+        title={`Instagram Reel — ${reel.category}`}
       />
-      
-      {/* Fallback Overlay for category if we want to retain the BYMOE aesthetic */}
-      <div className="absolute top-4 right-4 pointer-events-none">
-        <span className="inline-block px-2 py-1 bg-brand-black/80 backdrop-blur-md text-[9px] tracking-widest uppercase text-brand-white rounded border border-brand-white/10">
+
+      {/* Category badge — top right, pointer-events-none so iframe stays clickable */}
+      <div className="absolute top-3 right-3 pointer-events-none z-10">
+        <span className="inline-block px-2.5 py-1 bg-black/70 backdrop-blur-md text-[9px] tracking-widest uppercase text-white rounded-full border border-white/10">
           {reel.category}
         </span>
       </div>
+
+      {/* Fallback tap link if iframe fails */}
+      <a
+        href={reel.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute inset-0 z-0 cursor-pointer"
+        aria-label={`Watch ${reel.category} reel on Instagram`}
+        tabIndex={-1}
+      />
     </motion.div>
   );
 }

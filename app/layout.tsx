@@ -43,9 +43,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable}`}>
+    <html lang="en" className={`${inter.variable}`} style={{ colorScheme: 'dark' }}>
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-74G1WX3KGZ"></script>
         <script dangerouslySetInnerHTML={{
