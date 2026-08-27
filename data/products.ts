@@ -32,16 +32,16 @@ export const PRODUCTS: Product[] = [
   {
     id: "iftex-clean-system-23",
     name: "IFTEX Clean System 23",
-    tagline: "Concentrated PEA fuel injector & valve detergent",
+    tagline: "Concentrated petrol additive with built-in measuring dispenser",
     category: "Maintenance",
-    badge: "Essential Maintenance",
-    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=800&auto=format&fit=crop",
-    description: "The fuel system detergent I use on my bikes every 3,000 km to dissolve ethanol gum and keep injector spray patterns clean without tearing down the throttle bodies.",
+    badge: "Essential / Every Tank",
+    image: "/products/iftex-clean-system-23.png",
+    description: "The fuel system detergent I use on every single tank full to dissolve ethanol gum, prevent engine knocking, and keep fuel injectors atomizing cleanly.",
     features: [
-      "Concentrated Polyetheramine (PEA) formula",
-      "Cleans intake valves & combustion chamber carbon",
-      "Counteracts ethanol moisture corrosion",
-      "Safe for catalytic converters & O2 sensors"
+      "Built-in top measuring dispenser chamber",
+      "Used on every tank full (1 ml per 1 Liter petrol)",
+      "Cleans fuel injectors, intake valves & spark plugs",
+      "Eliminates engine knocking & counteracts ethanol moisture"
     ],
     externalUrl: "https://www.iftex.com/fuel-additives/ftex-clean-system-23/",
     sourceLabel: "IFTEX Official"

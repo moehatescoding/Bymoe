@@ -469,26 +469,26 @@ IFTEX Clean System 23 is a specialized multi-functional fuel additive engineered
 
 ---
 
-## Practical Application: Dosage, Ratios & Step-by-Step Usage
+## Practical Application: Dosage, Ratios & Squeeze Dispenser Usage
 
-The key to getting real results from Clean System 23 is accurate measurement. Over-dosing does not clean faster and can temporarily alter flame speed, while under-dosing will fail to reach the critical cleaning concentration.
+The IFTEX Clean System 23 bottle features an integrated upper measurement dispenser chamber. You simply squeeze the lower bottle body until the fluid rises into the upper chamber to your desired milliliter marking, unscrew the cap, and pour directly into the fuel tank.
 
 ### Dosage Guidelines
 
-- **Therapeutic / Shock Dose (For rough running bikes)**: 1 ml per 1 Liter of petrol (e.g., 15 ml for a 15-liter tank).
-- **Preventive Maintenance Dose (Every 2,000 to 3,000 KM)**: 0.5 ml per 1 Liter of petrol.
+- **My Recommended Routine (Every Tank Full)**: 1 ml per 1 Liter of petrol (e.g., 15 ml to 17 ml for a full 15–17L superbike tank).
+- **Why Every Tank Full?**: With modern E10 and E20 ethanol blended fuel at pumps, adding 1 ml/L continuously neutralizes ethanol moisture, lubricates injector needle seats, and prevents varnish before it ever has a chance to bake onto the hot intake tract.
 
 ### How to Add It Properly
 
-1. **Always add Clean System 23 at the petrol station BEFORE pumping fuel**: Pouring the measured dosage into an empty or near-empty tank ensures that the incoming high-pressure pump fuel thoroughly agitates and mixes the additive uniformly.
-2. **Fill with fresh high-octane or standard fuel**: Fill the tank completely to achieve the exact target concentration.
-3. **Take the bike on a sustained highway ride**: Chemical detergents require thermal cycles to work effectively. A 30 to 45-minute ride with variable engine speeds under load allows the fuel flow to wash across the intake valves at peak operating temperatures.
+1. **Measure with the Top Dispenser**: Squeeze the bottle until the upper chamber fills to your tank capacity (e.g., 15 ml).
+2. **Pour into the Tank at the Petrol Pump BEFORE Refueling**: Adding it directly into the tank right before pumping fuel ensures that the high-pressure dispensing nozzle violently agitates and homogenizes the additive throughout the fresh petrol.
+3. **Ride normally**: The PEA chemistry works continuously at all RPMs, maintaining clean injector pintles and preventing high-RPM knocking.
 
 ---
 
 ## Real-World Observations: What You Can Actually Feel
 
-After running a treated tank through a 900cc inline-four with 18,000 km on the clock:
+After running treated fuel consistently on every tank full:
 
 - **Idle Stability**: Cold start hunting dropped from +/- 120 RPM variations to a dead-steady idle within 30 seconds.
 - **Low-RPM Part-Throttle Transition**: The jerkiness experienced when cracking the throttle open in 1st and 2nd gear in city traffic smoothed out noticeably.
@@ -498,9 +498,9 @@ After running a treated tank through a 900cc inline-four with 18,000 km on the c
 
 ## Summary & Best Practices
 
-Keeping your fuel system clean is the cheapest performance insurance you can give your motorcycle. You do not need snake oil octane boosters or expensive ultrasonic injector teardowns every year. 
+Keeping your fuel system clean is the cheapest performance insurance you can give your motorcycle. You do not need snake oil octane boosters or expensive ultrasonic injector teardowns. 
 
-Run a single measured bottle of IFTEX Clean System 23 every 3,000 km, keep your fuel tank topped up during monsoons to avoid condensation, and let the engine breathe freely.
+Keep a bottle of IFTEX Clean System 23 handy, dose your tank every time you fill up at the station, and let the engine breathe with peak combustion efficiency.
     `.trim(),
   },
   {
