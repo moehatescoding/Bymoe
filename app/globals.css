@@ -49,24 +49,10 @@ body {
   font-size: 16px;
 }
 
-/* ─── Cursor ─── */
-/* On desktop (mouse), all interactive elements use pointer */
-@media (pointer: fine) {
-  /* Reset body to default — we use the custom Cursor component overlay */
-  body {
-    cursor: none;
-  }
-  a, button, [role="button"], [data-cursor],
-  input, textarea, select, label {
-    cursor: none;
-  }
-}
-
-/* On touch devices, always show native cursor/pointer */
-@media (pointer: coarse) {
-  a, button, [role="button"], [data-cursor] {
-    cursor: pointer;
-  }
+/* ─── Cursor — native pointer everywhere ─── */
+a, button, [role="button"], [data-cursor],
+label, select, input[type="submit"], input[type="button"] {
+  cursor: pointer;
 }
 
 /* ─── Selection ─── */

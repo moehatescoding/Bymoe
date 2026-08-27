@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { siteConfig } from '@/lib/config';
 import './globals.css';
-import Cursor from '@/components/Cursor';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import EasterEggs from '@/components/EasterEggs';
@@ -82,7 +81,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <FilmGrain />
         <LoadingScreen />
         <EasterEggs />
-        <Cursor />
         <Navigation />
         <BottomNav />
         <div className="flex-1">
