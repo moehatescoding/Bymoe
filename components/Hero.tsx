@@ -23,13 +23,13 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-screen flex flex-col overflow-hidden bg-brand-black"
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-brand-black"
     >
       {/* ── Background: Cinematic Kawasaki image with Parallax ── */}
       <motion.div 
@@ -43,25 +43,25 @@ export default function Hero() {
           className="object-cover object-center"
           priority
         />
-        {/* Heavy dark cinematic vignettes so all text and UI elements remain perfectly crisp */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-black/85 via-brand-black/40 to-brand-black" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-black/70 via-transparent to-brand-black/70" />
+        {/* Cinematic dark vignettes for crisp contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-black/85 via-brand-black/35 to-brand-black" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-black/75 via-transparent to-brand-black/60" />
       </motion.div>
 
-      {/* ── Hero Content Layer ── */}
+      {/* ── Hero Content Container ── */}
       <motion.div 
-        className="relative z-10 flex flex-col min-h-screen px-5 sm:px-8 md:px-12 pt-28 pb-12"
+        className="relative z-10 flex flex-col justify-between min-h-screen px-5 sm:px-8 md:px-12 pt-28 pb-32 sm:pb-24 md:pb-14"
         style={{ opacity: heroOpacity }}
       >
         {/* Top-Left Brand Identity */}
         <motion.div
           className="flex flex-col items-start"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
         >
           {/* bymoe logo */}
-          <div className="relative w-44 h-14 sm:w-56 sm:h-16 mb-4 overflow-hidden">
+          <div className="relative w-44 h-14 sm:w-56 sm:h-16 mb-3 overflow-hidden">
             <Image
               src="/logo.svg"
               alt="bymoe"
@@ -72,21 +72,51 @@ export default function Hero() {
             />
           </div>
 
-          <p className="text-xs sm:text-sm tracking-[0.25em] text-white/60 uppercase font-light mb-1">
+          <p className="text-xs sm:text-sm tracking-[0.25em] text-white/70 uppercase font-light mb-1.5">
             Life, built my way.
           </p>
-          <p className="text-[10px] tracking-[0.2em] text-[#39FF14] uppercase font-semibold">
-            Kawasaki Ninja · Creator · Rider · Builder
-          </p>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14] animate-pulse" />
+            <p className="text-[10px] sm:text-[11px] tracking-[0.2em] text-[#39FF14] uppercase font-semibold">
+              Kawasaki Ninja · Creator · Rider · Builder
+            </p>
+          </div>
         </motion.div>
 
-        {/* Vertical Spacer to push CTA box to bottom-left */}
-        <div className="flex-1 min-h-[140px]" />
+        {/* ── Center Animated Scroll Cue (Subtle & Thin) ── */}
+        <motion.div
+          className="flex flex-col items-center justify-center my-auto py-6 pointer-events-none select-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-white/40 mb-2">
+            Scroll
+          </span>
+          <motion.div
+            className="flex flex-col items-center gap-1"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <div className="w-px h-8 bg-gradient-to-b from-white/10 via-[#39FF14]/60 to-[#39FF14]" />
+            <svg
+              className="w-3.5 h-3.5 text-[#39FF14]/80"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </motion.div>
+        </motion.div>
 
-        {/* ─── WHATSAPP COMMUNITY CTA & QUICK ACTIONS (Inside Hero) ─── */}
+        {/* ─── Bottom-Left: WhatsApp Community CTA & Quick Actions ─── */}
         <motion.div
           className="w-full max-w-lg"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
@@ -94,10 +124,10 @@ export default function Hero() {
             href="https://chat.whatsapp.com/ENrb0phc8sT32tMnwnoqiw?s=cl&p=i&mlu=0"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-4 w-full p-5 sm:p-6 rounded-2xl border border-white/15 bg-black/50 backdrop-blur-xl hover:bg-[#25D366]/15 hover:border-[#25D366]/50 active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-2xl"
+            className="group flex items-center gap-4 w-full p-4 sm:p-5 rounded-2xl border border-white/15 bg-black/55 backdrop-blur-xl hover:bg-[#25D366]/15 hover:border-[#25D366]/50 active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-2xl"
           >
             {/* WA Icon circle */}
-            <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 flex items-center justify-center group-hover:bg-[#25D366]/25 transition-colors">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 flex items-center justify-center group-hover:bg-[#25D366]/25 transition-colors">
               <span className="text-[#25D366]">
                 <WhatsAppIcon size={24} />
               </span>
@@ -121,22 +151,22 @@ export default function Hero() {
           </a>
 
           {/* Quick actions row */}
-          <div className="flex gap-3 mt-3">
+          <div className="flex gap-2.5 mt-2.5">
             <Link
               href="/products"
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
+              className="flex-1 flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-[11px] font-bold tracking-widest uppercase text-white/70 hover:text-white"
             >
               Products
             </Link>
             <Link
               href="/blog"
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
+              className="flex-1 flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-[11px] font-bold tracking-widest uppercase text-white/70 hover:text-white"
             >
               Blog
             </Link>
             <Link
               href="/content"
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-xs font-bold tracking-widest uppercase text-white/70 hover:text-white"
+              className="flex-1 flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer text-[11px] font-bold tracking-widest uppercase text-white/70 hover:text-white"
             >
               Reels
             </Link>
@@ -144,19 +174,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* ── Scroll Indicator (Bottom Center) ── */}
-      <motion.div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        <motion.div
-          className="w-px h-8 bg-gradient-to-b from-white/0 to-white/40"
-          animate={{ scaleY: [0, 1, 0], transformOrigin: 'top' }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      </motion.div>
     </section>
   );
 }
