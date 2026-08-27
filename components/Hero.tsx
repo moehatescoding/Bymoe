@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import HeroAudioButton from '@/components/HeroAudioButton';
 
 // ─────────────────────────────────────────
 // WhatsApp SVG Icon (official logo colors)
@@ -81,6 +82,9 @@ export default function Hero() {
               Kawasaki Ninja · Creator · Rider · Builder
             </p>
           </div>
+
+          {/* ── Voice Audio Experience ── */}
+          <HeroAudioButton audioSrc="/audio/hero-voice.mp3" className="mt-4" />
         </motion.div>
 
         {/* ── Center Animated Scroll Cue (Subtle & Thin) ── */}
