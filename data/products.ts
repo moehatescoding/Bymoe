@@ -100,7 +100,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Essential O-ring safe cleaning & synthetic lubrication kit",
     category: "Maintenance",
     badge: "Routine Care",
-    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=800&auto=format&fit=crop",
+    image: "/products/motul-chain-kit.png",
     description: "The standard aerosol cleaning solvent and high-adhesion synthetic chain lube I recommend for all sealed 520/525/530 motorcycle drive chains.",
     features: [
       "Chlorine-free solvent safe on rubber O/X rings",
