@@ -52,11 +52,11 @@ export const PRODUCTS: Product[] = [
     tagline: "Street legal deep tone with stock header compatibility",
     category: "Performance",
     badge: "Exhaust Mod",
-    image: "https://images.unsplash.com/photo-1558981001-5864b3250a69?q=80&w=800&auto=format&fit=crop",
+    image: "/products/yoshimura-alpha-t.png",
     description: "Delivers a deeper, throatier inline-four acoustic character while shaving unsprung weight and retaining the factory catalytic converter and sensors.",
     features: [
       "Works finish stainless steel canister",
-      "Carbon fiber end cap",
+      "Carbon fiber end cap & carbon heat shield",
       "Direct bolt-on slip-on fitment"
     ],
     externalUrl: "https://superbikestore.in/products/yoshimura-alpha-t-works-street-slip-on-exhaust-for-kawasaki-z900-2020",
