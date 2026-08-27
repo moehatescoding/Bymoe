@@ -24,9 +24,8 @@ export default function BottomNav() {
             return (
               <div key="mid" className="flex items-center gap-1">
                 {/* Logo Home Button */}
-                <Link href="/" className="flex-shrink-0 relative w-10 h-6 mx-1 cursor-pointer overflow-hidden">
+                <Link href="/" className="flex-shrink-0 relative w-10 h-6 mx-1 cursor-pointer overflow-hidden mix-blend-screen">
                   <Image src="/logo.png" alt="bymoe" fill className="object-contain" />
-                  <div className="absolute inset-0 mix-blend-multiply bg-brand-black pointer-events-none" />
                 </Link>
                 {/* Reels link */}
                 <Link

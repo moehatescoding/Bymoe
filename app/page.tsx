@@ -95,7 +95,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             {/* Logo */}
-            <div className="relative w-44 h-14 sm:w-56 sm:h-16 mb-4 overflow-hidden">
+            <div className="relative w-44 h-14 sm:w-56 sm:h-16 mb-4 overflow-hidden mix-blend-screen">
               <Image
                 src="/logo.png"
                 alt="bymoe"
@@ -104,8 +104,6 @@ export default function Home() {
                 className="object-contain object-left"
                 priority
               />
-              {/* Black bg knockout — since logo has black bg */}
-              <div className="absolute inset-0 mix-blend-multiply bg-brand-black" />
             </div>
 
             <p className="text-xs sm:text-sm tracking-[0.25em] text-white/50 uppercase font-light mb-1">

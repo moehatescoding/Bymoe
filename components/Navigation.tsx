@@ -33,7 +33,7 @@ export default function Navigation() {
       {/* Logo */}
       <Link
         href="/"
-        className="relative w-28 h-9 block cursor-pointer overflow-hidden"
+        className="relative w-28 h-9 block cursor-pointer overflow-hidden mix-blend-screen"
         data-cursor="HOME"
       >
         <Image
@@ -44,8 +44,6 @@ export default function Navigation() {
           className="object-contain object-left"
           priority
         />
-        {/* Black bg knockout */}
-        <div className="absolute inset-0 mix-blend-multiply bg-brand-black pointer-events-none" />
       </Link>
 
       {/* Nav Links */}
