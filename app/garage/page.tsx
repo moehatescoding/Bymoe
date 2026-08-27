@@ -28,7 +28,7 @@ export default function GaragePage() {
       <div ref={heroRef} className="relative w-full h-[80vh] sm:h-screen overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
           <Image
-            src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=2000&auto=format&fit=crop"
+            src="/z900.png"
             alt="Kawasaki Z900 — The Build"
             fill
             className="object-cover object-center"

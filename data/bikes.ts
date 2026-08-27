@@ -21,11 +21,9 @@ export const BIKES: Bike[] = [
     year: 2018,
     nickname: 'The Sugomi',
     status: 'Current',
-    heroImage: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2000&auto=format&fit=crop',
+    heroImage: '/z900.png',
     gallery: [
-      'https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=1200&auto=format&fit=crop'
+      '/z900.png'
     ],
     story: "I'd always dreamed of owning an inline-four. There weren't many bikes that really made sense to me—things like the Street Triple were great, but the Z900 just fit perfectly into my budget and what I wanted from a motorcycle. I also specifically wanted something with minimal electronics. Bikes are becoming more like computers and toys these days, with electronics doing half the work for you. I wanted to actually feel the motorcycle—the throttle, the power, the mistakes, everything. The Z900 gave me that raw, mechanical connection I was looking for.",
     setup: "I prefer a stiffer suspension setup to keep the bike planted and responsive. I run around 30 PSI in the front and 39 PSI in the rear. The slightly lower front pressure gives me better front-end feel and confidence, while the rear handles stability and acceleration load.",

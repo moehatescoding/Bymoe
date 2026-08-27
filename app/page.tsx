@@ -73,8 +73,8 @@ export default function Home() {
         {/* Background: cinematic motorcycle image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2000&auto=format&fit=crop"
-            alt="Kawasaki Z900"
+            src="/z900.png"
+            alt="Kawasaki Z900 — bymoe"
             fill
             className="object-cover object-center"
             priority
@@ -250,7 +250,7 @@ export default function Home() {
       <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
         <Link href="/garage" className="group block relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-white/10 cursor-pointer">
           <Image
-            src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=2000&auto=format&fit=crop"
+            src="/z900.png"
             alt="Kawasaki Z900 — The Build"
             fill
             className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
