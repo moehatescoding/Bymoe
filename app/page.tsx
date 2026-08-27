@@ -306,28 +306,31 @@ export default function Home() {
             Want to build something together?
           </h2>
           <p className="text-sm text-white/40 mb-8 font-light">Get in touch or follow along on the platforms.</p>
-          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
             <a
               href="https://instagram.com/moegical"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center py-4 px-5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-white hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-4 px-4 rounded-xl bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-white hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap"
             >
-              Instagram →
+              <span>Instagram</span>
+              <span>→</span>
             </a>
             <a
               href="https://www.youtube.com/@Moegical"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center py-4 px-5 rounded-xl bg-[#FF0000]/10 border border-[#FF0000]/30 text-xs font-bold tracking-widest uppercase text-white hover:bg-[#FF0000]/20 active:scale-[0.97] transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-4 px-4 rounded-xl bg-[#FF0000]/10 border border-[#FF0000]/30 text-xs font-bold tracking-widest uppercase text-white hover:bg-[#FF0000]/20 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap"
             >
-              YouTube →
+              <span>YouTube</span>
+              <span>→</span>
             </a>
             <a
               href="mailto:hello@bymoe.in"
-              className="flex-1 flex items-center justify-center py-4 px-5 rounded-xl bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-white/90 active:scale-[0.97] transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-4 px-4 rounded-xl bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-white/90 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap"
             >
-              Email →
+              <span>Email</span>
+              <span>→</span>
             </a>
           </div>
         </div>
