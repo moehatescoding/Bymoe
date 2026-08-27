@@ -14,20 +14,20 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "diy-hydro-dip",
-    name: "DIY Hydro Dip Supplies & Kit",
-    tagline: "Water transfer printing materials for motorcycle panels & helmets",
+    name: "DIY Hydro Dip Supplies & Kit (CF074B)",
+    tagline: "HGI carbon fiber water transfer printing combo pack for parts & gear",
     category: "DIY & Custom",
     badge: "Recommended / DIY",
-    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop",
-    description: "The exact hydrographic film and aerosol activator supplies used in my DIY carbon transfer tutorials. Recommended for treating ABS fairings, mirror cowls, and custom accents at home.",
+    image: "/products/hydro-dip-kit.webp",
+    description: "The complete HGI combo pack used for carbon fiber hydro dipping. Includes premium CF074B twill carbon film, dedicated aerosol activator, basecoat, and high-gloss protective topcoat.",
     features: [
-      "High-definition Twill / Forged Carbon film pattern",
-      "Specialized aerosol activator solvent",
-      "Compatible with plastic adhesion promoters & 2K clear",
-      "Best for ABS plastics, fiberglass & metals"
+      "CF074B Carbon Fiber Film Roll (0.5m x 3m)",
+      "400ml Specialized Aerosol Activator",
+      "400ml Basecoat + 400ml High-Gloss Topcoat",
+      "Perfect for ABS plastics, fairings, mirror cowls & helmets"
     ],
-    externalUrl: "https://www.amazon.in/s?k=hydrographic+film+carbon+fiber+activator",
-    sourceLabel: "Find on Amazon / Supplies"
+    externalUrl: "https://www.hydrographicsindia.com/products/c1ccad9de8/1203795000002781321",
+    sourceLabel: "Hydro Graphics India"
   },
   {
     id: "iftex-clean-system-23",

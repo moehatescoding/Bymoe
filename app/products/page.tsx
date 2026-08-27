@@ -125,8 +125,8 @@ export default function ProductsPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] text-white/80 backdrop-blur-md bg-black/50 p-2.5 rounded-xl border border-white/10">
-                <span>DIY Hydro Dip Finish</span>
-                <span className="text-[#39FF14] font-semibold">Recommended Supplies</span>
+                <span>CF074B Carbon Combo Pack</span>
+                <span className="text-[#39FF14] font-semibold">HGI Official</span>
               </div>
             </div>
           </div>
