@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Washable high-flow multi-layer cotton gauze intake filter",
     category: "Performance",
     badge: "Airflow Mod",
-    image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=800&auto=format&fit=crop",
+    image: "/products/bmc-air-filter.png",
     description: "Reusable multi-layer oiled cotton filter element that improves airflow over restrictive paper filters and lasts the lifetime of the motorcycle.",
     features: [
       "Precision polyurethane frame",
