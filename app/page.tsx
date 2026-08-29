@@ -139,36 +139,46 @@ export default function Home() {
       <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
         <Link
           href="/products"
-          className="group block relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-white/15 cursor-pointer shadow-2xl"
+          className="group block relative w-full rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#181824] to-[#09090e] cursor-pointer shadow-2xl transition-all duration-300 hover:border-white/30"
         >
-          <Image
-            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop"
-            alt="DIY Hydro Dip Kit"
-            fill
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
-          
-          <div className="absolute top-4 left-4">
-            <span className="inline-block px-3 py-1 bg-[#39FF14]/20 border border-[#39FF14]/40 text-[#39FF14] text-[9px] font-bold tracking-widest uppercase rounded-full backdrop-blur-md">
-              Featured Product
-            </span>
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-12 items-center">
+            {/* Left Content */}
+            <div className="sm:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="inline-block px-3 py-1 bg-[#39FF14]/20 border border-[#39FF14]/40 text-[#39FF14] text-[9px] font-bold tracking-widest uppercase rounded-full backdrop-blur-md">
+                    Featured Recommendation
+                  </span>
+                  <span className="text-[10px] text-white/40 uppercase tracking-widest">
+                    DIY & Custom
+                  </span>
+                </div>
 
-          <div className="absolute bottom-0 left-0 p-5 sm:p-8">
-            <p className="text-[9px] tracking-[0.3em] text-[#39FF14] uppercase mb-1 font-semibold">
-              DIY & Custom Finish
-            </p>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-white">
-              DIY Hydro Dip
-            </h3>
-            <p className="text-xs sm:text-sm text-white/60 mt-1 font-light max-w-md">
-              Carbon & pattern water transfer kit for bike parts, helmets & accessories.
-            </p>
-          </div>
-          
-          <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-white px-3.5 py-1.5 rounded-full border border-white/20 group-hover:bg-[#39FF14] group-hover:text-black group-hover:border-[#39FF14] transition-all">
-            View Kit →
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white mb-2 group-hover:text-[#39FF14] transition-colors">
+                  DIY Hydro Dip Supplies & Kit
+                </h3>
+                <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed max-w-sm mb-6">
+                  Complete HGI CF074B carbon fiber combo pack with film roll, aerosol activator, basecoat & 2K gloss clear coat.
+                </p>
+              </div>
+
+              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#39FF14] group-hover:translate-x-1 transition-transform">
+                <span>View Kit & Supplies</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            {/* Right Image Container */}
+            <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-56 bg-black/40 border-t sm:border-t-0 sm:border-l border-white/10 p-4 flex items-center justify-center">
+              <div className="relative w-full h-full min-h-[180px]">
+                <Image
+                  src="/products/hydro-dip-kit.webp"
+                  alt="DIY Hydro Dip Kit CF074B"
+                  fill
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </div>
           </div>
         </Link>
       </section>
