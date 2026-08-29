@@ -3,10 +3,18 @@ import { NextRequest, NextResponse } from 'next/server';
 // Instagram oEmbed endpoint — public, no auth required
 const IG_OEMBED = 'https://graph.facebook.com/v21.0/instagram_oembed';
 
+// Strict regex whitelist for valid Instagram post/reel/tv URLs
+const INSTAGRAM_URL_REGEX = /^https:\/\/(www\.)?instagram\.com\/(p|reel|tv)\/[a-zA-Z0-9_-]+\/?$/;
+
 export async function GET(req: NextRequest) {
   const url = req.nextUrl.searchParams.get('url');
-  if (!url) {
-    return NextResponse.json({ error: 'Missing url param' }, { status: 400 });
+
+  // Validate presence and format against whitelist
+  if (!url || !INSTAGRAM_URL_REGEX.test(url)) {
+    return NextResponse.json(
+      { error: 'Invalid or unsupported Instagram URL parameter' },
+      { status: 400 }
+    );
   }
 
   try {
@@ -14,8 +22,8 @@ export async function GET(req: NextRequest) {
     const oembedUrl = new URL(IG_OEMBED);
     oembedUrl.searchParams.set('url', url);
     oembedUrl.searchParams.set('fields', 'thumbnail_url');
+
     // App token: optional — without it oEmbed still works for public posts
-    // If you have a token, set INSTAGRAM_APP_TOKEN in .env.local
     if (process.env.INSTAGRAM_APP_TOKEN) {
       oembedUrl.searchParams.set('access_token', process.env.INSTAGRAM_APP_TOKEN);
     }
