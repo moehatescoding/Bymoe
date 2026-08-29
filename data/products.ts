@@ -64,19 +64,20 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "frame-slider-protection",
-    name: "Heavy-Duty Frame Sliders",
-    tagline: "Chassis & engine protection pucks for drop defense",
+    name: "Puig PRO Frame Sliders",
+    tagline: "High-impact aerodynamic chassis & engine sliders",
     category: "Protection",
     badge: "Must-Have",
-    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=800&auto=format&fit=crop",
-    description: "High-density Delrin slider pucks with CNC machined brackets to keep engine covers and frame rails off the asphalt in the event of a low-speed tip over.",
+    image: "/products/puig-frame-sliders.png",
+    description: "High-density Delrin slider pucks with aerodynamic gray rubber bumpers and CNC machined brackets to keep engine covers and frame rails off the asphalt in the event of a drop.",
     features: [
-      "No-cut fairing mounting",
-      "Impact absorbing Delrin pucks",
-      "Corrosion-resistant anodized brackets"
+      "Aerodynamic Puig Hi-Tech Pro design",
+      "Shock absorbing rubber slider bumpers",
+      "CNC machined direct chassis mounting brackets",
+      "Preserves engine covers, fairings & radiator"
     ],
-    externalUrl: "https://www.kawasaki.com/en-us/shop/vehicle-accessories/motorcycle",
-    sourceLabel: "OEM / Store"
+    externalUrl: "https://superbikestore.in/products/puig-pro-frame-sliders-for-kawasaki-z900",
+    sourceLabel: "Superbike Store"
   },
   {
     id: "bmc-air-filter",
