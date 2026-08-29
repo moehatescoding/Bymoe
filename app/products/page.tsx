@@ -114,17 +114,18 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* Right Image */}
-            <div className="lg:col-span-5 relative aspect-square rounded-2xl overflow-hidden border border-white/10 bg-black/60">
-              <Image
-                src={featuredProduct.image}
-                alt={featuredProduct.name}
-                fill
-                className="object-cover object-center hover:scale-105 transition-transform duration-700"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] text-white/80 backdrop-blur-md bg-black/50 p-2.5 rounded-xl border border-white/10">
+            {/* Right Image Container — Properly Fitted and Padded */}
+            <div className="lg:col-span-5 relative aspect-square rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#1c1c28] to-[#0c0c12] p-4 flex items-center justify-center shadow-inner group">
+              <div className="relative w-full h-full">
+                <Image
+                  src={featuredProduct.image}
+                  alt={featuredProduct.name}
+                  fill
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700"
+                  priority
+                />
+              </div>
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-white/80 backdrop-blur-md bg-black/70 px-3 py-2 rounded-xl border border-white/10">
                 <span>CF074B Carbon Combo Pack</span>
                 <span className="text-[#39FF14] font-semibold">HGI Official</span>
               </div>
@@ -163,23 +164,24 @@ export default function ProductsPage() {
               transition={{ duration: 0.4, delay: idx * 0.05 }}
               className="group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-brand-surface hover:border-white/20 transition-all duration-300 shadow-xl"
             >
-              {/* Product Image */}
-              <div className="relative w-full aspect-[4/3] bg-black/40 overflow-hidden">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent" />
+              {/* Product Image Box — Perfectly fitted & clean */}
+              <div className="relative w-full aspect-[4/3] bg-gradient-to-b from-[#161622] to-[#0b0b10] border-b border-white/[0.06] overflow-hidden flex items-center justify-center p-4">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
                 
                 {product.badge && (
-                  <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-[#39FF14] px-2.5 py-1 rounded-full border border-[#39FF14]/30">
+                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-[#39FF14] px-2.5 py-1 rounded-full border border-[#39FF14]/30">
                     {product.badge}
                   </div>
                 )}
                 
-                <div className="absolute top-3 right-3 text-[10px] text-white/60 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wider">
+                <div className="absolute top-3 right-3 text-[10px] text-white/60 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wider">
                   {product.category}
                 </div>
               </div>
@@ -198,7 +200,7 @@ export default function ProductsPage() {
                   <ul className="flex flex-col gap-1.5 mb-6">
                     {product.features.slice(0, 3).map((f, i) => (
                       <li key={i} className="text-[11px] text-white/60 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
                         <span className="truncate">{f}</span>
                       </li>
                     ))}

@@ -510,7 +510,7 @@ Keep a bottle of IFTEX Clean System 23 handy, dose your tank every time you fill
     date: "Aug 27, 2026",
     readTime: "9 min read",
     category: "DIY & Custom",
-    coverImage: "https://images.unsplash.com/photo-1558981001-5864b3250a69?q=80&w=1200&auto=format&fit=crop",
+    coverImage: "/products/hydro-dip-kit.webp",
     author: {
       name: "Moe",
       role: "Creator & Builder",

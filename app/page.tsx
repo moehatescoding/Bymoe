@@ -221,8 +221,8 @@ export default function Home() {
               href="/products"
               className="group flex items-start gap-4 p-4 rounded-xl bg-brand-surface border border-white/[0.06] hover:border-white/20 active:scale-[0.98] transition-all duration-200 cursor-pointer"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-white/5 relative overflow-hidden border border-white/10">
-                <Image src={prod.image} alt={prod.name} fill className="object-cover" />
+              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#0c0c12] relative overflow-hidden border border-white/10 p-1 flex items-center justify-center">
+                <Image src={prod.image} alt={prod.name} fill className="object-contain p-1" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white leading-tight truncate group-hover:text-[#39FF14] transition-colors">{prod.name}</p>
