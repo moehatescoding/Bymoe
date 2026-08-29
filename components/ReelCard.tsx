@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 import { Reel } from '@/data/reels';
 
 interface ReelCardProps {
@@ -9,37 +10,15 @@ interface ReelCardProps {
   index: number;
 }
 
-function useReelThumbnail(reel: Reel) {
-  // Start with static cover if provided
-  const [thumb, setThumb] = useState<string | null>(reel.coverUrl ?? null);
-
-  useEffect(() => {
-    // If we already have a static cover, skip the API call
-    if (reel.coverUrl) return;
-
-    let cancelled = false;
-    fetch(`/api/ig-thumb?url=${encodeURIComponent(reel.instagramUrl)}`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (!cancelled && data.thumbnail_url) setThumb(data.thumbnail_url);
-      })
-      .catch(() => {}); // fail silently — we show the gradient bg
-
-    return () => { cancelled = true; };
-  }, [reel.instagramUrl, reel.coverUrl]);
-
-  return thumb;
-}
-
 export default function ReelCard({ reel, index }: ReelCardProps) {
-  const thumb = useReelThumbnail(reel);
+  const [imgError, setImgError] = useState(false);
 
   return (
     <motion.a
       href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col w-full aspect-[9/16] bg-[#111118] rounded-2xl overflow-hidden border border-white/10 cursor-pointer select-none"
+      className="group relative flex flex-col w-full aspect-[9/16] bg-[#111118] rounded-2xl overflow-hidden border border-white/10 cursor-pointer select-none shadow-xl"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -47,22 +26,27 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
       whileTap={{ scale: 0.98 }}
     >
       {/* ── Cover image ── */}
-      {thumb ? (
-        <img
-          src={thumb}
-          alt={`${reel.category} reel`}
-          className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
-        />
+      {reel.coverUrl && !imgError ? (
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={reel.coverUrl}
+            alt={`${reel.category} reel`}
+            fill
+            className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            onError={() => setImgError(true)}
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
       ) : (
-        /* Fallback gradient while loading / if no cover */
+        /* Fallback gradient */
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black" />
       )}
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 z-[1]" />
 
       {/* ── Top bar ── */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-4">
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-4 z-10">
         {/* Instagram logo + handle */}
         <div className="flex items-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" className="opacity-70">
@@ -78,7 +62,7 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
       </div>
 
       {/* ── Center play button ── */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white" className="ml-1">
             <path d="M8 5v14l11-7z"/>
@@ -87,7 +71,7 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
       </div>
 
       {/* ── Bottom label ── */}
-      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 z-10">
         <p className="text-xs font-semibold text-white/80">Watch on Instagram</p>
         <p className="text-[10px] text-white/40 mt-0.5">Tap to open →</p>
       </div>

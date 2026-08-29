@@ -24,12 +24,14 @@ function WhatsAppIcon({ size = 24 }: { size?: number }) {
 // Inline Reel Card (no iframe on homepage preview)
 // ─────────────────────────────────────────
 function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: number }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <motion.a
       href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex-shrink-0 w-[200px] sm:w-[220px] aspect-[9/16] bg-brand-surface rounded-xl overflow-hidden border border-white/10 cursor-pointer"
+      className="group relative flex-shrink-0 w-[200px] sm:w-[220px] aspect-[9/16] bg-brand-surface rounded-xl overflow-hidden border border-white/10 cursor-pointer shadow-lg"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -37,18 +39,23 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
       whileTap={{ scale: 0.97 }}
     >
       {/* Cover image */}
-      {reel.coverUrl ? (
-        <img
-          src={reel.coverUrl}
-          alt={`${reel.category} reel`}
-          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-        />
+      {reel.coverUrl && !imgError ? (
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={reel.coverUrl}
+            alt={`${reel.category} reel`}
+            fill
+            className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            onError={() => setImgError(true)}
+            sizes="220px"
+          />
+        </div>
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black" />
       )}
 
       {/* Dark cinematic overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 z-[1]" />
 
       {/* Reel icon */}
       <div className="absolute top-3 right-3 z-10">
