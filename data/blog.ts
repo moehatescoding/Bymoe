@@ -18,98 +18,6 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: "indian-roads-superbike-survival",
-    slug: "riding-superbikes-on-indian-roads-survival-guide",
-    title: "Riding Superbikes on Indian Roads: Survival Tactics, Hazard Perception & Street Realities",
-    date: "Aug 27, 2026",
-    readTime: "11 min read",
-    category: "Riding Tactics",
-    coverImage: "/kawasaki-hero.jpg",
-    author: {
-      name: "Moe",
-      role: "Creator & Builder",
-    },
-    excerpt:
-      "Tarmac temperatures exceeding 50°C, unmarked speed breakers, erratic traffic flow, stray animals, and surprise gravel on apexes. Here is the realistic guide to riding a 100+ HP machine on Indian highways without gambling with your life.",
-    content: `
-## Introduction: The Hostile Habitat of High-Horsepower Machines
-
-Riding a 600cc to 1000cc motorcycle in India is an entirely different discipline than riding in Western Europe or North America. On European alpine passes or American interstates, you are managing vehicle dynamics, apex lines, and tire grip. On Indian roads, you are managing chaos theory.
-
-Between unmarked concrete rumble strips, diesel slicks at toll booths, pedestrians stepping across highway dividers, tractors driving against traffic on the right lane, and stray cattle blending into asphalt heat haze—the cognitive load on a superbike rider in India is higher than almost anywhere else on earth.
-
-A 120+ horsepower machine accelerates from 0 to 100 km/h in under 3.5 seconds. At 150 km/h, you are covering over **41 meters every single second**. If your hazard detection horizon is only 50 meters ahead, you have roughly 1.2 seconds to react, brake, and evade. 
-
-In this guide, I document the fundamental mental frameworks, lane positioning rules, and machine setups required to survive and thrive on Indian roads.
-
----
-
-## 1. The 6-Second Visual Horizon Rule
-
-The single biggest mistake new superbike owners make is **target fixation on the immediate 20 meters ahead**. When you fixate on the front tire or the bumper of the car immediately in front of you, your brain is in permanent panic-reaction mode.
-
-### How to Scan Effectively
-- **The Far Horizon (6 to 10 seconds ahead)**: Scan 200 to 300 meters down the highway. Look for breaks in the central median, clustered bushes (where dogs and cattle hide), dust plumes from tractors merging from field paths, and sudden brake lights three cars ahead.
-- **The Mid Zone (2 to 4 seconds ahead)**: Monitor road surface texture changes—dark patches indicative of oil or water leaks, changes from smooth asphalt to rough aggregate, and tire ripple waves before intersections.
-- **The Immediate Escape Zone (1 second ahead)**: Never look directly at a pothole or debris. Look directly at your clear escape line between obstacles. Where your eyes look, the motorcycle will follow.
-
----
-
-## 2. Lane Positioning: The "Center-Right Bias" Fallacy
-
-Traditional track riding teaches you to ride wide on the outside of a corner to open up the radius. On Indian undivided state highways or dual carriageways, riding on the extreme edge is dangerous:
-
-1. **The Left Shoulder Hazard**: The left edge of the road in India is a dumping ground for punctured truck wire shreds, construction gravel, glass shards, and slow-moving auto-rickshaws making unpredictable U-turns.
-2. **The Median Blind Spot**: Riding right against the concrete central median leaves you zero margin for error if someone sticks their head or bicycle through a gap in the shrubs.
-3. **The Sweet Spot (Lane Thirds)**: Position yourself in the **middle-left or middle-right third of the lane**, directly in line with where a car's tires track. This part of the road is swept clean of loose gravel by passenger car tires and keeps you visible in the side mirrors of preceding vehicles.
-
----
-
-## Indian Road Hazard Matrix & Defense Strategy
-
-| Hazard Profile | Common Location | Immediate Action |
-| :--- | :--- | :--- |
-| **Unmarked Speed Bumps** | Village entrances, bridge approaches | Hard threshold braking in upright line; release front brake 0.5s before cresting |
-| **Loose Sand / Gravel** | Corner apexes, U-turn cuts | Stand the bike upright; reduce lean angle; smooth neutral throttle |
-| **Diesel Slicks** | Toll gates, hill climb hairpins | Avoid colorful rainbow sheen; cross without sudden lean or braking |
-| **Stray Cattle / Dogs** | Median gaps, night highway shoulders | Never rev the engine aggressively (panics them); brake smoothly and pass behind their rear |
-
----
-
-## 3. Braking Physics: Threshold Braking on Imperfect Surfaces
-
-Modern superbikes feature twin 300mm+ front discs with radial 4-piston monobloc calipers capable of immense deceleration force. However, grabbing the front brake aggressively on Indian tarmac will trigger immediate ABS intervention or front-end tuck if sand is present.
-
-### The Two-Stage Progressive Squeeze
-1. **Initial Bite (20% Pressure)**: Gently apply the front lever for the first 0.2 seconds. This transfers the motorcycle's weight forward, compressing the front fork springs and flattening the front tire contact patch into the asphalt.
-2. **Threshold Deceleration (80% Pressure)**: Once the front tire is loaded and keyed into the tarmac, squeeze hard into maximum braking pressure.
-3. **The Rear Brake Stabilizer**: On bumpy Indian roads, applying 15–20% rear brake a split-second *before* the front brake squats the rear suspension, preventing chassis pitching and keeping the bike tracking straight.
-
----
-
-## 4. Night Riding Realities: The Unfiltered Truth
-
-Unless you are in an emergency, **do not ride high-performance motorcycles on Indian highways after dark**. 
-
-Even with auxiliary high-output LED pods:
-- Unlit sugarcane tractors, bullock carts, and broken-down trucks parked in the fast lane without hazard triangles are virtually invisible against dark backgrounds.
-- High-beam glare from oncoming trucks blinding your mirrored visor destroys depth perception for up to 3 seconds.
-- Stray animals are active at night and move erratically across unlit bypasses.
-
-If caught after sunset, lock into the tire tracks of a fast-moving modern Volvo bus or luxury SUV 50 meters ahead, let them clear the path, and keep your speed well under 80 km/h.
-
----
-
-## Summary Checklist for Every Weekend Ride
-
-- [ ] Check cold tire pressures (drop 1.5–2 PSI in blistering 45°C summer tarmac heat).
-- [ ] Clean and inspect visor for micro-scratches that cause dangerous glare.
-- [ ] Verify headlight aim and horn functionality.
-- [ ] Carry emergency hydration and basic tire plug kit with CO2 inflator canisters.
-- [ ] Ride with zero ego: your only goal is returning to your garage in one piece.
-    `.trim(),
-  },
-  {
     id: "riding-gear-importance-guide",
     slug: "motorcycle-riding-gear-importance-ce-ratings-guide",
     title: "The Ultimate Guide to Motorcycle Riding Gear: CE Levels, Armor Physics & Why Shortcuts Cost Everything",
@@ -279,6 +187,98 @@ Most riders spray chain lube onto the outside of the chain over the rear sprocke
 - Centrifugal force flings lube *outward* when the wheel spins. If you spray the outside of the chain, 90% of the lube flings onto your rear wheel rim, tire sidewall, and swingarm within 500 meters.
 - **The Correct Method**: Aim your spray nozzle at the **INSIDE surface of the lower chain run**, right where the rollers contact the sprocket teeth. As the bike moves, centrifugal force pulls the lube through the rollers outward across the entire chain link.
 - **Let It Settle for 30 Minutes**: Never ride immediately after lubing. Allow the solvent carrier in the lube to evaporate so the wax/oil tacks firmly onto the metal.
+    `.trim(),
+  },
+  {
+    id: "indian-roads-superbike-survival",
+    slug: "riding-superbikes-on-indian-roads-survival-guide",
+    title: "Riding Superbikes on Indian Roads: Survival Tactics, Hazard Perception & Street Realities",
+    date: "Aug 27, 2026",
+    readTime: "11 min read",
+    category: "Riding Tactics",
+    coverImage: "/kawasaki-hero.jpg",
+    author: {
+      name: "Moe",
+      role: "Creator & Builder",
+    },
+    excerpt:
+      "Tarmac temperatures exceeding 50°C, unmarked speed breakers, erratic traffic flow, stray animals, and surprise gravel on apexes. Here is the realistic guide to riding a 100+ HP machine on Indian highways without gambling with your life.",
+    content: `
+## Introduction: The Hostile Habitat of High-Horsepower Machines
+
+Riding a 600cc to 1000cc motorcycle in India is an entirely different discipline than riding in Western Europe or North America. On European alpine passes or American interstates, you are managing vehicle dynamics, apex lines, and tire grip. On Indian roads, you are managing chaos theory.
+
+Between unmarked concrete rumble strips, diesel slicks at toll booths, pedestrians stepping across highway dividers, tractors driving against traffic on the right lane, and stray cattle blending into asphalt heat haze—the cognitive load on a superbike rider in India is higher than almost anywhere else on earth.
+
+A 120+ horsepower machine accelerates from 0 to 100 km/h in under 3.5 seconds. At 150 km/h, you are covering over **41 meters every single second**. If your hazard detection horizon is only 50 meters ahead, you have roughly 1.2 seconds to react, brake, and evade. 
+
+In this guide, I document the fundamental mental frameworks, lane positioning rules, and machine setups required to survive and thrive on Indian roads.
+
+---
+
+## 1. The 6-Second Visual Horizon Rule
+
+The single biggest mistake new superbike owners make is **target fixation on the immediate 20 meters ahead**. When you fixate on the front tire or the bumper of the car immediately in front of you, your brain is in permanent panic-reaction mode.
+
+### How to Scan Effectively
+- **The Far Horizon (6 to 10 seconds ahead)**: Scan 200 to 300 meters down the highway. Look for breaks in the central median, clustered bushes (where dogs and cattle hide), dust plumes from tractors merging from field paths, and sudden brake lights three cars ahead.
+- **The Mid Zone (2 to 4 seconds ahead)**: Monitor road surface texture changes—dark patches indicative of oil or water leaks, changes from smooth asphalt to rough aggregate, and tire ripple waves before intersections.
+- **The Immediate Escape Zone (1 second ahead)**: Never look directly at a pothole or debris. Look directly at your clear escape line between obstacles. Where your eyes look, the motorcycle will follow.
+
+---
+
+## 2. Lane Positioning: The "Center-Right Bias" Fallacy
+
+Traditional track riding teaches you to ride wide on the outside of a corner to open up the radius. On Indian undivided state highways or dual carriageways, riding on the extreme edge is dangerous:
+
+1. **The Left Shoulder Hazard**: The left edge of the road in India is a dumping ground for punctured truck wire shreds, construction gravel, glass shards, and slow-moving auto-rickshaws making unpredictable U-turns.
+2. **The Median Blind Spot**: Riding right against the concrete central median leaves you zero margin for error if someone sticks their head or bicycle through a gap in the shrubs.
+3. **The Sweet Spot (Lane Thirds)**: Position yourself in the **middle-left or middle-right third of the lane**, directly in line with where a car's tires track. This part of the road is swept clean of loose gravel by passenger car tires and keeps you visible in the side mirrors of preceding vehicles.
+
+---
+
+## Indian Road Hazard Matrix & Defense Strategy
+
+| Hazard Profile | Common Location | Immediate Action |
+| :--- | :--- | :--- |
+| **Unmarked Speed Bumps** | Village entrances, bridge approaches | Hard threshold braking in upright line; release front brake 0.5s before cresting |
+| **Loose Sand / Gravel** | Corner apexes, U-turn cuts | Stand the bike upright; reduce lean angle; smooth neutral throttle |
+| **Diesel Slicks** | Toll gates, hill climb hairpins | Avoid colorful rainbow sheen; cross without sudden lean or braking |
+| **Stray Cattle / Dogs** | Median gaps, night highway shoulders | Never rev the engine aggressively (panics them); brake smoothly and pass behind their rear |
+
+---
+
+## 3. Braking Physics: Threshold Braking on Imperfect Surfaces
+
+Modern superbikes feature twin 300mm+ front discs with radial 4-piston monobloc calipers capable of immense deceleration force. However, grabbing the front brake aggressively on Indian tarmac will trigger immediate ABS intervention or front-end tuck if sand is present.
+
+### The Two-Stage Progressive Squeeze
+1. **Initial Bite (20% Pressure)**: Gently apply the front lever for the first 0.2 seconds. This transfers the motorcycle's weight forward, compressing the front fork springs and flattening the front tire contact patch into the asphalt.
+2. **Threshold Deceleration (80% Pressure)**: Once the front tire is loaded and keyed into the tarmac, squeeze hard into maximum braking pressure.
+3. **The Rear Brake Stabilizer**: On bumpy Indian roads, applying 15–20% rear brake a split-second *before* the front brake squats the rear suspension, preventing chassis pitching and keeping the bike tracking straight.
+
+---
+
+## 4. Night Riding Realities: The Unfiltered Truth
+
+Unless you are in an emergency, **do not ride high-performance motorcycles on Indian highways after dark**. 
+
+Even with auxiliary high-output LED pods:
+- Unlit sugarcane tractors, bullock carts, and broken-down trucks parked in the fast lane without hazard triangles are virtually invisible against dark backgrounds.
+- High-beam glare from oncoming trucks blinding your mirrored visor destroys depth perception for up to 3 seconds.
+- Stray animals are active at night and move erratically across unlit bypasses.
+
+If caught after sunset, lock into the tire tracks of a fast-moving modern Volvo bus or luxury SUV 50 meters ahead, let them clear the path, and keep your speed well under 80 km/h.
+
+---
+
+## Summary Checklist for Every Weekend Ride
+
+- [ ] Check cold tire pressures (drop 1.5–2 PSI in blistering 45°C summer tarmac heat).
+- [ ] Clean and inspect visor for micro-scratches that cause dangerous glare.
+- [ ] Verify headlight aim and horn functionality.
+- [ ] Carry emergency hydration and basic tire plug kit with CO2 inflator canisters.
+- [ ] Ride with zero ego: your only goal is returning to your garage in one piece.
     `.trim(),
   },
   {
