@@ -116,7 +116,7 @@ If caught after sunset, lock into the tire tracks of a fast-moving modern Volvo 
     date: "Aug 27, 2026",
     readTime: "12 min read",
     category: "Gear & Safety",
-    coverImage: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1612006566138-0629c3cd977b?q=80&w=1200&auto=format&fit=crop",
     author: {
       name: "Moe",
       role: "Creator & Builder",
@@ -211,7 +211,7 @@ Dress for the slide, not for the ride. Investing in top-tier gear is the only re
     date: "Aug 27, 2026",
     readTime: "9 min read",
     category: "Maintenance",
-    coverImage: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?q=80&w=1200&auto=format&fit=crop",
     author: {
       name: "Moe",
       role: "Creator & Builder",
@@ -288,7 +288,7 @@ Most riders spray chain lube onto the outside of the chain over the rear sprocke
     date: "Aug 27, 2026",
     readTime: "10 min read",
     category: "Riding Tactics",
-    coverImage: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=1200&auto=format&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?q=80&w=1200&auto=format&fit=crop",
     author: {
       name: "Moe",
       role: "Creator & Builder",
@@ -418,7 +418,7 @@ When using an auto-blipper to downshift, your throttle twistgrip must be **100% 
     date: "Aug 27, 2026",
     readTime: "7 min read",
     category: "Maintenance",
-    coverImage: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop",
+    coverImage: "/products/iftex-clean-system-23.png",
     author: {
       name: "Moe",
       role: "Creator & Builder",
