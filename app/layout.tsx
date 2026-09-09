@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Barlow_Condensed } from 'next/font/google';
 import { siteConfig } from '@/lib/config';
 import './globals.css';
 import Navigation from '@/components/Navigation';
@@ -8,8 +8,10 @@ import EasterEggs from '@/components/EasterEggs';
 import LoadingScreen from '@/components/LoadingScreen';
 import FilmGrain from '@/components/FilmGrain';
 import BottomNav from '@/components/BottomNav';
+import Cursor from '@/components/Cursor';
 
 const inter = Inter({ subsets: ['latin'], weight: ['300','400','500','600','700'], display: 'swap', variable: '--font-sans' });
+const barlowCondensed = Barlow_Condensed({ subsets: ['latin'], weight: ['500','600','700','800','900'], display: 'swap', variable: '--font-display' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.bymoe.in'),
@@ -18,13 +20,13 @@ export const metadata: Metadata = {
     template: '%s | BYMOE'
   },
   description: 'BYMOE is the personal website of Moe — creator, builder, motorcycle enthusiast and entrepreneur.',
-  keywords: 'bymoe, moegical, moe, personal brand, creator, builder',
+  keywords: 'bymoe, moegical, moe, personal brand, creator, builder, kawasaki z900, moto-editorial',
   alternates: {
     canonical: '/',
   },
   icons: {
     icon: '/favicon.svg',
-    apple: '/favicon.svg',
+    apple: '/logo.png',
   },
   openGraph: {
     title: 'BYMOE — Moe',
@@ -52,7 +54,7 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable}`} style={{ colorScheme: 'dark' }}>
+    <html lang="en" className={`${inter.variable} ${barlowCondensed.variable}`} style={{ colorScheme: 'dark' }}>
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-74G1WX3KGZ"></script>
         <script dangerouslySetInnerHTML={{
@@ -77,7 +79,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           })
         }} />
       </head>
-      <body className="bg-brand-black text-brand-white antialiased min-h-screen flex flex-col selection:bg-brand-white selection:text-brand-black">
+      <body className="bg-brand-black text-brand-white antialiased min-h-screen flex flex-col selection:bg-[#00ff66] selection:text-black">
+        <Cursor />
         <FilmGrain />
         <LoadingScreen />
         <EasterEggs />

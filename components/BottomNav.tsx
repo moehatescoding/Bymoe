@@ -53,66 +53,67 @@ export default function BottomNav() {
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-none">
-      <div className="pointer-events-auto bg-[#0a0a0d]/95 backdrop-blur-2xl border border-white/10 rounded-2xl px-1.5 py-1.5 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+      <div className="pointer-events-auto bg-[#08080a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl px-2 py-1.5 flex items-center justify-between shadow-[0_10px_35px_rgba(0,0,0,0.85)]">
         
         {/* 1. Home */}
         <Link
           href="/"
           className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-xl transition-all duration-200 cursor-pointer ${
-            pathname === '/' ? 'text-[#39FF14] bg-white/[0.06]' : 'text-white/40 hover:text-white'
+            pathname === '/' ? 'text-[#00ff66] bg-white/[0.08]' : 'text-white/40 hover:text-white'
           }`}
         >
           <HomeIcon size={17} />
-          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1">Home</span>
+          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1 font-sans">Home</span>
         </Link>
 
-        {/* 2. Products */}
+        {/* 2. Gear */}
         <Link
           href="/products"
           className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-xl transition-all duration-200 cursor-pointer ${
-            pathname === '/products' ? 'text-[#39FF14] bg-white/[0.06]' : 'text-white/40 hover:text-white'
+            pathname === '/products' ? 'text-[#00ff66] bg-white/[0.08]' : 'text-white/40 hover:text-white'
           }`}
         >
           <ProductsIcon size={17} />
-          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1">Gear</span>
+          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1 font-sans">Gear</span>
         </Link>
 
-        {/* 3. Center: bymoe Brand Logo */}
+        {/* 3. Center: by/moe Brand Logo */}
         <Link
           href="/"
-          className="flex-shrink-0 w-12 h-10 mx-1 flex items-center justify-center rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/30 transition-all cursor-pointer overflow-hidden group"
+          className="flex-shrink-0 w-14 h-10 mx-1 flex items-center justify-center rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#00ff66]/40 transition-all cursor-pointer overflow-hidden group px-1"
           aria-label="Home"
         >
-          <div className="relative w-8 h-4">
+          <div className="relative w-12 h-6">
             <Image
-              src="/logo.svg"
-              alt="bymoe"
+              src="/logo.png"
+              alt="by/moe"
               fill
+              sizes="48px"
               className="object-contain object-center group-hover:scale-105 transition-transform"
             />
           </div>
         </Link>
 
-        {/* 4. Blog / Logbook */}
+        {/* 4. Logbook */}
         <Link
           href="/blog"
           className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-xl transition-all duration-200 cursor-pointer ${
-            pathname.startsWith('/blog') ? 'text-[#39FF14] bg-white/[0.06]' : 'text-white/40 hover:text-white'
+            pathname.startsWith('/blog') ? 'text-[#00ff66] bg-white/[0.08]' : 'text-white/40 hover:text-white'
           }`}
         >
           <BlogIcon size={17} />
-          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1">Blog</span>
+          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1 font-sans">Logbook</span>
         </Link>
 
         {/* 5. Reels */}
         <Link
           href="/content"
           className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-xl transition-all duration-200 cursor-pointer ${
-            pathname === '/content' ? 'text-[#39FF14] bg-white/[0.06]' : 'text-white/40 hover:text-white'
+            pathname === '/content' ? 'text-[#00ff66] bg-white/[0.08]' : 'text-white/40 hover:text-white'
           }`}
         >
           <ReelsIcon size={17} />
-          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1">Reels</span>
+          <span className="text-[8.5px] font-bold tracking-widest uppercase mt-1 font-sans">Reels</span>
         </Link>
 
       </div>

@@ -18,57 +18,65 @@ export default function ProjectsPage() {
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-brand-black pt-32 pb-32">
+    <main className="min-h-screen bg-brand-black pt-28 pb-32 px-5 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
       
       {/* Header */}
-      <header className="max-w-7xl mx-auto px-6 md:px-12 w-full mb-16 md:mb-24 mt-12 md:mt-24">
+      <header className="mb-14 text-left border-b border-white/[0.08] pb-10">
         <motion.div 
-          className="flex flex-col gap-6 max-w-3xl"
+          className="flex flex-col gap-4 max-w-3xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="text-4xl md:text-7xl font-bold tracking-tighter leading-none text-brand-white uppercase">
-            THINGS I'M <br className="hidden md:block" /> BUILDING
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse" />
+            <p className="hud-tag">
+              PROTOCOLS // SOFTWARE, HARDWARE & HARD PARTS
+            </p>
+          </div>
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white leading-none">
+            THINGS I'M <span className="text-[#00ff66]">BUILDING</span>
           </h1>
-          <p className="text-lg md:text-2xl text-brand-white/70 font-light leading-relaxed">
-            Software, hardware, brands, and whatever else keeps me up at night.
+          <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed">
+            Software architectures, physical garage rigs, custom carbon experiments, and digital products.
           </p>
         </motion.div>
       </header>
 
-      {/* Filter Tabs */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full mb-12">
-        <div className="flex flex-wrap gap-4 border-b border-brand-white/10 pb-6">
+      {/* Filter Tabs (Telemetry Style) */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none border-b border-white/[0.06]">
+        <button
+          onClick={() => { playClick(); setActiveCategory('All'); }}
+          onMouseEnter={playHover}
+          className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
+            activeCategory === 'All'
+              ? 'bg-[#00ff66] text-black font-bold shadow-lg shadow-[#00ff66]/20'
+              : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'
+          }`}
+          data-cursor="FILTER"
+        >
+          [ALL BUILDS]
+        </button>
+        {categories.map(cat => (
           <button
-            onClick={() => { playClick(); setActiveCategory('All'); }}
+            key={cat}
+            onClick={() => { playClick(); setActiveCategory(cat); }}
             onMouseEnter={playHover}
-            className={`text-[10px] tracking-widest uppercase transition-colors ${
-              activeCategory === 'All' ? 'text-brand-white font-bold' : 'text-brand-white/40 hover:text-brand-white'
+            className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
+              activeCategory === cat
+                ? 'bg-[#00ff66] text-black font-bold shadow-lg shadow-[#00ff66]/20'
+                : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'
             }`}
             data-cursor="FILTER"
           >
-            All
+            {`[${cat.toUpperCase()}]`}
           </button>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => { playClick(); setActiveCategory(cat); }}
-              onMouseEnter={playHover}
-              className={`text-[10px] tracking-widest uppercase transition-colors ${
-                activeCategory === cat ? 'text-brand-white font-bold' : 'text-brand-white/40 hover:text-brand-white'
-              }`}
-              data-cursor="FILTER"
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        ))}
       </div>
 
       {/* Projects Grid */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 w-full">
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
+      <section>
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.article
@@ -77,59 +85,60 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col group"
+                transition={{ duration: 0.5 }}
+                data-cursor="INSPECT"
+                className="editorial-grade flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-brand-surface hover:border-[#00ff66]/40 p-6 md:p-8 transition-all duration-300 shadow-xl group"
               >
                 {/* Project Image */}
-                <div className="relative w-full aspect-[4/3] bg-brand-surface overflow-hidden mb-8 border border-brand-white/5">
+                <div className="relative w-full aspect-[16/10] bg-brand-black rounded-xl overflow-hidden mb-6 border border-white/10">
                   {project.images.length > 0 ? (
                     <Image 
                       src={project.images[0]} 
                       alt={project.title} 
                       fill 
-                      className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
+                      className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-brand-white/10 font-mono text-sm tracking-widest uppercase">
-                      NO ASSETS AVAILABLE
+                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-xs tracking-widest uppercase">
+                      SYSTEM DATA // PENDING VISUAL
                     </div>
                   )}
 
                   {/* Status Badge */}
-                  <div className="absolute top-4 right-4 flex items-center gap-2 bg-brand-black/80 backdrop-blur-md border border-brand-white/10 px-3 py-1.5 rounded-sm">
-                    {project.status === 'Live' && <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />}
-                    {project.status === 'In Progress' && <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />}
-                    {project.status === 'Archived' && <span className="w-1.5 h-1.5 rounded-full bg-brand-white/40" />}
-                    <span className="text-[9px] tracking-widest text-brand-white uppercase font-semibold">
+                  <div className="absolute top-3.5 right-3.5 flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/15 px-3 py-1 rounded-md">
+                    {project.status === 'Live' && <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse" />}
+                    {project.status === 'In Progress' && <span className="w-2 h-2 rounded-full bg-amber-500" />}
+                    {project.status === 'Archived' && <span className="w-2 h-2 rounded-full bg-white/40" />}
+                    <span className="text-[10px] font-mono tracking-widest text-white uppercase font-bold">
                       {project.status}
                     </span>
                   </div>
                 </div>
 
                 {/* Project Meta */}
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-[10px] tracking-[0.2em] text-brand-white uppercase bg-brand-white/10 px-2 py-1 rounded-sm font-semibold">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="hud-tag text-[9px]">
                     {project.category}
                   </span>
-                  <span className="text-[10px] tracking-[0.2em] text-brand-muted font-mono">
-                    {project.year}
+                  <span className="text-[11px] font-mono text-white/40">
+                    // {project.year}
                   </span>
                 </div>
 
                 {/* Project Header */}
-                <h2 className="text-3xl font-bold tracking-tight text-brand-white mb-4 leading-tight">
+                <h2 className="font-display text-2xl sm:text-3xl font-black uppercase text-white group-hover:text-[#00ff66] transition-colors mb-3 leading-tight">
                   {project.title}
                 </h2>
 
                 {/* Description */}
-                <p className="text-sm md:text-base text-brand-white/70 font-light leading-relaxed mb-8 flex-1">
+                <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed mb-6 flex-1">
                   {project.description}
                 </p>
 
                 {/* Footer / CTA */}
-                <div className="flex items-center justify-between border-t border-brand-white/10 pt-6 mt-auto">
-                  <span className="text-[10px] tracking-widest text-brand-muted uppercase font-semibold">
-                    {project.role || 'Creator'}
+                <div className="flex items-center justify-between border-t border-white/[0.08] pt-5 mt-auto">
+                  <span className="text-[11px] font-mono text-white/40 uppercase tracking-wider">
+                    ROLE // {project.role || 'LEAD CREATOR'}
                   </span>
                   
                   {project.externalUrl ? (
@@ -142,17 +151,17 @@ export default function ProjectsPage() {
                         playClick();
                         trackEvent('click_project', { project_title: project.title });
                       }}
-                      className="inline-flex items-center gap-2 text-[10px] tracking-widest text-brand-white uppercase hover:text-brand-white/70 transition-colors py-4 -my-4"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-[#00ff66] text-white hover:text-black font-display text-xs font-black tracking-wider uppercase transition-all duration-200"
                       data-cursor="VISIT"
                     >
-                      Explore Project
-                      <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <span>EXPLORE</span>
+                      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </a>
                   ) : (
-                    <span className="text-[10px] tracking-widest text-brand-white/20 uppercase cursor-not-allowed">
-                      {project.status === 'In Progress' ? 'Coming Soon' : 'Internal'}
+                    <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+                      {project.status === 'In Progress' ? 'ACTIVE DEVELOPMENT' : 'INTERNAL ARCHIVE'}
                     </span>
                   )}
                 </div>

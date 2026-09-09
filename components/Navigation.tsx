@@ -6,15 +6,15 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
-  { label: 'Products', href: '/products' },
-  { label: 'Blog',     href: '/blog' },
+  { label: 'Logbook',  href: '/blog' },
+  { label: 'Gear',     href: '/products' },
+  { label: 'Reels',    href: '/content' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Content',  href: '/content' },
   { label: 'Gallery',  href: '/gallery' },
-  { label: 'Work',     href: '/work' },
+  { label: 'Collab',   href: '/work' },
+  { label: 'About',    href: '/about' },
 ];
 
-// ── Instagram icon SVG ──
 function IgIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -23,7 +23,6 @@ function IgIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-// ── YouTube icon SVG ──
 function YtIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -37,30 +36,30 @@ export default function Navigation() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    const handleScroll = () => setIsScrolled(window.scrollY > 25);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
-      className={`hidden md:flex fixed top-0 left-0 w-full z-[100] transition-all duration-500 items-center justify-between px-12 h-20 ${
+      className={`hidden md:flex fixed top-0 left-0 w-full z-[100] transition-all duration-300 items-center justify-between px-8 lg:px-12 h-20 ${
         isScrolled
-          ? 'bg-brand-black/90 backdrop-blur-xl border-b border-white/[0.06]'
-          : 'bg-transparent'
+          ? 'bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl'
+          : 'bg-gradient-to-b from-[#08080a]/70 to-transparent'
       }`}
     >
-      {/* Logo → home */}
+      {/* Brand Logo with the new by/moe mark */}
       <Link
         href="/"
-        className="relative w-32 h-10 block cursor-pointer overflow-hidden"
+        className="relative w-36 h-12 block cursor-pointer group transition-transform duration-200 hover:scale-[1.03]"
         data-cursor="HOME"
       >
         <Image
-          src="/logo.svg"
-          alt="bymoe"
+          src="/logo.png"
+          alt="by/moe"
           fill
-          sizes="128px"
+          sizes="144px"
           className="object-contain object-left"
           priority
         />
@@ -69,41 +68,52 @@ export default function Navigation() {
       {/* Nav Links */}
       <nav className="flex items-center gap-1">
         {NAV_LINKS.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive =
+            link.href === '/'
+              ? pathname === '/'
+              : pathname.startsWith(link.href);
+
           return (
             <Link
               key={link.label}
               href={link.href}
               data-cursor="EXPLORE"
-              className={`px-4 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition-all cursor-pointer ${
+              className={`relative px-3.5 py-2 rounded-lg text-[11px] font-bold tracking-[0.18em] uppercase transition-all cursor-pointer font-sans ${
                 isActive
-                  ? 'text-white bg-white/10'
-                  : 'text-white/40 hover:text-white hover:bg-white/5'
+                  ? 'text-white bg-white/[0.07]'
+                  : 'text-white/45 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
-              {link.label}
+              <span>{link.label}</span>
+              {isActive && (
+                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#00ff66] rounded-full shadow-[0_0_8px_#00ff66]" />
+              )}
             </Link>
           );
         })}
 
-        {/* ── Instagram link — Icon only ── */}
+        {/* Telemetry Separator */}
+        <div className="h-4 w-px bg-white/10 mx-2" />
+
+        {/* Social Icons */}
         <a
           href="https://instagram.com/moegical"
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-2 flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+          className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
           aria-label="Instagram @moegical"
+          data-cursor="FOLLOW"
         >
-          <IgIcon size={18} />
+          <IgIcon size={17} />
         </a>
 
-        {/* ── YouTube link — Icon only ── */}
         <a
           href="https://www.youtube.com/@Moegical"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+          className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-[#ef4444] hover:bg-white/10 transition-all duration-200 cursor-pointer"
           aria-label="YouTube @Moegical"
+          data-cursor="WATCH"
         >
           <YtIcon size={18} />
         </a>

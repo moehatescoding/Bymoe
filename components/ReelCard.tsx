@@ -18,7 +18,8 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
       href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col w-full aspect-[9/16] bg-[#111118] rounded-2xl overflow-hidden border border-white/10 cursor-pointer select-none shadow-xl"
+      data-cursor="PLAY"
+      className="editorial-grade group relative flex flex-col w-full aspect-[9/16] bg-[#0c0c12] rounded-2xl overflow-hidden border border-white/10 hover:border-[#00ff66]/50 transition-all duration-500 cursor-pointer select-none shadow-2xl"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -32,48 +33,57 @@ export default function ReelCard({ reel, index }: ReelCardProps) {
             src={reel.coverUrl}
             alt={`${reel.category} reel`}
             fill
-            className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
             onError={() => setImgError(true)}
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
       ) : (
-        /* Fallback gradient */
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black" />
       )}
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60 z-[1]" />
 
-      {/* ── Top bar ── */}
+      {/* ── Top Telemetry Bar ── */}
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 pt-4 z-10">
-        {/* Instagram logo + handle */}
-        <div className="flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" className="opacity-70">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-          </svg>
-          <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">@moegical</span>
+        {/* REC badge */}
+        <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+          <span className="font-mono text-[10px] text-white/90 font-bold uppercase tracking-wider">
+            REC // 60FPS
+          </span>
         </div>
 
         {/* Category pill */}
-        <span className="inline-block px-2.5 py-1 bg-black/60 backdrop-blur-md text-[9px] tracking-widest uppercase text-white rounded-full border border-white/10">
+        <span className="hud-tag text-[9px]">
           {reel.category}
         </span>
       </div>
 
-      {/* ── Center play button ── */}
+      {/* ── Center play button (Transforms on Hover) ── */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" className="ml-1">
+        <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-[#00ff66] group-hover:border-[#00ff66] group-hover:scale-115 transition-all duration-300 shadow-xl">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-white group-hover:text-black ml-1 transition-colors">
             <path d="M8 5v14l11-7z"/>
           </svg>
         </div>
       </div>
 
-      {/* ── Bottom label ── */}
-      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 z-10">
-        <p className="text-xs font-semibold text-white/80">Watch on Instagram</p>
-        <p className="text-[10px] text-white/40 mt-0.5">Tap to open →</p>
+      {/* ── Bottom Telemetry Info ── */}
+      <div className="absolute bottom-0 left-0 right-0 p-5 z-10 bg-gradient-to-t from-black via-black/80 to-transparent">
+        <div className="flex items-center justify-between font-mono text-[10px] text-white/50 mb-1">
+          <span>AUDIO // ORIGINAL CUT</span>
+          <span className="text-[#00ff66]">HD 1080P</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="font-display text-lg font-black uppercase text-white tracking-wider group-hover:text-[#00ff66] transition-colors">
+            WATCH REEL
+          </span>
+          <span className="text-xs text-[#00ff66] font-mono group-hover:translate-x-1 transition-transform">
+            IG ↗
+          </span>
+        </div>
       </div>
     </motion.a>
   );

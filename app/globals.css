@@ -1,18 +1,85 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-brand-black: #050508;
-  --color-brand-navy: #0a0a10;
-  --color-brand-surface: #111118;
-  --color-brand-border: #1a1a24;
-  --color-brand-white: #f0f0f0;
+  /* Moto-Editorial Asphalt & Kinetic Palette */
+  --color-brand-black: #08080a;
+  --color-brand-asphalt: #0d0d12;
+  --color-brand-navy: #090a10;
+  --color-brand-surface: #111116;
+  --color-brand-elevated: #171722;
+  --color-brand-border: #1e1e2b;
+  --color-brand-white: #f3f2ee;
   --color-brand-pure-white: #ffffff;
-  --color-brand-muted: #6b6b78;
+  --color-brand-muted: #8e8e9a;
+  --color-moto-green: #00ff66;
+  --color-moto-acid: #22c55e;
+  --color-moto-amber: #f59e0b;
+  --color-moto-red: #ef4444;
 
   /* Font Families */
-  --font-family-display: var(--font-display), system-ui, sans-serif;
-  --font-family-sans: var(--font-sans), system-ui, sans-serif;
+  --font-family-display: var(--font-display), 'Barlow Condensed', sans-serif;
+  --font-family-sans: var(--font-sans), 'Inter', sans-serif;
+}
+
+/* ── Moto-Editorial Typography ── */
+.font-display {
+  font-family: var(--font-display), 'Barlow Condensed', sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  letter-spacing: -0.02em;
+}
+
+.text-editorial-lead {
+  font-family: var(--font-display), 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+/* ── Telemetry & HUD Elements ── */
+.hud-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #00ff66;
+  background: rgba(0, 255, 102, 0.08);
+  border: 1px solid rgba(0, 255, 102, 0.25);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hud-tag-amber {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── Duotone / Color-graded Photography ── */
+.editorial-grade {
+  position: relative;
+  filter: contrast(1.08) brightness(0.96) saturate(1.05);
+  transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-grade:hover {
+  filter: contrast(1.12) brightness(1.02) saturate(1.12);
+}
+
+/* ── Tachometer Scroll Indicator ── */
+.tach-line {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,255,102,0.4) 60%, #00ff66 100%);
 }
 
 @keyframes reveal-up {

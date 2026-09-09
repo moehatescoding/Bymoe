@@ -3,60 +3,70 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-black text-brand-white pt-32 pb-12 px-6 md:px-12 border-t border-brand-border mt-32">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
+    <footer className="bg-[#08080a] text-[#f3f2ee] pt-24 pb-12 px-6 sm:px-10 md:px-16 border-t border-white/[0.08] mt-24">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
         
         {/* Left side: Brand */}
         <div className="flex flex-col">
-          <div className="relative w-48 h-16 md:w-72 md:h-24 overflow-hidden mb-4">
+          <div className="relative w-44 h-14 sm:w-56 sm:h-16 overflow-hidden mb-4">
             <Image 
-              src="/logo.svg" 
-              alt="BYMOE Logo" 
+              src="/logo.png" 
+              alt="by/moe" 
               fill 
-              sizes="(max-width: 768px) 192px, 288px"
+              sizes="(max-width: 768px) 176px, 224px"
               className="object-contain object-left-bottom" 
             />
           </div>
-          <p className="text-brand-muted text-[10px] tracking-[0.2em] uppercase">
-            Designed & Built by Moe
+          <p className="text-[#8e8e9a] text-[11px] font-mono tracking-[0.2em] uppercase mb-2">
+            Motorsport Editorial · Custom Builds · Cinematic Dispatch
           </p>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-pulse" />
+            <span className="text-[10px] font-mono text-white/40 tracking-wider">
+              TELEMETRY: BANGALORE, INDIA // READY FOR ROLLOUT
+            </span>
+          </div>
         </div>
 
         {/* Right side: Links */}
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24 pl-2 md:pl-0">
-          <div className="flex flex-col gap-4">
-            <span className="text-brand-muted text-[10px] uppercase tracking-widest mb-2">Social</span>
-            <Link href="https://instagram.com/moegical" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block" data-cursor="FOLLOW">Instagram</Link>
-            <Link href="https://www.youtube.com/@Moegical" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block" data-cursor="WATCH">YouTube</Link>
+        <div className="flex flex-wrap md:flex-nowrap gap-10 md:gap-16">
+          <div className="flex flex-col gap-3">
+            <span className="text-[#8e8e9a] text-[10px] font-mono uppercase tracking-[0.25em] mb-1">Social</span>
+            <Link href="https://instagram.com/moegical" target="_blank" rel="noopener noreferrer" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-[#00ff66] transition-colors" data-cursor="FOLLOW">Instagram</Link>
+            <Link href="https://www.youtube.com/@Moegical" target="_blank" rel="noopener noreferrer" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-[#ef4444] transition-colors" data-cursor="WATCH">YouTube</Link>
+            <Link href="https://chat.whatsapp.com/ENrb0phc8sT32tMnwnoqiw?s=cl&p=i&mlu=0" target="_blank" rel="noopener noreferrer" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-[#00ff66] transition-colors" data-cursor="JOIN">WhatsApp Collective</Link>
           </div>
           
-          <div className="flex flex-col gap-4">
-            <span className="text-brand-muted text-[10px] uppercase tracking-widest mb-2">Explore</span>
-            <Link href="/products" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Products</Link>
-            <Link href="/blog" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Blog</Link>
-            <Link href="/projects" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Projects</Link>
-            <Link href="/gallery" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Gallery</Link>
-            <Link href="/work" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block">Work</Link>
+          <div className="flex flex-col gap-3">
+            <span className="text-[#8e8e9a] text-[10px] font-mono uppercase tracking-[0.25em] mb-1">Navigation</span>
+            <Link href="/blog" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Logbook</Link>
+            <Link href="/products" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Gear & Builds</Link>
+            <Link href="/content" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Reels</Link>
+            <Link href="/projects" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Projects</Link>
           </div>
-          
-          <div className="flex flex-col gap-4">
-            <span className="text-brand-muted text-[10px] uppercase tracking-widest mb-2">Connect</span>
-            <Link href="mailto:hello@bymoe.in" className="text-sm font-medium hover:text-brand-muted transition-colors hover-reveal inline-block" data-cursor="EMAIL">Contact</Link>
+
+          <div className="flex flex-col gap-3">
+            <span className="text-[#8e8e9a] text-[10px] font-mono uppercase tracking-[0.25em] mb-1">Direct</span>
+            <Link href="/gallery" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Gallery</Link>
+            <Link href="/work" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Collab</Link>
+            <Link href="/about" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">About</Link>
+            <Link href="mailto:hello@bymoe.in" className="text-xs font-bold uppercase tracking-widest text-white/70 hover:text-[#00ff66] transition-colors" data-cursor="EMAIL">hello@bymoe.in</Link>
           </div>
         </div>
       </div>
       
       {/* Copyright / Easter Egg */}
-      <div className="max-w-7xl mx-auto mt-24 flex justify-between items-center text-brand-muted text-xs group cursor-default">
-        <p className="relative overflow-hidden h-4 w-40">
-          <span className="absolute top-0 left-0 transition-transform duration-500 group-hover:-translate-y-full">
-            &copy; {new Date().getFullYear()} BYMOE.
-          </span>
-          <span className="absolute top-0 left-0 translate-y-full transition-transform duration-500 group-hover:translate-y-0 text-brand-white font-semibold">
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4 text-[#8e8e9a] text-xs font-mono">
+        <p className="flex items-center gap-2">
+          <span>&copy; {new Date().getFullYear()} by/moe.</span>
+          <span className="text-white/20">/</span>
+          <span className="text-white font-semibold hover:text-[#00ff66] transition-colors cursor-default">
             Ride Safe.
           </span>
         </p>
-        <p className="tracking-widest uppercase text-[10px]">All Rights Reserved.</p>
+        <p className="tracking-[0.2em] uppercase text-[10px] text-white/40">
+          ALL SYSTEMS OPERATIONAL
+        </p>
       </div>
     </footer>
   );

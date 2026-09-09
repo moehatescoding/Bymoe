@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import Hero from '@/components/Hero';
 import { REELS_CONTENT } from '@/data/reels';
 import { PRODUCTS } from '@/data/products';
 import { BLOG_POSTS } from '@/data/blog';
@@ -21,7 +22,7 @@ function WhatsAppIcon({ size = 24 }: { size?: number }) {
 }
 
 // ─────────────────────────────────────────
-// Inline Reel Card (no iframe on homepage preview)
+// Inline Custom Reel Card (Moto-Vlog Film Frame)
 // ─────────────────────────────────────────
 function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: number }) {
   const [imgError, setImgError] = useState(false);
@@ -31,12 +32,13 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
       href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex-shrink-0 w-[200px] sm:w-[220px] aspect-[9/16] bg-brand-surface rounded-xl overflow-hidden border border-white/10 cursor-pointer shadow-lg"
+      className="group relative flex-shrink-0 w-[210px] sm:w-[240px] aspect-[9/16] bg-[#111116] rounded-2xl overflow-hidden border border-white/10 hover:border-[#00ff66]/50 cursor-pointer shadow-2xl transition-all duration-300 select-none"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       whileTap={{ scale: 0.97 }}
+      data-cursor="PLAY"
     >
       {/* Cover image */}
       {reel.coverUrl && !imgError ? (
@@ -45,48 +47,52 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
             src={reel.coverUrl}
             alt={`${reel.category} reel`}
             fill
-            className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 editorial-grade transition-all duration-700"
             onError={() => setImgError(true)}
-            sizes="220px"
+            sizes="240px"
           />
         </div>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#181822] to-[#08080a]" />
       )}
 
-      {/* Dark cinematic overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 z-[1]" />
+      {/* Dark cinematic vignette */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/30 to-[#08080a]/60 z-[1]" />
 
-      {/* Reel icon */}
-      <div className="absolute top-3 right-3 z-10">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" className="opacity-80">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-        </svg>
-      </div>
-
-      {/* Category pill */}
-      <div className="absolute bottom-3 left-3 z-10">
-        <span className="inline-block px-2 py-1 bg-black/60 backdrop-blur-md text-[9px] tracking-widest uppercase text-white rounded-full border border-white/10">
+      {/* Top telemetry bar */}
+      <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 text-[9px] font-mono">
+        <div className="flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-white/10 text-white/80">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse" />
+          <span>REC 00:{20 + index * 4}</span>
+        </div>
+        <span className="hud-tag text-[8px] py-0.5 px-1.5">
           {reel.category}
         </span>
       </div>
 
-      {/* Hover overlay */}
-      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-        <span className="text-[10px] font-bold tracking-widest uppercase text-white">Watch →</span>
+      {/* Center Play Button trigger on hover */}
+      <div className="absolute inset-0 flex items-center justify-center z-10">
+        <div className="w-12 h-12 rounded-full bg-black/65 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-[#00ff66] group-hover:text-black group-hover:scale-110 group-hover:border-[#00ff66] transition-all duration-300 shadow-xl">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* Bottom info */}
+      <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between text-[10px] font-mono text-white/60">
+        <span>60 FPS // UHD</span>
+        <span className="text-[#00ff66] group-hover:translate-x-1 transition-transform">Watch →</span>
       </div>
     </motion.a>
   );
 }
 
-
-import Hero from '@/components/Hero';
-
 export default function Home() {
-  const z900Accessories = accessoriesByBike['z900'] || [];
+  const featuredProduct = PRODUCTS.find((p) => p.id === 'diy-hydro-dip') || PRODUCTS[0];
 
   return (
-    <main className="min-h-screen bg-brand-black overflow-x-hidden">
+    <main className="min-h-screen bg-[#08080a] text-[#f3f2ee] overflow-x-hidden">
 
       {/* ═══════════════════════════════════════════
           CINEMATIC KAWASAKI HERO
@@ -94,121 +100,269 @@ export default function Home() {
       <Hero />
 
       {/* ═══════════════════════════════════════════
-          ABOUT
+          RIDER DOSSIER — "WHO'S MOE?"
       ═══════════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 py-20 sm:py-24 max-w-4xl mx-auto w-full">
-        <motion.p
-          className="text-[10px] tracking-[0.3em] text-white/30 uppercase mb-4"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          Who's Moe?
-        </motion.p>
-        <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          I make things, break things, ride things and occasionally figure them out.
-        </motion.h2>
-        <motion.p
-          className="text-base sm:text-lg text-white/50 font-light leading-relaxed mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          From motorcycles and technology to business, content and whatever catches my attention next — this is where it all comes together.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white/60 hover:text-white transition-colors cursor-pointer group"
+      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Column: Dossier Photography & Telemetry */}
+          <motion.div 
+            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            Read the full story
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </Link>
-        </motion.div>
-      </section>
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/15 bg-[#111116] shadow-2xl">
+              <Image
+                src="/kawasaki-hero.jpg"
+                alt="Moe with Kawasaki Z900"
+                fill
+                className="object-cover object-center editorial-grade hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-transparent to-transparent opacity-80" />
+              
+              {/* Telemetry Stamps */}
+              <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+                <span className="hud-tag text-[9px]">
+                  RIDER SPEC: MOE
+                </span>
+                <span className="text-[9px] font-mono text-white/50 tracking-widest uppercase bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+                  BASE: BENGALURU, INDIA
+                </span>
+              </div>
 
-      {/* ═══════════════════════════════════════════
-          FEATURED PRODUCT — DIY HYDRO DIP
-      ═══════════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
-        <Link
-          href="/products"
-          className="group block relative w-full rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#181824] to-[#09090e] cursor-pointer shadow-2xl transition-all duration-300 hover:border-white/30"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-12 items-center">
-            {/* Left Content */}
-            <div className="sm:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-block px-3 py-1 bg-[#39FF14]/20 border border-[#39FF14]/40 text-[#39FF14] text-[9px] font-bold tracking-widest uppercase rounded-full backdrop-blur-md">
-                    Featured Recommendation
-                  </span>
-                  <span className="text-[10px] text-white/40 uppercase tracking-widest">
-                    DIY & Custom
-                  </span>
+              {/* Machine Hardware Pill */}
+              <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-xl p-4 rounded-2xl border border-white/10">
+                <div className="flex items-center justify-between text-[10px] font-mono text-white/50 mb-1">
+                  <span>PRIMARY RIG</span>
+                  <span className="text-[#00ff66]">ACTIVE</span>
                 </div>
-
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white mb-2 group-hover:text-[#39FF14] transition-colors">
-                  DIY Hydro Dip Supplies & Kit
-                </h3>
-                <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed max-w-sm mb-6">
-                  Complete HGI CF074B carbon fiber combo pack with film roll, aerosol activator, basecoat & 2K gloss clear coat.
+                <p className="text-sm font-bold text-white tracking-wide">
+                  Kawasaki Z900 · Yoshimura Alpha-T
                 </p>
+                <div className="flex items-center gap-3 mt-2 text-[10px] font-mono text-white/60">
+                  <span>948cc Inline-4</span>
+                  <span>·</span>
+                  <span>125 HP</span>
+                  <span>·</span>
+                  <span>Full Titanium</span>
+                </div>
               </div>
+            </div>
+          </motion.div>
 
-              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#39FF14] group-hover:translate-x-1 transition-transform">
-                <span>View Kit & Supplies</span>
+          {/* Right Column: Pull-Quote & Manifesto */}
+          <motion.div 
+            className="lg:col-span-7 flex flex-col justify-center"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
+              <span className="text-xs font-mono tracking-[0.25em] text-[#00ff66] uppercase font-bold">
+                WHO IS MOE?
+              </span>
+            </div>
+
+            {/* Oversized Pull-Quote */}
+            <blockquote className="text-editorial-lead text-4xl sm:text-5xl md:text-6xl text-white font-bold leading-[0.95] tracking-tight mb-8">
+              "I make things, break things, ride fast, and occasionally figure them out."
+            </blockquote>
+
+            <div className="space-y-4 text-base sm:text-lg text-white/60 font-light leading-relaxed mb-8 max-w-2xl">
+              <p>
+                No corporate playbook. No sterile aesthetic. From tore-down motorcycle engines and bespoke carbon hydro-dipping to software systems and cinematic content — this is the workshop where ideas meet asphalt.
+              </p>
+              <p className="text-sm sm:text-base text-white/45">
+                Every modification, product recommendation, and ride note on this site is tested with zero compromise under real throttle and real rain.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/[0.08]">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-white text-black text-xs font-bold tracking-[0.18em] uppercase hover:bg-[#00ff66] hover:text-black transition-all cursor-pointer font-sans"
+                data-cursor="ABOUT"
+              >
+                <span>Read Full Story</span>
                 <span>→</span>
-              </div>
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.08] text-xs font-bold tracking-[0.18em] uppercase transition-all cursor-pointer font-sans"
+                data-cursor="COLLAB"
+              >
+                <span>Collaborations</span>
+                <span>↗</span>
+              </Link>
             </div>
+          </motion.div>
 
-            {/* Right Image Container */}
-            <div className="sm:col-span-5 relative aspect-square sm:aspect-auto sm:h-56 bg-black/40 border-t sm:border-t-0 sm:border-l border-white/10 p-4 flex items-center justify-center">
-              <div className="relative w-full h-full min-h-[180px]">
-                <Image
-                  src="/products/hydro-dip-kit.webp"
-                  alt="DIY Hydro Dip Kit CF074B"
-                  fill
-                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </div>
-          </div>
-        </Link>
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════════
-          REELS PREVIEW
+          FEATURED GEAR SHOWCASE — EDITORIAL BREAKDOWN
       ═══════════════════════════════════════════ */}
-      <section className="pb-20 sm:pb-24">
-        <div className="px-5 sm:px-8 md:px-12 mb-6 flex items-end justify-between max-w-4xl mx-auto w-full">
+      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <p className="text-[10px] tracking-[0.3em] text-white/30 uppercase mb-1">Latest</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white">Reels</h2>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
+              <span className="text-xs font-mono tracking-[0.25em] text-[#00ff66] uppercase font-bold">
+                WORKSHOP // VERIFIED RIG
+              </span>
+            </div>
+            <h2 className="text-editorial-lead text-4xl sm:text-6xl font-extrabold text-white">
+              Featured Gear & Builds
+            </h2>
           </div>
           <Link
-            href="/content"
-            className="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
+            href="/products"
+            className="text-xs font-mono tracking-widest uppercase text-white/50 hover:text-[#00ff66] transition-colors inline-flex items-center gap-2"
           >
-            View All →
+            <span>View All Tested Hardware</span>
+            <span>→</span>
           </Link>
         </div>
 
-        {/* Horizontal scroll on mobile */}
-        <div className="flex gap-4 overflow-x-auto scrollbar-none px-5 sm:px-8 md:px-12 pb-2">
+        {/* Lead Editorial Hero: DIY Hydro Dip Kit */}
+        {featuredProduct && (
+          <Link
+            href="/products"
+            className="group block relative w-full rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#151520] to-[#09090e] p-6 sm:p-10 mb-12 shadow-2xl transition-all duration-300 hover:border-[#00ff66]/50"
+            data-cursor="INSPECT"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="hud-tag text-[9px]">
+                      [GEAR // 01] · FEATURED RIG
+                    </span>
+                    <span className="text-xs font-mono text-white/40 uppercase tracking-widest">
+                      CUSTOM COMPOSITE
+                    </span>
+                  </div>
+
+                  <h3 className="text-editorial-lead text-3xl sm:text-5xl font-extrabold text-white mb-3 group-hover:text-[#00ff66] transition-colors">
+                    {featuredProduct.name}
+                  </h3>
+
+                  <p className="text-base sm:text-lg text-white/80 font-normal mb-4">
+                    "{featuredProduct.tagline}"
+                  </p>
+
+                  <p className="text-xs sm:text-sm text-white/50 font-light leading-relaxed mb-6 max-w-xl">
+                    {featuredProduct.description}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                    {featuredProduct.features.map((feat, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs font-mono text-white/70">
+                        <span className="text-[#00ff66]">/</span>
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-[#00ff66] group-hover:translate-x-1.5 transition-transform font-sans">
+                  <span>Explore Kit Specs & Verified Purchase</span>
+                  <span>→</span>
+                </div>
+              </div>
+
+              {/* Product Image Frame with Duotone Tone */}
+              <div className="lg:col-span-5 relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-[#0c0c12] p-6 flex items-center justify-center">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={featuredProduct.image}
+                    alt={featuredProduct.name}
+                    fill
+                    className="object-contain p-2 editorial-grade group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1 rounded text-[10px] font-mono text-[#00ff66] border border-white/10">
+                  CF074B // VERIFIED KIT
+                </div>
+              </div>
+            </div>
+          </Link>
+        )}
+
+        {/* 4-Item Magazine Gear Strip */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {PRODUCTS.slice(0, 4).map((prod, idx) => (
+            <Link
+              key={prod.id}
+              href="/products"
+              className="group flex flex-col justify-between p-5 rounded-2xl bg-[#111116] border border-white/10 hover:border-[#00ff66]/40 transition-all duration-300 shadow-xl cursor-pointer"
+              data-cursor="INSPECT"
+            >
+              <div>
+                <div className="relative w-full aspect-[4/3] rounded-xl bg-[#09090d] border border-white/[0.06] overflow-hidden mb-4 flex items-center justify-center p-3">
+                  <Image
+                    src={prod.image}
+                    alt={prod.name}
+                    fill
+                    className="object-contain p-2 editorial-grade group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-2 left-2 text-[8px] font-mono text-white/40 bg-black/60 px-1.5 py-0.5 rounded">
+                    [0{idx + 2}]
+                  </span>
+                </div>
+
+                <div className="text-[10px] font-mono text-[#00ff66] tracking-wider uppercase mb-1">
+                  {prod.category}
+                </div>
+                <h4 className="text-base font-bold text-white group-hover:text-[#00ff66] transition-colors leading-snug line-clamp-1 mb-2">
+                  {prod.name}
+                </h4>
+                <p className="text-xs text-white/50 font-light line-clamp-2 mb-4">
+                  {prod.description}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-white/40 group-hover:text-white transition-colors">
+                <span>{prod.sourceLabel || 'Recommended'}</span>
+                <span className="text-[#00ff66] group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          CUSTOM REELS GRID — RAW NIGHT RUNS
+      ═══════════════════════════════════════════ */}
+      <section className="py-24 sm:py-32 border-b border-white/[0.06] overflow-hidden">
+        <div className="px-6 sm:px-10 md:px-16 mb-8 flex flex-col sm:flex-row sm:items-end justify-between max-w-7xl mx-auto w-full gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
+              <span className="text-xs font-mono tracking-[0.25em] text-[#00ff66] uppercase font-bold">
+                KINETIC DISPATCHES
+              </span>
+            </div>
+            <h2 className="text-editorial-lead text-4xl sm:text-6xl font-extrabold text-white">
+              Raw Reels & Motion
+            </h2>
+          </div>
+          <Link
+            href="/content"
+            className="text-xs font-mono tracking-widest uppercase text-white/50 hover:text-[#00ff66] transition-colors inline-flex items-center gap-2"
+          >
+            <span>Browse Full Video Archive</span>
+            <span>→</span>
+          </Link>
+        </div>
+
+        {/* Horizontal Film-Scrub Track */}
+        <div className="flex gap-5 overflow-x-auto scrollbar-none px-6 sm:px-10 md:px-16 pb-4">
           {REELS_CONTENT.map((reel, i) => (
             <HomeReelCard key={reel.id} reel={reel} index={i} />
           ))}
@@ -216,139 +370,149 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          CURATED PRODUCTS PEEK
+          THE LOGBOOK — TECHNICAL FIELD NOTES
       ═══════════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
-        <div className="mb-6 flex items-end justify-between">
+      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <p className="text-[10px] tracking-[0.3em] text-white/30 uppercase mb-1">Gear & Builds</p>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white">Featured Products</h2>
-          </div>
-          <Link
-            href="/products"
-            className="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
-          >
-            All Products →
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {PRODUCTS.slice(0, 4).map((prod, i) => (
-            <Link
-              key={prod.id}
-              href="/products"
-              className="group flex items-start gap-4 p-4 rounded-xl bg-brand-surface border border-white/[0.06] hover:border-white/20 active:scale-[0.98] transition-all duration-200 cursor-pointer"
-            >
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#0c0c12] relative overflow-hidden border border-white/10 p-1 flex items-center justify-center">
-                <Image src={prod.image} alt={prod.name} fill className="object-contain p-1" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white leading-tight truncate group-hover:text-[#39FF14] transition-colors">{prod.name}</p>
-                <p className="text-[10px] text-white/40 mt-0.5 uppercase tracking-wider">{prod.category} · {prod.sourceLabel || 'Recommended'}</p>
-              </div>
-              <div className="flex-shrink-0 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all text-xs mt-1">→</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          THE LOGBOOK — FEATURED FIELD NOTES
-      ═══════════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 pb-20 sm:pb-24 max-w-4xl mx-auto w-full">
-        <div className="mb-6 flex items-end justify-between">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
-              <p className="text-[10px] tracking-[0.3em] text-[#39FF14] uppercase font-semibold">Field Notes</p>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
+              <span className="text-xs font-mono tracking-[0.25em] text-[#00ff66] uppercase font-bold">
+                THE LOGBOOK // DISPATCHES
+              </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter text-white">The Logbook</h2>
+            <h2 className="text-editorial-lead text-4xl sm:text-6xl font-extrabold text-white">
+              Field Notes & Deep-Dives
+            </h2>
           </div>
           <Link
             href="/blog"
-            className="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
+            className="text-xs font-mono tracking-widest uppercase text-white/50 hover:text-[#00ff66] transition-colors inline-flex items-center gap-2"
           >
-            View All Articles →
+            <span>All Articles ({BLOG_POSTS.length})</span>
+            <span>→</span>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {BLOG_POSTS.slice(0, 3).map((post, i) => (
-            <Link
-              key={post.id}
-              href={`/blog/${post.slug}`}
-              className="group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-brand-surface hover:border-white/20 transition-all duration-300 shadow-xl cursor-pointer"
-            >
-              <div className="relative w-full aspect-[16/10] bg-black/40 overflow-hidden">
-                <Image
-                  src={post.coverImage}
-                  alt={post.title}
-                  fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent" />
-                <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase text-[#39FF14] px-2.5 py-0.5 rounded-full border border-[#39FF14]/30">
-                  {post.category}
-                </div>
-              </div>
+        {/* 3-Column Editorial Split with Differentiated Taxonomy */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {BLOG_POSTS.slice(0, 3).map((post, i) => {
+            const isTechnical = post.category.toLowerCase().includes('gear') || post.category.toLowerCase().includes('maintenance');
 
-              <div className="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="text-[10px] font-mono text-white/40 mb-2">
-                    {post.date} • {post.readTime}
+            return (
+              <Link
+                key={post.id}
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-[#111116] hover:border-[#00ff66]/50 transition-all duration-300 shadow-2xl cursor-pointer"
+                data-cursor="READ"
+              >
+                {/* Article Cover */}
+                <div className="relative w-full aspect-[16/10] bg-[#09090d] overflow-hidden">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    className="object-cover object-center editorial-grade group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111116] via-transparent to-transparent" />
+                  
+                  {/* Taxonomy Badge */}
+                  <div className="absolute top-3.5 left-3.5">
+                    {isTechnical ? (
+                      <span className="hud-tag text-[9px]">
+                        TECH DEEP-DIVE · {post.category}
+                      </span>
+                    ) : (
+                      <span className="hud-tag-amber text-[9px]">
+                        RIDE STORY · {post.category}
+                      </span>
+                    )}
                   </div>
-                  <h3 className="text-base font-bold text-white leading-snug group-hover:text-[#39FF14] transition-colors line-clamp-2 mb-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-xs text-white/50 font-light line-clamp-2">
-                    {post.excerpt}
-                  </p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-bold tracking-widest uppercase text-white/60 group-hover:text-white">
-                  <span>Read Note</span>
-                  <span className="text-[#39FF14] transform group-hover:translate-x-1 transition-transform">→</span>
+                {/* Article Content */}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="text-[10px] font-mono text-white/40 mb-3 flex items-center gap-2">
+                      <span>{post.date}</span>
+                      <span>•</span>
+                      <span>{post.readTime}</span>
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#00ff66] transition-colors leading-snug line-clamp-2 mb-3">
+                      {post.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-white/50 font-light line-clamp-2 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+                  </div>
+
+                  <div className="pt-5 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-white/60 group-hover:text-white">
+                    <span>Read Field Note</span>
+                    <span className="text-[#00ff66] group-hover:translate-x-1.5 transition-transform">→</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════
-          FOOTER CTA
+          PIT-STOP COLLABORATION CTA
       ═══════════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 pb-32 sm:pb-24 max-w-4xl mx-auto w-full">
-        <div className="rounded-2xl border border-white/10 bg-brand-surface p-8 sm:p-12 flex flex-col items-center text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-white mb-3">
-            Want to build something together?
-          </h2>
-          <p className="text-sm text-white/40 mb-8 font-light">Get in touch or follow along on the platforms.</p>
-          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
-            <a
-              href="https://instagram.com/moegical"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1.5 py-4 px-4 rounded-xl bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-white hover:bg-white/10 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap"
-            >
-              <span>Instagram</span>
-              <span>→</span>
-            </a>
-            <a
-              href="https://www.youtube.com/@Moegical"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1.5 py-4 px-4 rounded-xl bg-[#FF0000]/10 border border-[#FF0000]/30 text-xs font-bold tracking-widest uppercase text-white hover:bg-[#FF0000]/20 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap"
-            >
-              <span>YouTube</span>
-              <span>→</span>
-            </a>
-            <a
-              href="mailto:hello@bymoe.in"
-              className="flex-1 flex items-center justify-center gap-1.5 py-4 px-4 rounded-xl bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-white/90 active:scale-[0.97] transition-all cursor-pointer whitespace-nowrap"
-            >
-              <span>Email</span>
-              <span>→</span>
-            </a>
+      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full">
+        <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-[#151520] to-[#0a0a10] p-8 sm:p-14 relative overflow-hidden shadow-2xl">
+          {/* Subtle Ambient Glow */}
+          <div className="absolute -top-32 -right-32 w-80 h-80 bg-[#00ff66]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-pulse" />
+              <span className="text-xs font-mono tracking-[0.25em] text-[#00ff66] uppercase font-bold">
+                PARTNERSHIPS // COLLABORATION
+              </span>
+            </div>
+
+            <h2 className="text-editorial-lead text-4xl sm:text-6xl md:text-7xl font-extrabold text-white mb-4">
+              Want to build something together?
+            </h2>
+
+            <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed mb-8">
+              Working with motorcycle brands, high-performance manufacturers, technology platforms, and creators who want something memorable and kinetic.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="mailto:hello@bymoe.in"
+                className="px-8 py-4 rounded-xl bg-white text-black text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#00ff66] hover:text-black transition-all cursor-pointer font-sans"
+                data-cursor="EMAIL"
+              >
+                <span>Initiate Project</span>
+                <span className="ml-2">→</span>
+              </a>
+
+              <a
+                href="https://instagram.com/moegical"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-4 rounded-xl bg-white/[0.05] border border-white/10 text-white hover:bg-white/[0.1] text-xs font-bold tracking-[0.2em] uppercase transition-all cursor-pointer font-sans"
+                data-cursor="INSTAGRAM"
+              >
+                <span>Instagram @moegical</span>
+              </a>
+
+              <a
+                href="https://www.youtube.com/@Moegical"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-4 rounded-xl bg-[#ef4444]/10 border border-[#ef4444]/30 text-white hover:bg-[#ef4444]/20 text-xs font-bold tracking-[0.2em] uppercase transition-all cursor-pointer font-sans"
+                data-cursor="YOUTUBE"
+              >
+                <span>YouTube @Moegical</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
