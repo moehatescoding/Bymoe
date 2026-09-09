@@ -128,7 +128,7 @@ export default function Home() {
                   RIDER SPEC: MOE
                 </span>
                 <span className="text-[9px] font-mono text-white/50 tracking-widest uppercase bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-                  BASE: BENGALURU, INDIA
+                  BASE: HYD · IN
                 </span>
               </div>
 

@@ -23,7 +23,7 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-pulse" />
             <span className="text-[10px] font-mono text-white/40 tracking-wider">
-              TELEMETRY: BANGALORE, INDIA // READY FOR ROLLOUT
+              TELEMETRY: HYD · IN // READY FOR ROLLOUT
             </span>
           </div>
         </div>

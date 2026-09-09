@@ -97,7 +97,7 @@ export default function Hero() {
             <div className="hidden sm:flex items-center gap-2 pl-4 border-l border-white/10">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-pulse" />
               <span className="hud-tag text-[9px] py-0.5 px-2">
-                KAWASAKI Z900 // BLR · IND
+                KAWASAKI Z900 // HYD · IND
               </span>
             </div>
           </div>

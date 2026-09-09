@@ -38,7 +38,7 @@ export default function AboutPage() {
     { label: 'ARMOR', value: 'Puig Pro High-Density Delrin Sliders' },
     { label: 'AIRFLOW', value: 'BMC Multi-Layer Cotton High-Flow' },
     { label: 'FUEL TREATMENT', value: 'IFTEX Clean System 23 Every Fill' },
-    { label: 'TERRITORY', value: 'Bengaluru · South India Circuits' },
+    { label: 'TERRITORY', value: 'Hyderabad (HYD · IN) · South India Circuits' },
   ];
 
   return (
@@ -69,7 +69,7 @@ export default function AboutPage() {
           WHO'S <span className="text-[#00ff66]">MOE?</span>
         </motion.h1>
         <p className="text-base sm:text-lg text-white/60 max-w-2xl font-light leading-relaxed">
-          Rider, builder, creator, and mechanical tinkerer. Living life at 10,000 RPM between Bangalore's traffic and wide-open southern highways.
+          Rider, builder, creator, and mechanical tinkerer. Living life at 10,000 RPM between Hyderabad's tarmac and wide-open southern highways.
         </p>
       </div>
 
