@@ -18,10 +18,10 @@ export default function ProductsPage() {
   const featuredProduct = PRODUCTS.find((p) => p.id === 'diy-hydro-dip') || PRODUCTS[0];
 
   return (
-    <main className="min-h-screen bg-brand-black pb-32 pt-28 px-5 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
+    <main className="min-h-screen bg-brand-black pb-32 pt-20 sm:pt-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
       
       {/* Header */}
-      <div className="mb-14 text-left border-b border-white/[0.08] pb-10">
+      <div className="mb-10 sm:mb-14 text-left border-b border-white/[0.08] pb-8 sm:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ export default function ProductsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white mb-4"
+          className="font-display text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white mb-3 sm:mb-4"
         >
           TESTED <span className="text-[#00ff66]">GEAR</span> & BUILDS
         </motion.h1>
@@ -45,7 +45,7 @@ export default function ProductsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-base sm:text-lg text-white/60 max-w-2xl font-light leading-relaxed"
+          className="text-sm sm:text-lg text-white/60 max-w-2xl font-light leading-relaxed"
         >
           No sponsor fluff. The exact chemical treatments, carbon films, performance exhausts, and protection sliders bolted to the Z900 and tested on Indian tarmac.
         </motion.p>
@@ -58,28 +58,28 @@ export default function ProductsPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           data-cursor="INSPECT"
-          className="relative mb-16 rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#151520] to-[#08080c] p-6 sm:p-10 shadow-2xl group"
+          className="relative mb-10 sm:mb-16 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#151520] to-[#08080c] p-5 sm:p-10 shadow-2xl group"
         >
           {/* Subtle Glow */}
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#00ff66]/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center relative z-10">
             {/* Left Info */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
                 <span className="hud-tag">
                   {featuredProduct.badge || 'FEATURED RECOMMENDATION'}
                 </span>
-                <span className="text-[11px] font-mono tracking-widest text-white/40 uppercase">
+                <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-white/40 uppercase">
                   CAT // {featuredProduct.category}
                 </span>
               </div>
 
-              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-black uppercase text-white tracking-tight leading-none mb-3">
+              <h2 className="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black uppercase text-white tracking-tight leading-none mb-2.5 sm:mb-3">
                 {featuredProduct.name}
               </h2>
 
-              <p className="text-base sm:text-lg text-white/80 font-medium mb-3">
+              <p className="text-sm sm:text-lg text-white/80 font-medium mb-3">
                 {featuredProduct.tagline}
               </p>
 
@@ -88,23 +88,23 @@ export default function ProductsPage() {
               </p>
 
               {/* Feature bullets */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8 p-4 rounded-xl bg-black/40 border border-white/[0.06]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 mb-6 sm:mb-8 p-3.5 sm:p-4 rounded-xl bg-black/40 border border-white/[0.06]">
                 {featuredProduct.features.map((feat, idx) => (
                   <div key={idx} className="flex items-center gap-2.5 text-xs text-white/70">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] flex-shrink-0" />
-                    <span className="font-mono text-[11px]">{feat}</span>
+                    <span className="font-mono text-[10px] sm:text-[11px]">{feat}</span>
                   </div>
                 ))}
               </div>
 
               {/* Buy Link CTA */}
-              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-4 border-t border-white/10">
                 <a
                   href={featuredProduct.externalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="BUY"
-                  className="flex items-center gap-3 px-8 py-4 rounded-xl font-display font-black text-sm uppercase tracking-wider bg-[#00ff66] text-black hover:bg-[#22c55e] hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg shadow-[#00ff66]/20 cursor-pointer"
+                  className="flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-display font-black text-xs sm:text-sm uppercase tracking-wider bg-[#00ff66] text-black hover:bg-[#22c55e] hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg shadow-[#00ff66]/20 cursor-pointer w-full sm:w-auto"
                 >
                   <span>{featuredProduct.sourceLabel ? `GET VIA ${featuredProduct.sourceLabel.toUpperCase()}` : 'SOURCE VERIFIED LINK'}</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -113,7 +113,7 @@ export default function ProductsPage() {
                     <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
                 </a>
-                <span className="text-[11px] font-mono text-white/40 tracking-wider">
+                <span className="text-[10px] sm:text-[11px] font-mono text-white/40 tracking-wider">
                   VERIFIED DIRECT OUTLET
                 </span>
               </div>
@@ -130,7 +130,7 @@ export default function ProductsPage() {
                   priority
                 />
               </div>
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-white/80 backdrop-blur-md bg-black/80 px-3 py-2 rounded-xl border border-white/10">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-white/80 backdrop-blur-md bg-black/80 px-3 py-2 rounded-xl border border-white/10">
                 <span>CF074B Carbon Combo Pack</span>
                 <span className="text-[#00ff66] font-bold">HGI Official</span>
               </div>
@@ -139,15 +139,15 @@ export default function ProductsPage() {
         </motion.div>
       )}
 
-      {/* ── Category Filter Tabs (Telemetry Style) ── */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none border-b border-white/[0.06]">
+      {/* ── Category Filter Tabs (Telemetry Style with Full-Bleed on Mobile) ── */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 scrollbar-none border-b border-white/[0.06] -mx-4 px-4 sm:mx-0 sm:px-0">
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat;
           return (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
+              className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
                 isSelected
                   ? 'bg-[#00ff66] text-black font-bold shadow-lg shadow-[#00ff66]/20'
                   : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'

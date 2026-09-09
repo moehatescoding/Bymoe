@@ -72,38 +72,38 @@ export default function Hero() {
 
       {/* ── Hero Main Content ── */}
       <motion.div 
-        className="relative z-10 flex flex-col justify-between min-h-[100svh] px-6 sm:px-10 md:px-16 pt-24 md:pt-28 pb-28 md:pb-12 max-w-7xl mx-auto w-full"
+        className="relative z-10 flex flex-col justify-between min-h-[100svh] px-4 sm:px-8 md:px-16 pt-16 sm:pt-24 md:pt-28 pb-24 sm:pb-28 md:pb-12 max-w-7xl mx-auto w-full"
         style={{ opacity: heroOpacity }}
       >
         {/* Top Telemetry Header */}
         <motion.div
-          className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2"
+          className="flex items-center justify-between gap-3 pt-1"
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
           {/* Logo brandmark */}
-          <div className="flex items-center gap-4">
-            <div className="relative w-36 sm:w-44 h-12 overflow-hidden">
+          <div className="flex items-center gap-2.5 sm:gap-4">
+            <div className="relative w-28 sm:w-44 h-8 sm:h-12 overflow-hidden">
               <Image
                 src="/logo.png"
                 alt="by/moe"
                 fill
-                sizes="176px"
+                sizes="(max-width: 640px) 112px, 176px"
                 className="object-contain object-left"
                 priority
               />
             </div>
-            <div className="hidden sm:flex items-center gap-2 pl-4 border-l border-white/10">
+            <div className="flex items-center gap-1.5 pl-2 sm:pl-4 border-l border-white/10">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-pulse" />
-              <span className="hud-tag text-[9px] py-0.5 px-2">
-                KAWASAKI Z900 // HYD · IND
+              <span className="hud-tag text-[8px] sm:text-[9px] py-0.5 px-1.5 sm:px-2 whitespace-nowrap">
+                Z900 // HYD · IND
               </span>
             </div>
           </div>
 
           {/* Voice Audio Experience Easter Egg */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <HeroAudioButton audioSrc="/audio/hero-voice.mp3" />
           </div>
         </motion.div>
@@ -111,25 +111,25 @@ export default function Hero() {
         {/* ── Center: OVERSIZED KINETIC HEADLINE (Dominates Viewport) ── */}
         <motion.div
           style={{ y: textParallax }}
-          className="my-auto py-10 sm:py-14 select-none"
+          className="my-auto py-6 sm:py-14 select-none"
         >
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="flex items-center gap-3 mb-3 sm:mb-4"
+            className="flex items-center gap-2 sm:gap-3 mb-2.5 sm:mb-4"
           >
-            <span className="text-xs font-mono tracking-[0.3em] uppercase text-[#00ff66] font-semibold">
+            <span className="text-[10px] sm:text-xs font-mono tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#00ff66] font-semibold">
               // DISPATCH 001
             </span>
-            <span className="h-px w-12 bg-white/20" />
-            <span className="text-[11px] font-mono tracking-widest text-white/40 uppercase">
+            <span className="h-px w-8 sm:w-12 bg-white/20" />
+            <span className="text-[9px] sm:text-[11px] font-mono tracking-wider sm:tracking-widest text-white/40 uppercase">
               RIDER · BUILDER · CREATOR
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-editorial-lead text-6xl sm:text-8xl md:text-9xl lg:text-[10.5vw] font-extrabold text-white tracking-[-0.03em] leading-[0.84]"
+            className="text-editorial-lead text-[3rem] xs:text-[3.5rem] sm:text-8xl md:text-9xl lg:text-[10.5vw] font-extrabold text-white tracking-[-0.03em] leading-[0.88]"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -143,7 +143,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-xl text-sm sm:text-base md:text-lg text-white/60 font-light leading-relaxed"
+            className="mt-4 sm:mt-6 max-w-xl text-xs sm:text-base md:text-lg text-white/60 font-light leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55 }}
@@ -154,7 +154,7 @@ export default function Hero() {
 
         {/* ── Bottom Strip: ONE Singular Dominant Action + Tachometer Scroll ── */}
         <motion.div
-          className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-6 pt-4 border-t border-white/[0.08]"
+          className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-4 sm:gap-6 pt-3 sm:pt-4 border-t border-white/[0.08]"
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -165,28 +165,28 @@ export default function Hero() {
               href="https://chat.whatsapp.com/ENrb0phc8sT32tMnwnoqiw?s=cl&p=i&mlu=0"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl border border-white/15 bg-black/65 backdrop-blur-2xl hover:border-[#00ff66]/60 hover:bg-black/85 active:scale-[0.98] transition-all duration-300 shadow-[0_12px_40px_rgba(0,0,0,0.8)] cursor-pointer"
+              className="group flex items-center justify-between p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-white/15 bg-black/75 backdrop-blur-2xl hover:border-[#00ff66]/60 hover:bg-black/90 active:scale-[0.98] transition-all duration-300 shadow-[0_12px_40px_rgba(0,0,0,0.8)] cursor-pointer"
               data-cursor="JOIN"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#00ff66]/15 border border-[#00ff66]/30 flex items-center justify-center text-[#00ff66] group-hover:scale-105 group-hover:bg-[#00ff66]/25 transition-all">
-                  <WhatsAppIcon size={24} />
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#00ff66]/15 border border-[#00ff66]/30 flex items-center justify-center text-[#00ff66] flex-shrink-0 group-hover:scale-105 group-hover:bg-[#00ff66]/25 transition-all">
+                  <WhatsAppIcon size={20} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-white font-bold text-base sm:text-lg leading-tight tracking-tight">
+                    <span className="text-white font-bold text-sm sm:text-base md:text-lg leading-tight tracking-tight">
                       Join WhatsApp Collective
                     </span>
                     <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse" />
                   </div>
-                  <p className="text-white/45 text-xs mt-0.5 font-light">
+                  <p className="text-white/45 text-[11px] sm:text-xs mt-0.5 font-light">
                     The Inner Circle · Group Rides & Builds
                   </p>
                 </div>
               </div>
 
-              <div className="text-white/30 group-hover:text-[#00ff66] group-hover:translate-x-1.5 transition-all duration-300 pr-1">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="text-white/30 group-hover:text-[#00ff66] group-hover:translate-x-1.5 transition-all duration-300 pr-1 flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </div>

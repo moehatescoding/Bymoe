@@ -69,10 +69,10 @@ export default function GalleryPage() {
       : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-brand-black pb-32 pt-28 px-5 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
+    <main className="min-h-screen bg-brand-black pb-32 pt-20 sm:pt-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
       
       {/* Header */}
-      <div className="mb-14 text-left border-b border-white/[0.08] pb-10">
+      <div className="mb-10 sm:mb-14 text-left border-b border-white/[0.08] pb-8 sm:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export default function GalleryPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white mb-4"
+          className="font-display text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white mb-4"
         >
           VISUAL <span className="text-[#00ff66]">ARCHIVE</span>
         </motion.h1>
@@ -96,21 +96,21 @@ export default function GalleryPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg text-white/60 max-w-xl font-light leading-relaxed"
+          className="text-sm sm:text-lg text-white/60 max-w-xl font-light leading-relaxed"
         >
           Raw garage photography, high-speed shutter captures, mechanical details, and night-ride film stills.
         </motion.p>
       </div>
 
       {/* Filter Tabs (Telemetry Style) */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none border-b border-white/[0.06]">
+      <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-10 scrollbar-none border-b border-white/[0.06]">
         {categories.map((cat) => {
           const isSelected = activeCategory === cat;
           return (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
+              className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0 ${
                 isSelected
                   ? 'bg-[#00ff66] text-black font-bold shadow-lg shadow-[#00ff66]/20'
                   : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'
@@ -178,6 +178,17 @@ export default function GalleryPage() {
             data-cursor="CLOSE"
             className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-2xl p-4 sm:p-10 flex flex-col items-center justify-center cursor-zoom-out"
           >
+            {/* Mobile close button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
+              className="absolute top-4 right-4 z-10 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              ✕ CLOSE
+            </button>
+
             <div className="relative max-w-5xl w-full max-h-[80vh] aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
               <Image
                 src={selectedImage.image}
@@ -186,12 +197,12 @@ export default function GalleryPage() {
                 className="object-contain"
               />
             </div>
-            <div className="mt-6 text-center max-w-xl">
+            <div className="mt-6 text-center max-w-xl px-4">
               <span className="hud-tag text-[10px] mb-2 inline-block">
                 {selectedImage.category}
               </span>
-              <p className="font-display text-2xl font-black uppercase text-white tracking-wider">{selectedImage.title}</p>
-              <p className="text-white/40 font-mono text-xs mt-2 uppercase tracking-widest">TAP ANYWHERE TO CLOSE FRAME</p>
+              <p className="font-display text-xl sm:text-2xl font-black uppercase text-white tracking-wider">{selectedImage.title}</p>
+              <p className="text-white/40 font-mono text-[11px] sm:text-xs mt-2 uppercase tracking-widest">TAP ANYWHERE TO CLOSE</p>
             </div>
           </motion.div>
         )}

@@ -32,7 +32,7 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
       href={reel.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex-shrink-0 w-[210px] sm:w-[240px] aspect-[9/16] bg-[#111116] rounded-2xl overflow-hidden border border-white/10 hover:border-[#00ff66]/50 cursor-pointer shadow-2xl transition-all duration-300 select-none"
+      className="group relative flex-shrink-0 w-[175px] xs:w-[195px] sm:w-[240px] aspect-[9/16] bg-[#111116] rounded-2xl overflow-hidden border border-white/10 hover:border-[#00ff66]/50 cursor-pointer shadow-2xl transition-all duration-300 select-none snap-start"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -49,7 +49,7 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
             fill
             className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 editorial-grade transition-all duration-700"
             onError={() => setImgError(true)}
-            sizes="240px"
+            sizes="(max-width: 640px) 195px, 240px"
           />
         </div>
       ) : (
@@ -60,29 +60,39 @@ function HomeReelCard({ reel, index }: { reel: typeof REELS_CONTENT[0]; index: n
       <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/30 to-[#08080a]/60 z-[1]" />
 
       {/* Top telemetry bar */}
-      <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 text-[9px] font-mono">
-        <div className="flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-white/10 text-white/80">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse" />
-          <span>REC 00:{20 + index * 4}</span>
+      <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+        <div className="flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+          <span className="font-mono text-[8px] text-white font-bold tracking-wider">
+            REC 00:{20 + index * 4}
+          </span>
         </div>
         <span className="hud-tag text-[8px] py-0.5 px-1.5">
           {reel.category}
         </span>
       </div>
 
-      {/* Center Play Button trigger on hover */}
+      {/* Center play icon button */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="w-12 h-12 rounded-full bg-black/65 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-[#00ff66] group-hover:text-black group-hover:scale-110 group-hover:border-[#00ff66] transition-all duration-300 shadow-xl">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
+        <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-[#00ff66] group-hover:border-[#00ff66] group-hover:scale-110 transition-all duration-300 shadow-xl">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-white group-hover:text-black ml-0.5 transition-colors">
             <path d="M8 5v14l11-7z"/>
           </svg>
         </div>
       </div>
 
-      {/* Bottom info */}
-      <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between text-[10px] font-mono text-white/60">
-        <span>60 FPS // UHD</span>
-        <span className="text-[#00ff66] group-hover:translate-x-1 transition-transform">Watch →</span>
+      {/* Bottom telemetry readout */}
+      <div className="absolute bottom-0 left-0 right-0 p-3.5 sm:p-4 z-10 bg-gradient-to-t from-[#08080a] to-transparent">
+        <div className="flex items-center justify-between font-mono text-[9px] text-white/50 mb-0.5">
+          <span>60 FPS // UHD</span>
+          <span className="text-[#00ff66]">RAW CUT</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-bold text-white group-hover:text-[#00ff66] transition-colors">
+            Watch Reel
+          </span>
+          <span className="text-xs text-[#00ff66] group-hover:translate-x-1 transition-transform">→</span>
+        </div>
       </div>
     </motion.a>
   );
@@ -92,8 +102,8 @@ export default function Home() {
   const featuredProduct = PRODUCTS.find((p) => p.id === 'diy-hydro-dip') || PRODUCTS[0];
 
   return (
-    <main className="min-h-screen bg-[#08080a] text-[#f3f2ee] overflow-x-hidden">
-
+    <main className="min-h-screen bg-[#08080a] text-white selection:bg-[#00ff66] selection:text-black overflow-x-hidden">
+      
       {/* ═══════════════════════════════════════════
           CINEMATIC KAWASAKI HERO
       ═══════════════════════════════════════════ */}
@@ -102,10 +112,10 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           RIDER DOSSIER — "WHO'S MOE?"
       ═══════════════════════════════════════════ */}
-      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section className="px-4 sm:px-8 md:px-16 py-16 sm:py-24 md:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Left Column: Dossier Photography & Telemetry */}
+          {/* Left Column: Image with Telemetry Badges */}
           <motion.div 
             className="lg:col-span-5 relative"
             initial={{ opacity: 0, x: -30 }}
@@ -133,7 +143,7 @@ export default function Home() {
               </div>
 
               {/* Machine Hardware Pill */}
-              <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-xl p-4 rounded-2xl border border-white/10">
+              <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-xl p-3.5 sm:p-4 rounded-2xl border border-white/10">
                 <div className="flex items-center justify-between text-[10px] font-mono text-white/50 mb-1">
                   <span>PRIMARY RIG</span>
                   <span className="text-[#00ff66]">ACTIVE</span>
@@ -141,7 +151,7 @@ export default function Home() {
                 <p className="text-sm font-bold text-white tracking-wide">
                   Kawasaki Z900 · Yoshimura Alpha-T
                 </p>
-                <div className="flex items-center gap-3 mt-2 text-[10px] font-mono text-white/60">
+                <div className="flex items-center gap-2.5 mt-2 text-[10px] font-mono text-white/60">
                   <span>948cc Inline-4</span>
                   <span>·</span>
                   <span>125 HP</span>
@@ -160,7 +170,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
               <span className="text-xs font-mono tracking-[0.25em] text-[#00ff66] uppercase font-bold">
                 WHO IS MOE?
@@ -168,31 +178,32 @@ export default function Home() {
             </div>
 
             {/* Oversized Pull-Quote */}
-            <blockquote className="text-editorial-lead text-4xl sm:text-5xl md:text-6xl text-white font-bold leading-[0.95] tracking-tight mb-8">
+            <blockquote className="text-editorial-lead text-2xl xs:text-3xl sm:text-5xl md:text-6xl text-white font-bold leading-[0.95] tracking-tight mb-6 sm:mb-8">
               "I make things, break things, ride fast, and occasionally figure them out."
             </blockquote>
 
-            <div className="space-y-4 text-base sm:text-lg text-white/60 font-light leading-relaxed mb-8 max-w-2xl">
+            <div className="space-y-4 text-sm sm:text-base md:text-lg text-white/60 font-light leading-relaxed mb-8 max-w-2xl">
               <p>
                 No corporate playbook. No sterile aesthetic. From tore-down motorcycle engines and bespoke carbon hydro-dipping to software systems and cinematic content — this is the workshop where ideas meet asphalt.
               </p>
-              <p className="text-sm sm:text-base text-white/45">
+              <p className="text-xs sm:text-sm text-white/45">
                 Every modification, product recommendation, and ride note on this site is tested with zero compromise under real throttle and real rain.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/[0.08]">
+            {/* Action buttons */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-white text-black text-xs font-bold tracking-[0.18em] uppercase hover:bg-[#00ff66] hover:text-black transition-all cursor-pointer font-sans"
-                data-cursor="ABOUT"
+                className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-white text-black text-xs font-bold tracking-[0.18em] uppercase hover:bg-[#00ff66] transition-all cursor-pointer font-sans shadow-lg"
+                data-cursor="DOSSIER"
               >
                 <span>Read Full Story</span>
                 <span>→</span>
               </Link>
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.08] text-xs font-bold tracking-[0.18em] uppercase transition-all cursor-pointer font-sans"
+                className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.08] text-xs font-bold tracking-[0.18em] uppercase transition-all cursor-pointer font-sans"
                 data-cursor="COLLAB"
               >
                 <span>Collaborations</span>
@@ -207,8 +218,8 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           FEATURED GEAR SHOWCASE — EDITORIAL BREAKDOWN
       ═══════════════════════════════════════════ */}
-      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <section className="px-4 sm:px-8 md:px-16 py-16 sm:py-24 md:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
@@ -216,7 +227,7 @@ export default function Home() {
                 WORKSHOP // VERIFIED RIG
               </span>
             </div>
-            <h2 className="text-editorial-lead text-4xl sm:text-6xl font-extrabold text-white">
+            <h2 className="text-editorial-lead text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
               Featured Gear & Builds
             </h2>
           </div>
@@ -233,13 +244,13 @@ export default function Home() {
         {featuredProduct && (
           <Link
             href="/products"
-            className="group block relative w-full rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#151520] to-[#09090e] p-6 sm:p-10 mb-12 shadow-2xl transition-all duration-300 hover:border-[#00ff66]/50"
+            className="group block relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-gradient-to-b from-[#151520] to-[#09090e] p-5 sm:p-10 mb-8 sm:mb-12 shadow-2xl transition-all duration-300 hover:border-[#00ff66]/50"
             data-cursor="INSPECT"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
                     <span className="hud-tag text-[9px]">
                       [GEAR // 01] · FEATURED RIG
                     </span>
@@ -248,11 +259,11 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h3 className="text-editorial-lead text-3xl sm:text-5xl font-extrabold text-white mb-3 group-hover:text-[#00ff66] transition-colors">
+                  <h3 className="text-editorial-lead text-2xl xs:text-3xl sm:text-5xl font-extrabold text-white mb-2 sm:mb-3 group-hover:text-[#00ff66] transition-colors">
                     {featuredProduct.name}
                   </h3>
 
-                  <p className="text-base sm:text-lg text-white/80 font-normal mb-4">
+                  <p className="text-sm sm:text-lg text-white/80 font-normal mb-3 sm:mb-4">
                     "{featuredProduct.tagline}"
                   </p>
 
@@ -260,7 +271,7 @@ export default function Home() {
                     {featuredProduct.description}
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6 sm:mb-8">
                     {featuredProduct.features.map((feat, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-xs font-mono text-white/70">
                         <span className="text-[#00ff66]">/</span>
@@ -277,7 +288,7 @@ export default function Home() {
               </div>
 
               {/* Product Image Frame with Duotone Tone */}
-              <div className="lg:col-span-5 relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-[#0c0c12] p-6 flex items-center justify-center">
+              <div className="lg:col-span-5 relative aspect-square sm:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 bg-[#0c0c12] p-4 sm:p-6 flex items-center justify-center">
                 <div className="relative w-full h-full">
                   <Image
                     src={featuredProduct.image}
@@ -300,11 +311,11 @@ export default function Home() {
             <Link
               key={prod.id}
               href="/products"
-              className="group flex flex-col justify-between p-5 rounded-2xl bg-[#111116] border border-white/10 hover:border-[#00ff66]/40 transition-all duration-300 shadow-xl cursor-pointer"
+              className="group flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-[#111116] border border-white/10 hover:border-[#00ff66]/40 transition-all duration-300 shadow-xl cursor-pointer"
               data-cursor="INSPECT"
             >
               <div>
-                <div className="relative w-full aspect-[4/3] rounded-xl bg-[#09090d] border border-white/[0.06] overflow-hidden mb-4 flex items-center justify-center p-3">
+                <div className="relative w-full aspect-[4/3] rounded-xl bg-[#09090d] border border-white/[0.06] overflow-hidden mb-3.5 flex items-center justify-center p-3">
                   <Image
                     src={prod.image}
                     alt={prod.name}
@@ -319,7 +330,7 @@ export default function Home() {
                 <div className="text-[10px] font-mono text-[#00ff66] tracking-wider uppercase mb-1">
                   {prod.category}
                 </div>
-                <h4 className="text-base font-bold text-white group-hover:text-[#00ff66] transition-colors leading-snug line-clamp-1 mb-2">
+                <h4 className="text-base font-bold text-white group-hover:text-[#00ff66] transition-colors leading-snug line-clamp-1 mb-1.5">
                   {prod.name}
                 </h4>
                 <p className="text-xs text-white/50 font-light line-clamp-2 mb-4">
@@ -339,8 +350,8 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           CUSTOM REELS GRID — RAW NIGHT RUNS
       ═══════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.06] overflow-hidden">
-        <div className="px-6 sm:px-10 md:px-16 mb-8 flex flex-col sm:flex-row sm:items-end justify-between max-w-7xl mx-auto w-full gap-4">
+      <section className="py-16 sm:py-24 md:py-32 border-b border-white/[0.06] overflow-hidden">
+        <div className="px-4 sm:px-8 md:px-16 mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-end justify-between max-w-7xl mx-auto w-full gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
@@ -348,7 +359,7 @@ export default function Home() {
                 KINETIC DISPATCHES
               </span>
             </div>
-            <h2 className="text-editorial-lead text-4xl sm:text-6xl font-extrabold text-white">
+            <h2 className="text-editorial-lead text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
               Raw Reels & Motion
             </h2>
           </div>
@@ -361,8 +372,8 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Horizontal Film-Scrub Track */}
-        <div className="flex gap-5 overflow-x-auto scrollbar-none px-6 sm:px-10 md:px-16 pb-4">
+        {/* Horizontal Film-Scrub Track with Native Snap-Scroll */}
+        <div className="flex gap-3.5 sm:gap-5 overflow-x-auto scrollbar-none px-4 sm:px-8 md:px-16 pb-4 snap-x snap-mandatory">
           {REELS_CONTENT.map((reel, i) => (
             <HomeReelCard key={reel.id} reel={reel} index={i} />
           ))}
@@ -372,8 +383,8 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           THE LOGBOOK — TECHNICAL FIELD NOTES
       ═══════════════════════════════════════════ */}
-      <section className="px-6 sm:px-10 md:px-16 py-24 sm:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <section className="px-4 sm:px-8 md:px-16 py-16 sm:py-24 md:py-32 max-w-7xl mx-auto w-full border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66]" />
@@ -381,7 +392,7 @@ export default function Home() {
                 THE LOGBOOK // DISPATCHES
               </span>
             </div>
-            <h2 className="text-editorial-lead text-4xl sm:text-6xl font-extrabold text-white">
+            <h2 className="text-editorial-lead text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
               Field Notes & Deep-Dives
             </h2>
           </div>
@@ -395,7 +406,7 @@ export default function Home() {
         </div>
 
         {/* 3-Column Editorial Split with Differentiated Taxonomy */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {BLOG_POSTS.slice(0, 3).map((post, i) => {
             const isTechnical = post.category.toLowerCase().includes('gear') || post.category.toLowerCase().includes('maintenance');
 
@@ -403,7 +414,7 @@ export default function Home() {
               <Link
                 key={post.id}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-[#111116] hover:border-[#00ff66]/50 transition-all duration-300 shadow-2xl cursor-pointer"
+                className="group flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#111116] hover:border-[#00ff66]/50 transition-all duration-300 shadow-2xl cursor-pointer"
                 data-cursor="READ"
               >
                 {/* Article Cover */}
@@ -431,15 +442,15 @@ export default function Home() {
                 </div>
 
                 {/* Article Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between">
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="text-[10px] font-mono text-white/40 mb-3 flex items-center gap-2">
+                    <div className="text-[10px] font-mono text-white/40 mb-2.5 flex items-center gap-2">
                       <span>{post.date}</span>
                       <span>•</span>
                       <span>{post.readTime}</span>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#00ff66] transition-colors leading-snug line-clamp-2 mb-3">
+                    <h3 className="text-lg sm:text-2xl font-bold text-white group-hover:text-[#00ff66] transition-colors leading-snug line-clamp-2 mb-2.5">
                       {post.title}
                     </h3>
 

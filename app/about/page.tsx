@@ -42,13 +42,13 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-brand-black pt-32 pb-32 px-5 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
+    <main className="min-h-screen bg-brand-black pt-20 sm:pt-32 pb-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
       
       {/* Subtle Ambient Glow */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-[#00ff66]/10 blur-[140px] rounded-full pointer-events-none" />
 
       {/* Header */}
-      <div className="mb-14 text-left border-b border-white/[0.08] pb-10">
+      <div className="mb-10 sm:mb-14 text-left border-b border-white/[0.08] pb-8 sm:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,63 +64,63 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white mb-4"
+          className="font-display text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white mb-3 sm:mb-4"
         >
           WHO'S <span className="text-[#00ff66]">MOE?</span>
         </motion.h1>
-        <p className="text-base sm:text-lg text-white/60 max-w-2xl font-light leading-relaxed">
+        <p className="text-sm sm:text-lg text-white/60 max-w-2xl font-light leading-relaxed">
           Rider, builder, creator, and mechanical tinkerer. Living life at 10,000 RPM between Hyderabad's tarmac and wide-open southern highways.
         </p>
       </div>
 
       <motion.div 
-        className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+        className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         
         {/* Left Column: Manifesto & Narrative */}
-        <motion.div className="lg:col-span-7 flex flex-col gap-8" variants={itemVariants}>
-          <div className="p-8 rounded-2xl bg-brand-surface border border-white/10 relative overflow-hidden">
+        <motion.div className="lg:col-span-7 flex flex-col gap-6 sm:gap-8" variants={itemVariants}>
+          <div className="p-6 sm:p-8 rounded-2xl bg-brand-surface border border-white/10 relative overflow-hidden">
             <div className="text-[10px] font-mono tracking-widest text-[#00ff66] uppercase mb-3">
               // MANIFESTO
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-white leading-tight mb-5">
+            <h2 className="font-display text-2xl xs:text-3xl sm:text-4xl font-black uppercase text-white leading-tight mb-4 sm:mb-5">
               "LIFE, BUILT MY WAY. I DON'T DO STOCK."
             </h2>
-            <p className="text-base sm:text-lg text-white/70 font-light leading-relaxed mb-4">
+            <p className="text-sm sm:text-lg text-white/70 font-light leading-relaxed mb-4">
               I make things, break things, tune things, and occasionally figure them out. Whether it's hydro-dipping motorcycle bodywork in a backyard tub or dialing in an inline-four on highway dynos, I believe in mechanical honesty over corporate polish.
             </p>
-            <p className="text-sm sm:text-base text-white/50 font-light leading-relaxed">
+            <p className="text-xs sm:text-base text-white/50 font-light leading-relaxed">
               This space is an unfiltered record of everything I test, ride, and build. If it's on this site, I bought it, bolted it on, rode it hard, and stood by it.
             </p>
           </div>
 
           {/* Quick Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-              <div className="font-mono text-xs text-[#00ff66] mb-1">01 // ETHOS</div>
-              <div className="font-display text-lg font-bold uppercase text-white mb-1">Built, Not Bought</div>
-              <div className="text-xs text-white/50">Hands-on garage engineering over showroom off-the-shelf.</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div className="p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+              <div className="font-mono text-[10px] sm:text-xs text-[#00ff66] mb-1">01 // ETHOS</div>
+              <div className="font-display text-base sm:text-lg font-bold uppercase text-white mb-1">Built, Not Bought</div>
+              <div className="text-[11px] sm:text-xs text-white/50">Hands-on garage engineering over showroom off-the-shelf.</div>
             </div>
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-              <div className="font-mono text-xs text-[#00ff66] mb-1">02 // TARMAC</div>
-              <div className="font-display text-lg font-bold uppercase text-white mb-1">100% Verified</div>
-              <div className="text-xs text-white/50">Real world stress testing across thousands of monsoon kilometres.</div>
+            <div className="p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+              <div className="font-mono text-[10px] sm:text-xs text-[#00ff66] mb-1">02 // TARMAC</div>
+              <div className="font-display text-base sm:text-lg font-bold uppercase text-white mb-1">100% Verified</div>
+              <div className="text-[11px] sm:text-xs text-white/50">Real world stress testing across thousands of monsoon kilometres.</div>
             </div>
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-              <div className="font-mono text-xs text-[#00ff66] mb-1">03 // COLLECTIVE</div>
-              <div className="font-display text-lg font-bold uppercase text-white mb-1">Rider Community</div>
-              <div className="text-xs text-white/50">No gatekeeping. Pure knowledge share for passionate riders.</div>
+            <div className="p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+              <div className="font-mono text-[10px] sm:text-xs text-[#00ff66] mb-1">03 // COLLECTIVE</div>
+              <div className="font-display text-base sm:text-lg font-bold uppercase text-white mb-1">Rider Community</div>
+              <div className="text-[11px] sm:text-xs text-white/50">No gatekeeping. Pure knowledge share for passionate riders.</div>
             </div>
           </div>
 
           {/* Contact / CTA buttons */}
-          <div className="flex flex-wrap items-center gap-4 pt-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-4">
             <a 
               href="mailto:hello@bymoe.in" 
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#00ff66] text-black font-display text-sm font-black tracking-wider uppercase hover:bg-[#22c55e] transition-all cursor-pointer shadow-lg shadow-[#00ff66]/20"
+              className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3.5 rounded-xl bg-[#00ff66] text-black font-display text-xs sm:text-sm font-black tracking-wider uppercase hover:bg-[#22c55e] transition-all cursor-pointer shadow-lg shadow-[#00ff66]/20 w-full sm:w-auto"
               onMouseEnter={playHover}
               onClick={() => {
                 playClick();
@@ -134,7 +134,7 @@ export default function AboutPage() {
               href="https://chat.whatsapp.com/G5qW40UqW3C9N5R1" 
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/5 border border-white/15 text-white hover:bg-white/10 font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3.5 rounded-xl bg-white/5 border border-white/15 text-white hover:bg-white/10 font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer w-full sm:w-auto"
               data-cursor="JOIN"
             >
               <span>JOIN WHATSAPP COLLECTIVE ↗</span>
@@ -144,7 +144,7 @@ export default function AboutPage() {
 
         {/* Right Column: Bike Telemetry Spec Sheet */}
         <motion.div className="lg:col-span-5 flex flex-col gap-6" variants={itemVariants}>
-          <div className="p-6 rounded-2xl bg-brand-surface border border-white/15 shadow-2xl relative">
+          <div className="p-5 sm:p-6 rounded-2xl bg-brand-surface border border-white/15 shadow-2xl relative">
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse" />
@@ -173,11 +173,11 @@ export default function AboutPage() {
             {/* Telemetry Spec Rows */}
             <div className="flex flex-col divide-y divide-white/[0.06]">
               {bikeSpecs.map((spec, i) => (
-                <div key={i} className="py-2.5 flex items-center justify-between text-xs">
-                  <span className="font-mono text-white/40 tracking-wider text-[11px]">
+                <div key={i} className="py-2.5 flex flex-col xs:flex-row xs:items-center justify-between text-xs gap-1 xs:gap-4">
+                  <span className="font-mono text-white/40 tracking-wider text-[10px] sm:text-[11px]">
                     {spec.label}
                   </span>
-                  <span className="font-mono text-white/90 font-medium text-right text-[11px]">
+                  <span className="font-mono text-white/90 font-medium xs:text-right text-[11px]">
                     {spec.value}
                   </span>
                 </div>

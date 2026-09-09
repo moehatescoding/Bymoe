@@ -18,12 +18,12 @@ export default function ProjectsPage() {
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-brand-black pt-28 pb-32 px-5 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
+    <main className="min-h-screen bg-brand-black pt-20 sm:pt-28 pb-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
       
       {/* Header */}
-      <header className="mb-14 text-left border-b border-white/[0.08] pb-10">
+      <header className="mb-10 sm:mb-14 text-left border-b border-white/[0.08] pb-8 sm:pb-10">
         <motion.div 
-          className="flex flex-col gap-4 max-w-3xl"
+          className="flex flex-col gap-3 sm:gap-4 max-w-3xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -34,21 +34,21 @@ export default function ProjectsPage() {
               PROTOCOLS // SOFTWARE, HARDWARE & HARD PARTS
             </p>
           </div>
-          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white leading-none">
+          <h1 className="font-display text-4xl xs:text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white leading-none">
             THINGS I'M <span className="text-[#00ff66]">BUILDING</span>
           </h1>
-          <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed">
+          <p className="text-sm sm:text-lg text-white/60 font-light leading-relaxed">
             Software architectures, physical garage rigs, custom carbon experiments, and digital products.
           </p>
         </motion.div>
       </header>
 
       {/* Filter Tabs (Telemetry Style) */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none border-b border-white/[0.06]">
+      <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-12 scrollbar-none border-b border-white/[0.06]">
         <button
           onClick={() => { playClick(); setActiveCategory('All'); }}
           onMouseEnter={playHover}
-          className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
+          className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0 ${
             activeCategory === 'All'
               ? 'bg-[#00ff66] text-black font-bold shadow-lg shadow-[#00ff66]/20'
               : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
             key={cat}
             onClick={() => { playClick(); setActiveCategory(cat); }}
             onMouseEnter={playHover}
-            className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
+            className={`px-4 py-2.5 rounded-xl font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0 ${
               activeCategory === cat
                 ? 'bg-[#00ff66] text-black font-bold shadow-lg shadow-[#00ff66]/20'
                 : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'

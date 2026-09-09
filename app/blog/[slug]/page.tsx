@@ -177,10 +177,10 @@ export default async function BlogPostPage({ params }: Props) {
   const isRideStory = post.category.toLowerCase().includes('ride') || post.category.toLowerCase().includes('travel') || post.category.toLowerCase().includes('story');
 
   return (
-    <main className="min-h-screen bg-brand-black pb-32 pt-28 px-5 sm:px-8 max-w-5xl mx-auto overflow-x-hidden">
+    <main className="min-h-screen bg-brand-black pb-32 pt-20 sm:pt-28 px-4 sm:px-8 max-w-5xl mx-auto overflow-x-hidden">
       
       {/* Back button */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-white/50 hover:text-[#00ff66] transition-colors cursor-pointer"
@@ -190,8 +190,8 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
 
       {/* Header info */}
-      <header className="mb-12 text-left border-b border-white/[0.08] pb-10">
-        <div className="flex flex-wrap items-center gap-3 mb-5">
+      <header className="mb-8 sm:mb-12 text-left border-b border-white/[0.08] pb-8 sm:pb-10">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-4 sm:mb-5">
           <span className={isRideStory ? 'hud-tag-amber' : 'hud-tag'}>
             {post.category}
           </span>
@@ -205,11 +205,11 @@ export default async function BlogPostPage({ params }: Props) {
           </span>
         </div>
 
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-white uppercase leading-[0.95] mb-6">
+        <h1 className="font-display text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-white uppercase leading-[0.98] mb-4 sm:mb-6">
           {post.title}
         </h1>
 
-        <p className="text-base sm:text-xl text-white/70 font-light leading-relaxed border-l-2 border-[#00ff66] pl-5 my-6">
+        <p className="text-sm sm:text-xl text-white/70 font-light leading-relaxed border-l-2 border-[#00ff66] pl-3.5 sm:pl-5 my-4 sm:my-6">
           {post.excerpt}
         </p>
 

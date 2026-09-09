@@ -4,15 +4,16 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
-  { label: 'Logbook',  href: '/blog' },
-  { label: 'Gear',     href: '/products' },
-  { label: 'Reels',    href: '/content' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Gallery',  href: '/gallery' },
-  { label: 'Collab',   href: '/work' },
-  { label: 'About',    href: '/about' },
+  { num: '01', label: 'Logbook',  href: '/blog' },
+  { num: '02', label: 'Gear',     href: '/products' },
+  { num: '03', label: 'Reels',    href: '/content' },
+  { num: '04', label: 'Projects', href: '/projects' },
+  { num: '05', label: 'Gallery',  href: '/gallery' },
+  { num: '06', label: 'Collab',   href: '/work' },
+  { num: '07', label: 'About',    href: '/about' },
 ];
 
 function IgIcon({ size = 16 }: { size?: number }) {
@@ -33,91 +34,242 @@ function YtIcon({ size = 18 }: { size?: number }) {
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 25);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on page transition
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <header
-      className={`hidden md:flex fixed top-0 left-0 w-full z-[100] transition-all duration-300 items-center justify-between px-8 lg:px-12 h-20 ${
-        isScrolled
-          ? 'bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl'
-          : 'bg-gradient-to-b from-[#08080a]/70 to-transparent'
-      }`}
-    >
-      {/* Brand Logo with the new by/moe mark */}
-      <Link
-        href="/"
-        className="relative w-36 h-12 block cursor-pointer group transition-transform duration-200 hover:scale-[1.03]"
-        data-cursor="HOME"
+    <>
+      {/* ── DESKTOP HEADER (md and above) ── */}
+      <header
+        className={`hidden md:flex fixed top-0 left-0 w-full z-[100] transition-all duration-300 items-center justify-between px-8 lg:px-12 h-20 ${
+          isScrolled
+            ? 'bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl'
+            : 'bg-gradient-to-b from-[#08080a]/70 to-transparent'
+        }`}
       >
-        <Image
-          src="/logo.png"
-          alt="by/moe"
-          fill
-          sizes="144px"
-          className="object-contain object-left"
-          priority
-        />
-      </Link>
-
-      {/* Nav Links */}
-      <nav className="flex items-center gap-1">
-        {NAV_LINKS.map((link) => {
-          const isActive =
-            link.href === '/'
-              ? pathname === '/'
-              : pathname.startsWith(link.href);
-
-          return (
-            <Link
-              key={link.label}
-              href={link.href}
-              data-cursor="EXPLORE"
-              className={`relative px-3.5 py-2 rounded-lg text-[11px] font-bold tracking-[0.18em] uppercase transition-all cursor-pointer font-sans ${
-                isActive
-                  ? 'text-white bg-white/[0.07]'
-                  : 'text-white/45 hover:text-white hover:bg-white/[0.04]'
-              }`}
-            >
-              <span>{link.label}</span>
-              {isActive && (
-                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#00ff66] rounded-full shadow-[0_0_8px_#00ff66]" />
-              )}
-            </Link>
-          );
-        })}
-
-        {/* Telemetry Separator */}
-        <div className="h-4 w-px bg-white/10 mx-2" />
-
-        {/* Social Icons */}
-        <a
-          href="https://instagram.com/moegical"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
-          aria-label="Instagram @moegical"
-          data-cursor="FOLLOW"
+        {/* Brand Logo with the new by/moe mark */}
+        <Link
+          href="/"
+          className="relative w-36 h-12 block cursor-pointer group transition-transform duration-200 hover:scale-[1.03]"
+          data-cursor="HOME"
         >
-          <IgIcon size={17} />
-        </a>
+          <Image
+            src="/logo.png"
+            alt="by/moe"
+            fill
+            sizes="144px"
+            className="object-contain object-left"
+            priority
+          />
+        </Link>
 
-        <a
-          href="https://www.youtube.com/@Moegical"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-[#ef4444] hover:bg-white/10 transition-all duration-200 cursor-pointer"
-          aria-label="YouTube @Moegical"
-          data-cursor="WATCH"
-        >
-          <YtIcon size={18} />
-        </a>
-      </nav>
-    </header>
+        {/* Desktop Nav Links */}
+        <nav className="flex items-center gap-1">
+          {NAV_LINKS.map((link) => {
+            const isActive =
+              link.href === '/'
+                ? pathname === '/'
+                : pathname.startsWith(link.href);
+
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                data-cursor="EXPLORE"
+                className={`relative px-3.5 py-2 rounded-lg text-[11px] font-bold tracking-[0.18em] uppercase transition-all cursor-pointer font-sans ${
+                  isActive
+                    ? 'text-white bg-white/[0.07]'
+                    : 'text-white/45 hover:text-white hover:bg-white/[0.04]'
+                }`}
+              >
+                <span>{link.label}</span>
+                {isActive && (
+                  <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#00ff66] rounded-full shadow-[0_0_8px_#00ff66]" />
+                )}
+              </Link>
+            );
+          })}
+
+          {/* Telemetry Separator */}
+          <div className="h-4 w-px bg-white/10 mx-2" />
+
+          {/* Social Icons */}
+          <a
+            href="https://instagram.com/moegical"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+            aria-label="Instagram @moegical"
+            data-cursor="FOLLOW"
+          >
+            <IgIcon size={17} />
+          </a>
+
+          <a
+            href="https://www.youtube.com/@Moegical"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-9 h-9 rounded-lg text-white/50 hover:text-[#ef4444] hover:bg-white/10 transition-all duration-200 cursor-pointer"
+            aria-label="YouTube @Moegical"
+            data-cursor="WATCH"
+          >
+            <YtIcon size={18} />
+          </a>
+        </nav>
+      </header>
+
+      {/* ── MOBILE TOP BAR (< md) ── */}
+      <header
+        className={`md:hidden fixed top-0 left-0 right-0 z-[90] h-16 px-4 flex items-center justify-between transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#08080a]/95 backdrop-blur-xl border-b border-white/[0.08] shadow-lg'
+            : 'bg-gradient-to-b from-[#08080a]/80 to-transparent'
+        }`}
+      >
+        {/* Mobile Logo */}
+        <Link href="/" className="relative w-28 h-8 block cursor-pointer" aria-label="by/moe Home">
+          <Image
+            src="/logo.png"
+            alt="by/moe"
+            fill
+            sizes="112px"
+            className="object-contain object-left"
+            priority
+          />
+        </Link>
+
+        {/* Telemetry Indicator + Menu Toggle */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-black/60 border border-white/10 text-[9px] font-mono text-[#00ff66]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-pulse" />
+            <span>HYD · IN</span>
+          </div>
+
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="px-2.5 py-1 rounded-md bg-white/10 active:bg-[#00ff66] text-white active:text-black font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
+            aria-label="Open Navigation Menu"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+            <span className="text-[10px] font-bold">MENU</span>
+          </button>
+        </div>
+      </header>
+
+      {/* ── FULLSCREEN MOBILE NAVIGATION DRAWER ── */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[200] bg-[#08080a]/98 backdrop-blur-2xl px-6 pt-5 pb-8 flex flex-col justify-between overflow-y-auto"
+          >
+            {/* Top Bar inside Drawer */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="relative w-28 h-8">
+                <Image
+                  src="/logo.png"
+                  alt="by/moe"
+                  fill
+                  sizes="112px"
+                  className="object-contain object-left"
+                />
+              </div>
+
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-1.5 rounded-md bg-white/10 text-white font-mono text-xs uppercase tracking-widest font-bold flex items-center gap-1 cursor-pointer"
+              >
+                <span>[✕ CLOSE]</span>
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="my-auto py-8 flex flex-col gap-4">
+              {NAV_LINKS.map((link) => {
+                const isActive =
+                  link.href === '/'
+                    ? pathname === '/'
+                    : pathname.startsWith(link.href);
+
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-baseline justify-between py-2 border-b border-white/[0.06] transition-colors ${
+                      isActive ? 'text-[#00ff66]' : 'text-white/80 active:text-white'
+                    }`}
+                  >
+                    <span className="font-display text-4xl font-black uppercase tracking-tight">
+                      {link.label}
+                    </span>
+                    <span className="font-mono text-xs text-[#00ff66] tracking-widest">
+                      {link.num} //
+                    </span>
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Bottom Drawer Footer */}
+            <div className="pt-4 border-t border-white/10">
+              <div className="flex items-center justify-between mb-4">
+                <a
+                  href="https://instagram.com/moegical"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono font-bold text-white/70 hover:text-white uppercase"
+                >
+                  IG // @MOEGICAL
+                </a>
+                <a
+                  href="https://www.youtube.com/@Moegical"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono font-bold text-white/70 hover:text-[#ef4444] uppercase"
+                >
+                  YT // @MOEGICAL
+                </a>
+              </div>
+
+              <div className="flex items-center justify-between text-[10px] font-mono text-white/40">
+                <span>TELEMETRY: HYD · IN</span>
+                <span className="text-[#00ff66]">SYSTEM ONLINE</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
